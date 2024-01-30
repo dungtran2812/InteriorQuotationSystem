@@ -7,6 +7,8 @@ import Sampledesign from './Component/Sampledesign';
 import Header from './Component/header';
 import Designstyle from './Component/Designstyle';
 import Quotationbanner from './Component/Quotationbanner';
+import Workflowpage from './Component/Workflowpage';
+import Footer from './Component/Footer';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Sampledesign/>
         <Quotationbanner/>
         <Designstyle/>
+        <Workflowpage/>
+        <Footer/>
         </>
         }/>
         
