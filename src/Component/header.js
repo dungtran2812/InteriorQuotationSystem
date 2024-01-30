@@ -16,6 +16,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Image } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -169,7 +170,7 @@ export default function Header() {
                         <MenuIcon />
                     </IconButton>
 
-                    <img src="/images/logo.png" alt="Logo" style={{ height: '100px' }} />
+                    <Link to='/'><img src="/images/logo.png" alt="Logo" style={{ height: '100px' }} /></Link>
 
                     <Typography
                         variant="h6"
