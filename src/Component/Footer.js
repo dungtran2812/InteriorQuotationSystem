@@ -69,7 +69,7 @@ const Footer = () => {
                     </Grid>
                 </Grid>
                 <Typography variant="body2"  align="center" mt={4}>
-                    &copy; {new Date().getFullYear()} Interior design.  All rights reserved.
+                    &copy; {new Date().getFullYear()} Interior design.   All rights reserved.
                 </Typography>
             </Container>
         </Box>
