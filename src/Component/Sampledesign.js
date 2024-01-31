@@ -23,8 +23,11 @@ export default function Sampledesign() {
                   title={sample.name}
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography gutterBottom variant="h5" component="div" color="#f9a11b">
                     {sample.name}
+                  </Typography>
+                  <Typography gutterBottom variant="h6" component="div">
+                    {`Design style: ${sample.style}`}
                   </Typography>
                 </CardContent>
                 <CardActions>
