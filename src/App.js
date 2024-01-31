@@ -7,24 +7,24 @@ import Sampledesign from './Component/Sampledesign';
 import Header from './Component/header';
 import Designstyle from './Component/Designstyle';
 import Quotationbanner from './Component/Quotationbanner';
+import LoginPage from './Component/LoginPage';
 
 function App() {
   return (
     <>
-      <Header />
-      <Navigation />
+      
       <Routes>
         <Route path='/' element={
-        <><Banner/>
+        <>
+        <Header />
+      <Navigation />
+        <Banner/>
         <Sampledesign/>
         <Quotationbanner/>
         <Designstyle/>
         </>
         }/>
-        
-          
-          
-        
+        <Route path='/login' element={<LoginPage/>}/> 
       </Routes>
     </>
   );
