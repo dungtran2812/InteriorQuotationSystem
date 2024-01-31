@@ -20,10 +20,10 @@ export default function Quotationbanner() {
       
       <Grid container spacing={2}>
         <Grid item xs={12} md={6} sx={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
-          <Typography variant='h4' sx={{ color: '#f9a11b', padding: 6 }}>
+          <Typography variant='h4' sx={{ color: '#f9a11b', padding: 6, fontWeight:"bold" }}>
             Order now
           </Typography>
-          <Typography variant='h6' sx={{ color: 'white', padding: 6 }}>
+          <Typography variant='h6' sx={{ color: 'white', padding: 6, textAlign:'center'}}>
             To receive the fastest and most accurate interior design and construction quote.
             Please contact via Hotline: 0123456789. Thank you!
           </Typography>

@@ -1,11 +1,11 @@
 import React from 'react';
 import Slider from 'react-slick';
-import { Box, Paper, Typography } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Paper, Typography } from '@mui/material';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Block, Image } from '@mui/icons-material';
 import { Designstyledata } from '../Shared/ListOfDesign';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import { Link } from 'react-router-dom';
 
 const Designstyle = () => {
   const settings = {
@@ -19,20 +19,34 @@ const Designstyle = () => {
   };
 
   return (
-    
     <Box sx={{ paddingTop: 6 }}>
-      <Box sx={{paddingBottom: 4, display: 'flex', justifyContent: 'center', alignItems:'center'}}>
-        <TrendingUpIcon/>
-        <Typography variant='h4'> Hot design trend in 2024 </Typography>
-        <TrendingUpIcon/>
-        </Box>
+      <Box sx={{ paddingBottom: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <TrendingUpIcon />
+        <Typography variant="h4" sx={{paddingLeft:'2%',paddingRight:'2%',fontWeight:"bold"}}> Hot design trends in 2024 </Typography>
+        <TrendingUpIcon />
+      </Box>
       <Slider {...settings}>
         {Designstyledata.map((designData) => (
-          <Paper key={designData.id} sx={{ padding: 2,display: 'flex', justifyContent: 'center' }}>
-            {/* Adjust the structure based on your design data */}
-            <Typography variant="h5">{designData.title}</Typography>
-            <img src={designData.img} alt={designData.title} style={{width:"100%", height:450}}/>
-            <Typography>{designData.description}</Typography>
+          <Paper key={designData.id} sx={{ display: 'flex', justifyContent: 'center', paddingLeft:'10%'}}>
+            <Card sx={{ maxWidth: 400, boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', transition: 'transform 0.3s ease-in-out' }}>
+              <CardMedia
+                sx={{ height: 200, objectFit: 'cover' }}
+                image={designData.img}
+                title={designData.name}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div" sx={{textAlign:'center'}}>
+                  {designData.name}
+                </Typography>
+              </CardContent>
+              <CardActions sx={{ justifyContent: 'center' }}>
+                <Link to={`detail/${designData.id}`} style={{ textDecoration: 'none' }}>
+                  <Button variant="contained" size="small">
+                    Detail
+                  </Button>
+                </Link>
+              </CardActions>
+            </Card>
           </Paper>
         ))}
       </Slider>

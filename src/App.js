@@ -7,6 +7,8 @@ import Sampledesign from './Component/Sampledesign';
 import Header from './Component/header';
 import Designstyle from './Component/Designstyle';
 import Quotationbanner from './Component/Quotationbanner';
+import Workflowpage from './Component/Workflowpage';
+import Footer from './Component/Footer';
 import LoginPage from './Component/LoginPage';
 
 function App() {
@@ -22,12 +24,14 @@ function App() {
         <Sampledesign/>
         <Quotationbanner/>
         <Designstyle/>
+        <Workflowpage/>
+        <Footer/>
         </>
         }/>
         <Route path='/login' element={<LoginPage/>}/> 
       </Routes>
     </>
   );
-}
+} 
 
 export default App;
