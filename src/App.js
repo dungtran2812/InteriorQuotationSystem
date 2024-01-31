@@ -9,7 +9,7 @@ import Designstyle from './Component/Designstyle';
 import Quotationbanner from './Component/Quotationbanner';
 import Workflowpage from './Component/Workflowpage';
 import Footer from './Component/Footer';
-
+import Customfeedback from './Component/Customfeedback';
 import LoginPage from './Component/LoginPage';
 
 
@@ -28,13 +28,14 @@ function App() {
         <Designstyle/>
         <Workflowpage/>
         <Customfeedback/>
+        <Footer/>
         </>
         }/>
 
         <Route path='/login' element={<LoginPage/>}/> 
 
       </Routes>
-      <Footer/>
+      
     </>
   );
 } 

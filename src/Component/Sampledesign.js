@@ -8,9 +8,9 @@ export default function Sampledesign() {
   return (
     <>
     <Container sx={{ paddingTop: 6, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <DesignServicesOutlinedIcon />
+        
         <Typography variant='h4' sx={{paddingLeft:'2%',paddingRight:'2%',fontWeight:"bold"}}>Sample design</Typography>
-        <DesignServicesOutlinedIcon />
+        
       </Container>
       <Container sx={{ paddingTop: 6 }}>
         <Grid container spacing={2}>
