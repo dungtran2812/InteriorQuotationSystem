@@ -237,10 +237,13 @@ export default function Header() {
                             <MoreIcon />
                         </IconButton>
                     </Box>
+                    <Link to='/login' style={{paddingLeft:5, textDecoration:'none'}}>Login</Link>
                 </Toolbar>
+                
             </AppBar>
             {renderMobileMenu}
             {renderMenu}
+           
         </Box>
     );
 }

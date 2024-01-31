@@ -9,15 +9,18 @@ import Designstyle from './Component/Designstyle';
 import Quotationbanner from './Component/Quotationbanner';
 import Workflowpage from './Component/Workflowpage';
 import Footer from './Component/Footer';
+import LoginPage from './Component/LoginPage';
 
 function App() {
   return (
     <>
-      <Header />
-      <Navigation />
+      
       <Routes>
         <Route path='/' element={
-        <><Banner/>
+        <>
+        <Header />
+      <Navigation />
+        <Banner/>
         <Sampledesign/>
         <Quotationbanner/>
         <Designstyle/>
@@ -25,13 +28,10 @@ function App() {
         <Footer/>
         </>
         }/>
-        
-          
-          
-        
+        <Route path='/login' element={<LoginPage/>}/> 
       </Routes>
     </>
   );
-}
+} 
 
 export default App;
