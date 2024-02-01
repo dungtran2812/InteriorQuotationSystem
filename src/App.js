@@ -25,7 +25,6 @@ function App() {
             <Navigation />
             <Sampledesign />
             <Banner />
-
             <Quotationbanner />
             <Designstyle />
             <Workflowpage />
