@@ -11,33 +11,42 @@ import Workflowpage from './Component/Workflowpage';
 import Footer from './Component/Footer';
 import Customfeedback from './Component/Customfeedback';
 import LoginPage from './Component/LoginPage';
+import Quotepage from './Component/Quotepage';
 
 
 function App() {
   return (
     <>
-      
+
       <Routes>
         <Route path='/' element={
-        <>
-        <Header />
-      <Navigation />
-        <Banner/>
-        <Sampledesign/>
-        <Quotationbanner/>
-        <Designstyle/>
-        <Workflowpage/>
-        <Customfeedback/>
-        <Footer/>
-        </>
-        }/>
+          <>
+            <Header />
+            <Navigation />
+            <Sampledesign />
+            <Banner />
 
-        <Route path='/login' element={<LoginPage/>}/> 
+            <Quotationbanner />
+            <Designstyle />
+            <Workflowpage />
+            <Customfeedback />
+            <Footer />
+          </>
+        } />
 
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/quotepage' element={
+          <>
+            <Header />
+            <Navigation />
+            <Quotepage />
+            
+          </>
+        } />
       </Routes>
-      
+
     </>
   );
-} 
+}
 
 export default App;

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 export default function Sampledesign() {
   return (
     <>
-    <Container sx={{ paddingTop: 6, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <Container sx={{ paddingTop: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         
         <Typography variant='h4' sx={{paddingLeft:'2%',paddingRight:'2%',fontWeight:"bold"}}>Sample design</Typography>
         

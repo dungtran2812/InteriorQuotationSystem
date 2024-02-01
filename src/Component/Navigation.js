@@ -15,7 +15,7 @@ export default function Navigation() {
   const [value, setValue] = React.useState(0);
 
   return (
-    <Box paddingBottom={2} >
+    <Box paddingBottom={2}  >
       <BottomNavigation
         showLabels
         value={value}
