@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { FaGoogle } from "react-icons/fa";
 
 function Copyright(props) {
   return (
@@ -42,7 +43,7 @@ export default function LoginPage() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs"> 
         <CssBaseline />
         <Box
           sx={{
@@ -89,21 +90,27 @@ export default function LoginPage() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              <a href = "http://localhost:3000/"> Sign in</a>
             </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  Forgot Password?               
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <div class="signup">Don't have account? 
+                    <a href="http://localhost:3000/signup">  SignUp Now</a>
+                </div>                               
                 </Link>
               </Grid>
             </Grid>
           </Box>
+          <a href="https://accounts.google.com/signin/v2/usernamerecovery?hl=vi&theme=glif&flowName=GlifWebSignIn&flowEntry=ServiceLogin" class="px-2 py-2 ml-md-1 rounded">
+          <FaGoogle />
+            <span class="fa fa-google" aria-hidden="true"></span> Google
+          </a> 
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
