@@ -36,22 +36,8 @@ export default function LoginPage() {
 
   return (
 
-      <Container component="main" maxWidth="xs"> 
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          </Box>
     <Box sx={{
-      backgroundImage: "url('https://interiordesign.net/wp-content/uploads/2024/01/Interior-Design-Best-of-Year-2023-Steven-Harris-Architects-Rees-Roberts-Partners-idx231201_boy_BeachHouseL01b.jpg')",
+      backgroundImage: "url('images/loginbg.jpg')",
       backgroundSize: 'cover',
       width: '100vw', // 100% of viewport width
       height: '100vh', // 100% of viewport height
@@ -60,13 +46,16 @@ export default function LoginPage() {
       alignItems: 'center',
       justifyContent: 'center',
     }}>
-      <Container component="main" maxWidth="xs"  >
+      
         <Box
           sx={{  
             marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            backgroundColor:'#ffffffe6',
+            padding:5,
+            borderRadius:5
             
           }}
         >
@@ -114,9 +103,9 @@ export default function LoginPage() {
               </Grid>
               <Grid item>
                 Don't have an account?
-                <Link href="#" variant="body2">
+                <Link href="/signup" variant="body2">
 
-                  <a href="http://localhost:3002/SignUp"> SignUp</a>                               
+                   SignUp                 
                 </Link>
               </Grid>
             </Grid>
@@ -128,8 +117,8 @@ export default function LoginPage() {
           <span class="fa fa-google"></span>-Google
 					</a> 
         </Box>
-      </Container>
+      
       </Box>
-      </Container>
+    
   );
 }
