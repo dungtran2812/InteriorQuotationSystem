@@ -205,7 +205,7 @@ const Quotepage = () => {
       render: (_, record) =>
         dataSource.length >= 1 ? (
           <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
-            <a>Delete</a>
+            Delete
           </Popconfirm>
         ) : null,
     },
