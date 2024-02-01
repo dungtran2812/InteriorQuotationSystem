@@ -1,10 +1,10 @@
 import React from 'react';
 import Slider from 'react-slick';
-import { Box, Paper, Typography } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Block, Image } from '@mui/icons-material';
+
 
 const Banner = () => {
   const settings = {
