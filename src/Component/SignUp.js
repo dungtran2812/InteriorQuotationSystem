@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { FaGoogle } from "react-icons/fa";
 
 function Copyright(props) {
   return (
@@ -81,7 +82,7 @@ export default function SignUp() {
                   autoComplete="family-name"
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
@@ -89,6 +90,16 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="PhoneNumber"
+                  label="PhoneNumber"
+                  name="PhoneNumber"
+                  autoComplete="PhoneNumber"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -103,9 +114,20 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="Confirm Password"
+                  label="Confirm Password"
+                  type="Confirm Password"
+                  id="Confirm Password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
+                  label="I agree."
                 />
               </Grid>
             </Grid>
@@ -120,11 +142,18 @@ export default function SignUp() {
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="#" variant="body2">
-                  Already have an account? Sign in
+                  <div class="signup">Already have an account?
+                      <a href="http://localhost:3001/login">  SignIn</a>
+                  </div>
                 </Link>
               </Grid>
             </Grid>
           </Box>
+          <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
+          <a href="https://accounts.google.com/signin/v2/usernamerecovery?hl=vi&theme=glif&flowName=GlifWebSignIn&flowEntry=ServiceLogin" class="px-2 py-2 ml-md-1 rounded">
+            <FaGoogle />
+            <span class="fa fa-google" aria-hidden="true"></span> Google
+          </a> 
         </Box>
         <Copyright sx={{ mt: 5 }} />
       </Container>

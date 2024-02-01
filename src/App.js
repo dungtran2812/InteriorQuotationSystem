@@ -14,7 +14,7 @@ import LoginPage from './Component/LoginPage';
 import SignUp from './Component/SignUp';
 
 import Customfeedback from './Component/Customfeedback';
-import LoginPage from './Component/LoginPage';
+
 import Quotepage from './Component/Quotepage';
 
 
@@ -23,8 +23,8 @@ function App() {
   return (
     <>
 
-      <Header />
-      <Routes>
+      {/* <Header /> */}
+      {/* <Routes>
         <Route path='/' element={
         <>
         <Navigation />
@@ -43,7 +43,7 @@ function App() {
           
           
         
-      </Routes>
+      </Routes> */}
         
 
 
@@ -62,8 +62,15 @@ function App() {
           </>
         } />
 
-        <Route path='/login' element={<LoginPage />} />
+        <Route path='/login' element={<LoginPage />} 
+        
+        />
+        <Route path='/SignUp' element={<SignUp />}>
+
+        </Route>
+
         <Route path='/quotepage' element={
+
           <>
             <Header />
             <Navigation />
