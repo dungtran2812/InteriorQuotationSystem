@@ -18,7 +18,7 @@ const Banner = () => {
   };
 
   return (
-    <Box >
+    <Box sx={{paddingTop:5}}>
         <Slider {...settings} >
           <Paper key={'1'} sx={{ display: 'flex', justifyContent: 'center'}}> 
             <img src='https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?cs=srgb&dl=pexels-pixabay-276724.jpg&fm=jpg' style={{width:"100%", height:600, margin: '0 30px'}}/>
