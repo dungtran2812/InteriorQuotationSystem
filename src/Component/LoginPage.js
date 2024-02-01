@@ -41,6 +41,7 @@ export default function LoginPage() {
   };
 
   return (
+
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -55,6 +56,28 @@ export default function LoginPage() {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
+
+    <Box sx={{
+      backgroundImage: "url('https://interiordesign.net/wp-content/uploads/2024/01/Interior-Design-Best-of-Year-2023-Steven-Harris-Architects-Rees-Roberts-Partners-idx231201_boy_BeachHouseL01b.jpg')",
+      backgroundSize: 'cover',
+      width: '100vw', // 100% of viewport width
+      height: '100vh', // 100% of viewport height
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}>
+      <Container component="main" maxWidth="xs"  >
+        <Box
+          sx={{  
+            marginTop: 8,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            
+          }}
+        >
+
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -105,8 +128,13 @@ export default function LoginPage() {
             </Grid>
           </Box>
         </Box>
+
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+
+      </Container>
+    </Box>
+
   );
 }

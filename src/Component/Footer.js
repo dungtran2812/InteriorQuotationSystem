@@ -19,10 +19,12 @@ const Footer = () => {
                 mt: 'auto',
             }}
         >
+            
             <Container maxWidth="md">
                 <Grid container spacing={4}>
                     <Grid item xs={12} sm={6} md={4}>
-                        <Typography variant="h6" gutterBottom sx={{ color: '#61dafb' }}>
+                    <img src="https://www.interiordesignshop.net/wp-content/themes/beyond-magazine/img/white-logo.png"   alt="Logo" style={{ height: '38px' }} />
+                        <Typography  variant="h6" gutterBottom sx={{ marginTop:5,color: '#61dafb' }}>
                             About Us
                         </Typography>
                         <Typography variant="body2" >
