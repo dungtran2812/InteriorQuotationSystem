@@ -163,7 +163,7 @@ export default function Header() {
                         edge="start"
                         color="inherit"
                         aria-label="open drawer"
-                        sx={{ mr: 2 }}
+                        
                     >
                         <MenuIcon />
                     </IconButton>
