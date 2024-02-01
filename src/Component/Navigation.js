@@ -15,13 +15,14 @@ export default function Navigation() {
   const [value, setValue] = React.useState(0);
 
   return (
-    <Box paddingBottom={2}>
+    <Box paddingBottom={2}  >
       <BottomNavigation
         showLabels
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
+        sx={{backgroundColor:'#ffc814'}}
       >
         <BottomNavigationAction label="About Us" icon={<InfoIcon />} sx={{borderRight:1}} />
         <BottomNavigationAction label="Interior design" icon={<DesignServicesIcon />} sx={{borderRight:1}}/>

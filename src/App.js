@@ -9,12 +9,20 @@ import Designstyle from './Component/Designstyle';
 import Quotationbanner from './Component/Quotationbanner';
 import Workflowpage from './Component/Workflowpage';
 import Footer from './Component/Footer';
+
 import LoginPage from './Component/LoginPage';
 import SignUp from './Component/SignUp';
+
+import Customfeedback from './Component/Customfeedback';
+import LoginPage from './Component/LoginPage';
+import Quotepage from './Component/Quotepage';
+
+
 
 function App() {
   return (
     <>
+
       <Header />
       <Routes>
         <Route path='/' element={
@@ -37,6 +45,36 @@ function App() {
         
       </Routes>
         
+
+
+      <Routes>
+        <Route path='/' element={
+          <>
+            <Header />
+            <Navigation />
+            <Sampledesign />
+            <Banner />
+
+            <Quotationbanner />
+            <Designstyle />
+            <Workflowpage />
+            <Customfeedback />
+            <Footer />
+          </>
+        } />
+
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/quotepage' element={
+          <>
+            <Header />
+            <Navigation />
+            <Quotepage />
+            
+          </>
+        } />
+      </Routes>
+
+
     </>
   );
 }

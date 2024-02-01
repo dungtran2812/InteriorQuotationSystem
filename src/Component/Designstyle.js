@@ -21,9 +21,9 @@ const Designstyle = () => {
   return (
     <Box sx={{ paddingTop: 6 }}>
       <Box sx={{ paddingBottom: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <TrendingUpIcon />
+        
         <Typography variant="h4" sx={{paddingLeft:'2%',paddingRight:'2%',fontWeight:"bold"}}> Hot design trends in 2024 </Typography>
-        <TrendingUpIcon />
+        
       </Box>
       <Slider {...settings}>
         {Designstyledata.map((designData) => (

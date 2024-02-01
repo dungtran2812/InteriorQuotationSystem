@@ -28,7 +28,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function Customfeedback({ Feedback }) {
+export default function Customfeedback() {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -106,6 +106,7 @@ export default function Customfeedback({ Feedback }) {
             </Card>
             ))}
         </Box>
+        
     </>
     
   );
