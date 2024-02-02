@@ -80,7 +80,7 @@ export default function LoginPage() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              <a href = "http://localhost:3000/"> Sign in</a>
+               <Link to='/'>Sign in</Link>
             </Button>
             <Grid container>
               <Grid item xs>
