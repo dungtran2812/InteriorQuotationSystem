@@ -4,11 +4,12 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { FaGoogle } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 
 export default function LoginPage() {
@@ -74,23 +75,27 @@ export default function LoginPage() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Button
+            
+               <Link to="/" sx={{color:'white'}}>
+               <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-               <Link to='/'>Sign in</Link>
-            </Button>
+              Sign in
+              </Button>
+               </Link>
+            
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link to="#" variant="body2">
                   Forgot Password?               
                 </Link>
               </Grid>
               <Grid item>
                 Don't have an account?
-                <Link href="/signup" variant="body2">
+                <Link to="/signup" variant="body2">
 
                    SignUp                 
                 </Link>
