@@ -4,7 +4,6 @@ import { Box, Button, Card, CardActions, CardContent, CardMedia, Paper, Typograp
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Designstyledata } from '../Shared/ListOfDesign';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { Link } from 'react-router-dom';
 
 const Designstyle = () => {
