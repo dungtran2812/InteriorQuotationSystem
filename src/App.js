@@ -9,17 +9,16 @@ import Designstyle from './Component/Designstyle';
 import Quotationbanner from './Component/Quotationbanner';
 import Workflowpage from './Component/Workflowpage';
 import Footer from './Component/Footer';
-
 import LoginPage from './Component/LoginPage';
 import SignUp from './Component/SignUp';
-
 import Customfeedback from './Component/Customfeedback';
-
 import Quotepage from './Component/Quotepage';
 
 
 
+
 function App() {
+
   return (
     <>
       <Routes>
@@ -53,8 +52,7 @@ function App() {
             
           </>
         } />
-      </Routes>
-
+      </Routes>      
 
     </>
   );
