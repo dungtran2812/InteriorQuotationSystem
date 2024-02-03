@@ -4,7 +4,7 @@ export const Sampledesigndata = [
     name: "Cozy Haven",
     price: "100tr",
     img: "https://media.designcafe.com/wp-content/uploads/2023/07/05120553/glass-furniture-design.jpg",
-    style: "Modern",
+    style: "MODERN",
     info: "Modern style focuses on details and simple shapes and lines. In modern interior design style, architects mainly focus on creating functionality. Providing a comfortable, convenient and fully functional space.",
     
   },

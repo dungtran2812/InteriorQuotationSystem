@@ -36,7 +36,7 @@ export default function Customfeedback() {
   };
 
   return (
-    <>
+    <Box sx={{paddingBottom:5}}>
         <Typography variant='h4' textAlign='center' sx={{paddingBottom:5, fontWeight:'bold'}}> Custom feedback</Typography>
         <Box sx={{display:'flex', justifyContent:'center', alignItems:'center'}}>
             
@@ -107,7 +107,7 @@ export default function Customfeedback() {
             ))}
         </Box>
         
-    </>
+    </Box>
     
   );
 }
