@@ -1,7 +1,7 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Typography } from '@mui/material'
 import React from 'react'
 
-import { Sampledesigndata } from '../Shared/ListOfSample';
+import { Sampledesigndata } from '../../Shared/ListOfSample';
 import { Link } from 'react-router-dom';
 
 export default function Sampledesign() {
