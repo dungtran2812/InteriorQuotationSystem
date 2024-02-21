@@ -66,6 +66,7 @@ function App() {
             <Header />
             <Navigation />
             <ProjectDetail />
+            <Footer />
           </>
         } />
         <Route path={'/detail/:id'} element={
@@ -73,6 +74,7 @@ function App() {
             <Header />
             <Navigation />
             <ProjectDetail />
+            <Footer />
           </>
         } />
       </Routes>      
