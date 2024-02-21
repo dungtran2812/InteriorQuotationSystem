@@ -1,8 +1,6 @@
-
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Banner from './Component/Homepage/Banner';
-import Navigation from './Component/Navigation';
 import Sampledesign from './Component/Homepage/Sampledesign';
 import Header from './Component/header';
 import Designstyle from './Component/Homepage/Designstyle';
@@ -11,17 +9,10 @@ import Workflowpage from './Component/Homepage/Workflowpage';
 import Footer from './Component/Footer';
 import LoginPage from './Component/LoginPage';
 import SignUp from './Component/SignUp';
-
-
 import Customfeedback from './Component/Homepage/Customfeedback';
-
-
 import Quotepage from './Component/Quotepage';
 import PrjTypeDetail from './Component/PrjTypeDetail';
 import ProjectDetail from './Component/ProjectDetail';
-
-
-
 
 function App() {
 
@@ -31,7 +22,6 @@ function App() {
         <Route path='/' element={
           <>
             <Header />
-            <Navigation />
             <Sampledesign />
             <Banner />
             <Quotationbanner />
@@ -48,7 +38,6 @@ function App() {
         <Route path='/quotepage' element={
           <>
             <Header />
-            <Navigation />
             <Quotepage />
 
           </>
@@ -56,7 +45,6 @@ function App() {
         <Route path='/apartment-project' element={
           <>
             <Header />
-            <Navigation />
             <PrjTypeDetail />
             <Footer />
           </>
@@ -64,7 +52,6 @@ function App() {
         <Route path={'/apartment-project/detail/:id'} element={
           <>
             <Header />
-            <Navigation />
             <ProjectDetail />
             <Footer />
           </>
@@ -72,12 +59,11 @@ function App() {
         <Route path={'/detail/:id'} element={
           <>
             <Header />
-            <Navigation />
             <ProjectDetail />
             <Footer />
           </>
         } />
-      </Routes>      
+      </Routes>
 
     </>
   );

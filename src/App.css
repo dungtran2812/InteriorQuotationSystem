@@ -30,3 +30,42 @@
     width: 100%;
     height: auto;
   }
+  .container {
+    padding: 0 10%;
+  }
+  
+  .section {
+    margin-bottom: 40px;
+  }
+  
+  .responsive-image {
+    width: 100%;
+    height: auto;
+  }
+  nav {
+    background-color: #f8f9fa; /* Background color */
+    padding: 10px; /* Padding around the navigation menu */
+  }
+  
+  ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+  }
+  
+  .section-title {
+    display: inline; /* Display list items horizontally */
+    margin-right: 20px; /* Add spacing between list items */
+  }
+  
+  /* Styling anchor links */
+  a {
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Text color */
+  }
+  
+  a:hover {
+    text-decoration: underline; /* Add underline on hover */
+    color: #555; /* Text color on hover */
+  }
+  
