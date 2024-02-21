@@ -15,7 +15,12 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link } from 'react-router-dom';
-
+import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import InfoIcon from '@mui/icons-material/Info';
+import DesignServicesIcon from '@mui/icons-material/DesignServices';
+import ConstructionIcon from '@mui/icons-material/Construction';
+import ChairIcon from '@mui/icons-material/Chair';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -57,12 +62,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Header() {
+    const [drawerOpen, setDrawerOpen] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const handleDrawerOpen = () => {
+        setDrawerOpen(true);
+    };
 
+    const handleDrawerClose = () => {
+        setDrawerOpen(false);
+    };
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -154,23 +166,23 @@ export default function Header() {
         </Menu>
     );
 
-    return (    
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" sx={{ display:'flex', alignItems:'space-between',justifyContent:'center', backgroundImage:"url('https://media.istockphoto.com/id/1175732557/vi/anh/k%E1%BA%BF-ho%E1%BA%A1ch-thi%E1%BA%BFt-k%E1%BA%BF-x%C3%A2y-d%E1%BB%B1ng-nh%C3%A0-%E1%BB%9F-v%C3%A0-m%C3%B4-h%C3%ACnh-nh%C3%A0-%E1%BB%9F-bi%E1%BB%83u-ng%E1%BB%AF-minh-h%E1%BB%8Da-3d.jpg?s=2048x2048&w=is&k=20&c=_JDqgkTAs0pDCgHHZtA43-V_fE07leCZ3LjOdYUr3vM=')", color: 'black', height:100 }}>
-                <Toolbar>
-                    <IconButton sx={{ paddingLeft: '12%' }}
+    return (
+        <Box paddingBottom={10}>
+            <AppBar sx={{ display: 'flex', alignItems: 'space-between', justifyContent: 'center', backgroundImage: "url('https://media.istockphoto.com/id/1175732557/vi/anh/k%E1%BA%BF-ho%E1%BA%A1ch-thi%E1%BA%BFt-k%E1%BA%BF-x%C3%A2y-d%E1%BB%B1ng-nh%C3%A0-%E1%BB%9F-v%C3%A0-m%C3%B4-h%C3%ACnh-nh%C3%A0-%E1%BB%9F-bi%E1%BB%83u-ng%E1%BB%AF-minh-h%E1%BB%8Da-3d.jpg?s=2048x2048&w=is&k=20&c=_JDqgkTAs0pDCgHHZtA43-V_fE07leCZ3LjOdYUr3vM=')", color: 'black', height: 60, paddingLeft: '10%', paddingRight: '10%' }}>
+                <Toolbar >
+                    <IconButton
                         size="large"
                         edge="start"
                         color="inherit"
                         aria-label="open drawer"
-                        
+                        onClick={handleDrawerOpen}
                     >
                         <MenuIcon />
                     </IconButton>
 
                     <Link to='/'><img src="https://www.interiordesignshop.net/wp-content/themes/beyond-magazine/img/interior-design-shop-logo.png" alt="Logo" style={{ height: '38px' }} /></Link>
 
-                    
+
                     <Search sx={{
                         marginLeft: 0,
                         border: '1px solid #ccc', // Add a border
@@ -228,13 +240,52 @@ export default function Header() {
                             <MoreIcon />
                         </IconButton>
                     </Box>
-                    <Link to='/login' style={{paddingLeft:5, textDecoration:'none'}}>Login</Link>
+                    <Link to='/login' style={{ paddingLeft: 5, textDecoration: 'none' }}>Login</Link>
                 </Toolbar>
-                
+
             </AppBar>
             {renderMobileMenu}
             {renderMenu}
-           
+            <Drawer
+                anchor="left"
+                open={drawerOpen}
+                onClose={handleDrawerClose}
+            >
+                <List>
+                    <ListItem onClick={handleDrawerClose} >
+                        <Link to="/">
+                            <ListItemIcon>
+                                <InfoIcon />
+                            </ListItemIcon>
+                        </Link>
+                        <Link to="/">
+                            <ListItemText primary="About Us" />
+                        </Link>
+
+
+                    </ListItem>
+                    <ListItem onClick={handleDrawerClose}>
+                        <Link to="/">
+                            <ListItemIcon>
+                                <DesignServicesIcon />
+                            </ListItemIcon>
+                        </Link>
+                        <Link to="/"><ListItemText primary="Interior design" /></Link>
+                    </ListItem>
+                    <ListItem onClick={handleDrawerClose}>
+                        <ListItemIcon><ConstructionIcon /></ListItemIcon>
+                        <ListItemText primary="Interior construction" />
+                    </ListItem>
+                    <ListItem onClick={handleDrawerClose}>
+                        <ListItemIcon><ChairIcon /></ListItemIcon>
+                        <ListItemText primary="Furniture" />
+                    </ListItem>
+                    <ListItem onClick={handleDrawerClose}>
+                        <ListItemIcon><NewspaperIcon /></ListItemIcon>
+                        <ListItemText primary="News" />
+                    </ListItem>
+                </List>
+            </Drawer>
         </Box>
     );
 }

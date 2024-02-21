@@ -35,23 +35,23 @@ export const FeedbackData = [
         rating: '4,0',
         id: 4
       },
-      {
-        customerName: 'Expanded',
-        comment: 'Alabama',
-        designStyle: 'near',
-        totalCost: '2624',
-        dayConstruct: 'Implementation',
-        rating: '4,8',
-        id: 5
-      },
-      {
-        customerName: 'toe',
-        comment: 'transmitting',
-        designStyle: 'into',
-        totalCost: '5945',
-        dayConstruct: 'knowledgeable',
-        rating: '4,3',
-        id: 6
-      }
+      // {
+      //   customerName: 'Expanded',
+      //   comment: 'Alabama',
+      //   designStyle: 'near',
+      //   totalCost: '2624',
+      //   dayConstruct: 'Implementation',
+      //   rating: '4,8',
+      //   id: 5
+      // },
+      // {
+      //   customerName: 'toe',
+      //   comment: 'transmitting',
+      //   designStyle: 'into',
+      //   totalCost: '5945',
+      //   dayConstruct: 'knowledgeable',
+      //   rating: '4,3',
+      //   id: 6
+      // }
     
   ];
