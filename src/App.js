@@ -9,8 +9,9 @@ import Designstyle from './Component/Homepage/Designstyle';
 import Quotationbanner from './Component/Homepage/Quotationbanner';
 import Workflowpage from './Component/Homepage/Workflowpage';
 import Footer from './Component/Footer';
-import LoginPage from './Component/LoginPage';
-import SignUp from './Component/SignUp';
+import Login from './Component/Login';
+import { useEffect } from 'react';
+import { gapi } from 'gapi-script';
 
 
 import Customfeedback from './Component/Homepage/Customfeedback';
@@ -20,11 +21,20 @@ import Quotepage from './Component/Quotepage';
 import PrjTypeDetail from './Component/PrjTypeDetail';
 import ProjectDetail from './Component/ProjectDetail';
 
-
+const clientId = "423567540491-42aoheb5ltla2j4nb5h0a36hev870a8e.apps.googleusercontent.com";
 
 
 function App() {
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: ""
+      })
+    };
 
+    gapi.load('client:auth2', start)
+  });
   return (
     <>
       <Routes>
@@ -42,8 +52,9 @@ function App() {
           </>
         } />
 
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/SignUp' element={<SignUp />} />
+        <div className = "App">
+          <Login />
+        </div>
 
         <Route path='/quotepage' element={
           <>
