@@ -18,3 +18,15 @@
     /* the slides */
     .slick-list {margin: 0 -5px;}
     .slick-slide>div {padding: 0 5px;}
+  li {
+    font-weight: bold;
+  }
+  .image-container {
+    width: 50%; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the image horizontally */
+  }
+  
+  .responsive-image {
+    width: 100%;
+    height: auto;
+  }
