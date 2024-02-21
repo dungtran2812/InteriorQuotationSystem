@@ -158,7 +158,7 @@ export default function Header() {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{ display:'flex', alignItems:'space-between',justifyContent:'center', backgroundImage:"url('https://media.istockphoto.com/id/1175732557/vi/anh/k%E1%BA%BF-ho%E1%BA%A1ch-thi%E1%BA%BFt-k%E1%BA%BF-x%C3%A2y-d%E1%BB%B1ng-nh%C3%A0-%E1%BB%9F-v%C3%A0-m%C3%B4-h%C3%ACnh-nh%C3%A0-%E1%BB%9F-bi%E1%BB%83u-ng%E1%BB%AF-minh-h%E1%BB%8Da-3d.jpg?s=2048x2048&w=is&k=20&c=_JDqgkTAs0pDCgHHZtA43-V_fE07leCZ3LjOdYUr3vM=')", color: 'black', height:100 }}>
                 <Toolbar>
-                    <IconButton sx={{ marginleft: 20 }}
+                    <IconButton sx={{ paddingLeft: '12%' }}
                         size="large"
                         edge="start"
                         color="inherit"
@@ -175,7 +175,7 @@ export default function Header() {
                         marginLeft: 0,
                         border: '1px solid #ccc', // Add a border
                         backgroundColor: 'rgba(255, 255, 255, 0.8)', // Set a semi-transparent white background
-                        borderRadius: '4px', // Add border-radius for rounded corners
+                        borderRadius: 5, // Add border-radius for rounded corners
                         '&:hover': {
                             backgroundColor: 'rgba(255, 255, 255, 1)', // Change background color on hover
                         },

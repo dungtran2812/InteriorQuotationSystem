@@ -1,10 +1,10 @@
 import { Box, Grid, Typography } from '@mui/material'
 import React from 'react'
-import { ReactComponent as Step1 } from '../SvgIcon/icon1.svg';
-import { ReactComponent as Step2 } from '../SvgIcon/icon2.svg';
-import { ReactComponent as Step3 } from '../SvgIcon/icon3.svg';
-import { ReactComponent as Step4 } from '../SvgIcon/icon4.svg';
-import { ReactComponent as Step5 } from '../SvgIcon/icon5.svg';
+import { ReactComponent as Step1 } from '../../SvgIcon/icon1.svg';
+import { ReactComponent as Step2 } from '../../SvgIcon/icon2.svg';
+import { ReactComponent as Step3 } from '../../SvgIcon/icon3.svg';
+import { ReactComponent as Step4 } from '../../SvgIcon/icon4.svg';
+import { ReactComponent as Step5 } from '../../SvgIcon/icon5.svg';
 export default function Workflowpage() {
     return (
     <Box sx={{paddingBottom:5}}>

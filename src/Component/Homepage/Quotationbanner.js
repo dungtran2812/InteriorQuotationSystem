@@ -13,7 +13,7 @@ export default function Quotationbanner() {
         overflow: 'hidden',
         boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
         position: 'relative',
-        backgroundImage: "url('https://t3.ftcdn.net/jpg/05/46/10/10/360_F_546101072_Pkig92S0bpkovV4UzXcN5nYb7ZDhd7DV.jpg')",
+        backgroundImage: "url('https://kretzerfirm.com/wp-content/uploads/2019/08/handshake-agreement-laws.jpg')",
         backgroundSize: 'cover', // Ensure the background image covers the entire box
       }}
     >
@@ -23,9 +23,9 @@ export default function Quotationbanner() {
           <Typography variant='h4' sx={{ color: '#f9a11b', padding: 6, fontWeight:"bold" }}>
             Order now
           </Typography>
-          <Typography variant='h6' sx={{ color: 'white', padding: 6, textAlign:'center'}}>
+          <Typography variant='h6' sx={{backgroundColor:'rgba(255,255,255,0.5)', borderRadius:5, color: 'black', padding: 6, textAlign:'center', textShadow: '2px 2px 4px rgba(255, 255, 255, 0.5)'}}>
             To receive the fastest and most accurate interior design and construction quote.
-            Please contact via Hotline: 0123456789. Thank you!
+            Please contact via Hotline:0123456789. Thank you!
           </Typography>
         </Grid>
         <Grid item xs={12} md={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
