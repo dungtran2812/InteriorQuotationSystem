@@ -5,20 +5,19 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { FaGoogle } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" to="/signup">
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -157,16 +156,12 @@ export default function SignUp() {
               <Grid container justifyContent="flex-end">
                 <Grid item>
 
-                  Already have an account?
-                  <Link href="/Login" variant="body2">
+                Already have an account?
+                  <Link to="/Login" variant="body2">
+                  
                     Signin                 
-
-                  <Link href="/login" variant="body2">
-                    <div class="signup">Already have an account?
-                         SignIn
-                    </div>
-
                   </Link>
+                  
                 </Grid>
               </Grid>
             </Box>

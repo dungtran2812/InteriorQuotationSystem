@@ -12,3 +12,9 @@
     border: 1px solid #d9d9d9;
     border-radius: 2px;
   }
+  body {
+    overflow-x: hidden;
+  }
+    /* the slides */
+    .slick-list {margin: 0 -5px;}
+    .slick-slide>div {padding: 0 5px;}
