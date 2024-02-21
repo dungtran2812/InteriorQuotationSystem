@@ -20,8 +20,9 @@ import Quotepage from './Component/Quotepage';
 import PrjTypeDetail from './Component/PrjTypeDetail';
 import ProjectDetail from './Component/ProjectDetail';
 
-
 const clientId = "423567540491-42aoheb5ltla2j4nb5h0a36hev870a8e.apps.googleusercontent.com";
+
+
 
 function App() {
   useEffect(() => {
@@ -53,9 +54,11 @@ function App() {
             <Footer />
           </>
         } />
+
         <div className = "App">
           <Login />
         </div>
+
         <Route path='/quotepage' element={
           <>
             <Header />
