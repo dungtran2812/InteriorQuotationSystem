@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Paper, Typography } from '@mui/material';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Designstyledata } from '../Shared/ListOfDesign';
+import { Designstyledata } from '../../Shared/ListOfDesign';
 import { Link } from 'react-router-dom';
 
 const Designstyle = () => {
