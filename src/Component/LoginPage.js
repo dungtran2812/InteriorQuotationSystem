@@ -95,7 +95,9 @@ export default function LoginPage() {
               </Grid>
               <Grid item>
                 Don't have an account?
+
                 <Link to="/signup" variant="body2">
+
 
                    SignUp                 
                 </Link>
