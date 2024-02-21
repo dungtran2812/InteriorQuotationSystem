@@ -9,11 +9,12 @@ import Designstyle from './Component/Homepage/Designstyle';
 import Quotationbanner from './Component/Homepage/Quotationbanner';
 import Workflowpage from './Component/Homepage/Workflowpage';
 import Footer from './Component/Footer';
-
 import LoginPage from './Component/LoginPage';
 import SignUp from './Component/SignUp';
 
+
 import Customfeedback from './Component/Homepage/Customfeedback';
+
 
 import Quotepage from './Component/Quotepage';
 import PrjTypeDetail from './Component/PrjTypeDetail';
@@ -21,7 +22,9 @@ import ProjectDetail from './Component/ProjectDetail';
 
 
 
+
 function App() {
+
   return (
     <>
       <Routes>
@@ -72,8 +75,7 @@ function App() {
             <ProjectDetail />
           </>
         } />
-      </Routes>
-
+      </Routes>      
 
     </>
   );
