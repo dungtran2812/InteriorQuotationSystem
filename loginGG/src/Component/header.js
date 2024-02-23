@@ -73,7 +73,6 @@ export default function Header() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [user, setUser] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -154,7 +153,6 @@ export default function Header() {
           aria-label="show 17 new notifications"
           color="inherit"
         >
-
           <Badge badgeContent={17} color="error">
             <NotificationsIcon />
           </Badge>
@@ -175,7 +173,6 @@ export default function Header() {
       </MenuItem>
     </Menu>
   );
-
 
   return (
     <Box paddingBottom={10}>
@@ -250,26 +247,17 @@ export default function Header() {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-
-            {user ? (
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <img
-                  src={user.photoURL}
-                  alt="user"
-                  style={{ borderRadius: "50%", width: "30px" }}
-                />
-              </IconButton>
-            ) : (
-              <LoginWithGG setUser={setUser} />
-            )}
+            <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -283,6 +271,7 @@ export default function Header() {
               <MoreIcon />
             </IconButton>
           </Box>
+          <LoginWithGG />
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
