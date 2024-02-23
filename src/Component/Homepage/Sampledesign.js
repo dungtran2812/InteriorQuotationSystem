@@ -13,9 +13,9 @@ export default function Sampledesign() {
         
       </Container>
       <Container sx={{ paddingTop: 6 }}>
-        <Grid container spacing={2}>
+        <Grid container spacing={4}>
           {Sampledesigndata.map((sample) => (
-            <Grid item key={sample.id} xs={12} sm={6} md={4} lg={3}>
+            <Grid item key={sample.id} xs={12} md={4} >
               <Card sx={{ maxWidth: 400 }}>
                 <CardMedia
                   sx={{ height: 300 }}
