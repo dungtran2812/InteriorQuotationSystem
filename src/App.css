@@ -48,8 +48,8 @@
   }
   
   ul {
-    list-style-type: none; /* Remove bullet points */
-    padding: 0; /* Remove default padding */
+    
+    padding-left: 2%; /* Remove default padding */
     margin: 0; /* Remove default margin */
   }
   
@@ -68,4 +68,6 @@
     text-decoration: underline; /* Add underline on hover */
     color: #555; /* Text color on hover */
   }
-  
+  .room-section {
+    margin-top: 50px;
+  }
