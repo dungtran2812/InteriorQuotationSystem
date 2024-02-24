@@ -1,7 +1,5 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-
-import { Sampledesigndata } from '../../Shared/ListOfSample';
 import { Link } from 'react-router-dom';
 
 export default function Sampledesign() {
@@ -21,6 +19,7 @@ export default function Sampledesign() {
       console.log(error);
     })
   }, [])
+  if (!sampleList) return null;
   return (
     <>
       <Container sx={{ paddingTop: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -30,7 +29,7 @@ export default function Sampledesign() {
       </Container>
       <Container sx={{ paddingTop: 6 }}>
         <Grid container spacing={4}>
-          { sampleList.map((sample) => (
+          {sampleList.map((sample) => (
             <Grid item key={sample.id} xs={12} md={4} >
               <Card sx={{ maxWidth: 400 }}>
                 <CardMedia
