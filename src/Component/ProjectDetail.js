@@ -20,7 +20,7 @@ export default function ProjectDetail() {
         <li>Price: {prj.price}</li>
       </ul>
       <div>
-        <nav>
+        <nav className='nav'>
           <ul>
             <li className='section-title'><a href="#kitchen">interior design for {prj.name}'s Kitchen</a></li>
             <li className='section-title'><a href="#Living">interior design for {prj.name}'s Living Room</a></li>

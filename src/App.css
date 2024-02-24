@@ -42,7 +42,7 @@
     width: 100%;
     height: auto;
   }
-  nav {
+  .nav {
     background-color: #f8f9fa; /* Background color */
     padding: 10px; /* Padding around the navigation menu */
   }

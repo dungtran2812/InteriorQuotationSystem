@@ -13,6 +13,7 @@ import Customfeedback from './Component/Homepage/Customfeedback';
 import Quotepage from './Component/Quotepage';
 import PrjTypeDetail from './Component/PrjTypeDetail';
 import ProjectDetail from './Component/ProjectDetail';
+import DashboardPage from './Component/Dashboard';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
 
         <Route path='/login' element={<LoginPage />} />
         <Route path='/SignUp' element={<SignUp />} />
+        <Route path='/dashboard' element={<DashboardPage />} />
 
         <Route path='/quotepage' element={
           <>
