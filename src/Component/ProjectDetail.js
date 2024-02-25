@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import Slider from 'react-slick';
 import { Designstyledata } from '../Shared/ListOfDesign';
+import BookingForm from './BookingForm';
 
 
 const style = {
@@ -37,6 +38,7 @@ export default function ProjectDetail() {
   const [sampleDetail, setSampleDetail] = useState(null);
 
   useEffect(() => {
+   
     fetch(`https://65a68cd574cf4207b4f05588.mockapi.io/api/swp/SampleProject/${sample.id}`, {
       method: 'GET',
       headers: { 'content-type': 'application/json' },
@@ -146,14 +148,19 @@ export default function ProjectDetail() {
         </section>
       </div>
       <Box sx={{
-         backgroundImage: "url('https://kretzerfirm.com/wp-content/uploads/2019/08/handshake-agreement-laws.jpg')",
-        backgroundSize: 'cover', height:'250px', marginBottom:'40px'
+        backgroundImage: "url('https://kretzerfirm.com/wp-content/uploads/2019/08/handshake-agreement-laws.jpg')",
+        backgroundSize: 'cover', height: '250px', marginBottom: '40px'
       }}>
         <div className='image-wrapper'>
           <Typography color={'white'}> Gọi 0123456789 để được: </Typography>
           <Typography color={'#f9a33d'}> TƯ VẤN MIỄN PHÍ </Typography>
-          <Typography color={'white'}> Hoặc đăng ký thông tin tại đây </Typography> 
-          <Button onClick={handleOpen}>Đăng ký mẫu thiết kế</Button>
+          <Typography color={'white'}> Hoặc đăng ký thông tin tại đây </Typography>
+          <Button onClick={handleOpen} sx={{
+            backgroundColor: '#f9a33d', width: '20%', color: 'black', marginTop: '20px', borderRadius: '20px', '&:hover': {
+              backgroundColor: '#239a64',
+              color: '#ffffff',
+            },
+          }}>Đăng ký mẫu thiết kế</Button>
           <Modal
             open={open}
             onClose={handleClose}
@@ -161,12 +168,7 @@ export default function ProjectDetail() {
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                Text in a modal
-              </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-              </Typography>
+              <BookingForm/>
             </Box>
           </Modal>
         </div>
