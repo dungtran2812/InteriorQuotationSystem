@@ -118,6 +118,7 @@
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
   display: flex;
   text-align: center;
+  align-items: center;
   justify-content: center;
   flex-direction: column;
   }

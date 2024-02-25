@@ -40,7 +40,7 @@ const Banner = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small"><Link to={'apartment-project'}>View Detail</Link></Button>
+              <Button size="small"><Link to={`interior-construction/apartmentproject`}>View Detail</Link></Button>
               
             </CardActions>
           

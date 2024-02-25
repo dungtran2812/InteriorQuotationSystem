@@ -42,20 +42,14 @@ function App() {
 
           </>
         } />
-        <Route path='/apartment-project' element={
+        <Route path='/interior-construction/apartmentproject' element={
           <>
             <Header />
             <PrjTypeDetail />
             <Footer />
           </>
         } />
-        <Route path={'/apartment-project/detail/:id'} element={
-          <>
-            <Header />
-            <ProjectDetail />
-            <Footer />
-          </>
-        } />
+        
         <Route path={'/detail/:id'} element={
           <>
             <Header />
