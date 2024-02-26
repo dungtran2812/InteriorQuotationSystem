@@ -91,7 +91,9 @@ export default function ProjectDetail() {
         ))}
       </Slider>
       <div>
+
         <nav className='room-section'>
+
           <ul>
             <li className='section-title'><a href="#kitchen">interior design for {sampleDetail.name}'s Kitchen</a></li>
             <li className='section-title'><a href="#Living">interior design for {sampleDetail.name}'s Living Room</a></li>

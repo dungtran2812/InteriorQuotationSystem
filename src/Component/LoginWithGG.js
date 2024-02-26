@@ -1,6 +1,9 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-
+import { useNavigate } from "react-router-dom";
+import { loginWithGG } from "../api/auth/loginWithGG";
 const LoginWithGG = ({ setUser }) => {
+  const navigate = useNavigate();
+
   const handleGoogleSignIn = async () => {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
@@ -8,8 +11,10 @@ const LoginWithGG = ({ setUser }) => {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      console.log(user);
+      localStorage.setItem("user", JSON.stringify(user));
       setUser(user);
+      await loginWithGG(user.accessToken);
+      navigate("/");
       // Add additional logic as needed, e.g., redirect to another page
     } catch (error) {
       console.error("Error signing in with Google:", error.message);
