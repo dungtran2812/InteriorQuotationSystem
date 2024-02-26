@@ -1,0 +1,28 @@
+.dashboard-page{
+    display: flex;
+    height: 100vh;
+    gap: 10px;
+    background-color: #151A2D;
+    justify-content: stretch;
+}
+
+.dashboard-page .content{
+    flex: 1 1 0%;
+    border: none;
+}
+
+.pro-menu-item.active{
+    background-color: #1E2535;
+    color: #fff;
+}
+
+
+.hidden-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hidden-scrollbar {
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
+}
