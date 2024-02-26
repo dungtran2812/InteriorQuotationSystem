@@ -13,6 +13,7 @@ import Customfeedback from './Component/Homepage/Customfeedback';
 import Quotepage from './Component/Quotepage';
 import PrjTypeDetail from './Component/PrjTypeDetail';
 import ProjectDetail from './Component/ProjectDetail';
+import SampleSearch from './Component/SampleSearch';
 
 function App() {
 
@@ -57,6 +58,14 @@ function App() {
             <Footer />
           </>
         } />
+        <Route path={'sampleprojectpage'} element={
+          <>
+            <Header />
+            <SampleSearch/>
+            <Footer />
+          </>
+        } />
+        
       </Routes>
 
     </>
