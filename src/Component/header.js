@@ -155,6 +155,7 @@ export default function Header() {
           aria-label="show 17 new notifications"
           color="inherit"
         >
+
           <Badge badgeContent={17} color="error">
             <NotificationsIcon />
           </Badge>
@@ -175,6 +176,7 @@ export default function Header() {
       </MenuItem>
     </Menu>
   );
+
 
   return (
     <Box paddingBottom={10}>

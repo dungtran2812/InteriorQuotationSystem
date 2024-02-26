@@ -13,7 +13,11 @@ import Customfeedback from './Component/Homepage/Customfeedback';
 import Quotepage from './Component/Quotepage';
 import PrjTypeDetail from './Component/PrjTypeDetail';
 import ProjectDetail from './Component/ProjectDetail';
+
 import DashboardPage from './Component/Dashboard';
+
+import SampleSearch from './Component/SampleSearch';
+
 
 function App() {
 
@@ -44,20 +48,14 @@ function App() {
 
           </>
         } />
-        <Route path='/apartment-project' element={
+        <Route path='/interior-construction/apartmentproject' element={
           <>
             <Header />
             <PrjTypeDetail />
             <Footer />
           </>
         } />
-        <Route path={'/apartment-project/detail/:id'} element={
-          <>
-            <Header />
-            <ProjectDetail />
-            <Footer />
-          </>
-        } />
+        
         <Route path={'/detail/:id'} element={
           <>
             <Header />
@@ -65,6 +63,14 @@ function App() {
             <Footer />
           </>
         } />
+        <Route path={'sampleprojectpage'} element={
+          <>
+            <Header />
+            <SampleSearch/>
+            <Footer />
+          </>
+        } />
+        
       </Routes>
 
     </>
