@@ -74,6 +74,7 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [user, setUser] = React.useState(null);
+  const localStorageUser = JSON.parse(localStorage.getItem("user"));
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -249,7 +250,7 @@ export default function Header() {
               </Badge>
             </IconButton>
 
-            {user ? (
+            {user || localStorageUser ? (
               <IconButton
                 size="large"
                 edge="end"
@@ -260,13 +261,25 @@ export default function Header() {
                 color="inherit"
               >
                 <img
-                  src={user.photoURL}
+                  src={user?.photoURL || localStorageUser?.photoURL || ""}
                   alt="user"
                   style={{ borderRadius: "50%", width: "30px" }}
                 />
               </IconButton>
             ) : (
-              <LoginWithGG setUser={setUser} />
+              // <LoginWithGG setUser={setUser} />
+              <Link to="/login">
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </Link>
             )}
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
