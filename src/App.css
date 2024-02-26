@@ -122,3 +122,6 @@
   justify-content: center;
   flex-direction: column;
   }
+  .quote-image {
+    width: 50%;
+  }
