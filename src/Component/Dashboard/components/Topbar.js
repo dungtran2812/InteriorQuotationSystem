@@ -19,12 +19,16 @@ const Topbar = () => {
       {/* SEARCH BAR */}
       <Box
         display="flex"
-        backgroundColor={colors.primary[400]}
-        color="#fff"
+        backgroundColor={"#F5F6F8"}
+        color="#000"
         borderRadius="3px"
       >
-        <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search" style={{color:"#fff"}}/>
-        <IconButton type="button" sx={{ p: 1 }} style={{color:"#fff"}}>
+        <InputBase
+          sx={{ ml: 2, flex: 1 }}
+          placeholder="Search"
+          style={{ color: "#000" }}
+        />
+        <IconButton type="button" sx={{ p: 1 }} style={{ color: "#000" }}>
           <SearchIcon />
         </IconButton>
       </Box>
@@ -33,29 +37,39 @@ const Topbar = () => {
       <Box display="flex">
         <IconButton onClick={colorMode.toggleColorMode}>
           {theme.palette.mode === "dark" ? (
-            <DarkModeOutlinedIcon style={{
-                color: "#fff"
-            }} />
+            <DarkModeOutlinedIcon
+              style={{
+                color: "#000",
+              }}
+            />
           ) : (
-            <LightModeOutlinedIcon style={{
-                color: "#fff"
-            }} />
+            <LightModeOutlinedIcon
+              style={{
+                color: "#000",
+              }}
+            />
           )}
         </IconButton>
         <IconButton>
-          <NotificationsOutlinedIcon style={{
-            color: "#fff"
-          }} />
+          <NotificationsOutlinedIcon
+            style={{
+              color: "#000",
+            }}
+          />
         </IconButton>
         <IconButton>
-          <SettingsOutlinedIcon style={{
-            color: "#fff"
-          }} />
+          <SettingsOutlinedIcon
+            style={{
+              color: "#000",
+            }}
+          />
         </IconButton>
         <IconButton>
-          <PersonOutlinedIcon style={{
-            color: "#fff"
-          }} />
+          <PersonOutlinedIcon
+            style={{
+              color: "#000",
+            }}
+          />
         </IconButton>
       </Box>
     </Box>

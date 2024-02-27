@@ -119,8 +119,26 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+<<<<<<< Updated upstream
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+=======
+      <MenuItem onClick={handleMenuClose}>
+        <Link to="/profile">Profile</Link>
+      </MenuItem>
+>>>>>>> Stashed changes
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {user || localStorageUser ? (
+        <MenuItem
+          onClick={() => {
+            setUser(null);
+            localStorage.removeItem("user");
+          }}
+        >
+          Sign out
+        </MenuItem>
+      ) : (
+        <MenuItem>Sign in</MenuItem>
+      )}
     </Menu>
   );
 
@@ -147,7 +165,10 @@ export default function Header() {
             <MailIcon />
           </Badge>
         </IconButton>
+<<<<<<< Updated upstream
         <p>Messages</p>
+=======
+>>>>>>> Stashed changes
       </MenuItem>
       <MenuItem>
         <IconButton
@@ -155,12 +176,14 @@ export default function Header() {
           aria-label="show 17 new notifications"
           color="inherit"
         >
-
           <Badge badgeContent={17} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
+<<<<<<< Updated upstream
         <p>Notifications</p>
+=======
+>>>>>>> Stashed changes
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -170,13 +193,21 @@ export default function Header() {
           aria-haspopup="true"
           color="inherit"
         >
+<<<<<<< Updated upstream
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
+=======
+          <img
+            src={user?.photoURL || localStorageUser?.photoURL || ""}
+            alt="user"
+            style={{ borderRadius: "50%", width: "30px" }}
+          />
+        </IconButton>
+>>>>>>> Stashed changes
       </MenuItem>
     </Menu>
   );
-
 
   return (
     <Box paddingBottom={10}>
@@ -252,6 +283,7 @@ export default function Header() {
               </Badge>
             </IconButton>
 
+<<<<<<< Updated upstream
             {user || localStorageUser ? (
               <IconButton
                 size="large"
@@ -283,6 +315,23 @@ export default function Header() {
                 </IconButton>
               </Link>
             )}
+=======
+            <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="inherit"
+            >
+              <img
+                src={user?.photoURL || localStorageUser?.photoURL || ""}
+                alt="user"
+                style={{ borderRadius: "50%", width: "30px" }}
+              />
+            </IconButton>
+>>>>>>> Stashed changes
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
