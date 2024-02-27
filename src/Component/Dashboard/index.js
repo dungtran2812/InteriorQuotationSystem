@@ -1,4 +1,4 @@
-import { DownloadOutlined } from '@mui/icons-material';
+import { DownloadOutlined } from "@mui/icons-material";
 import { Box, Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
@@ -8,8 +8,13 @@ import StatGraphList from "./components/StatGraphList";
 import Topbar from "./components/Topbar";
 import { tokens, useMode } from "./components/theme";
 import "./dashboard.css";
-import { mockBarData, mockGeographyData, mockLineData, mockTransactions } from "./data/mock-data";
-import { geoFeatures } from './data/mockGeoFeatures';
+import {
+  mockBarData,
+  mockGeographyData,
+  mockLineData,
+  mockTransactions,
+} from "./data/mock-data";
+import { geoFeatures } from "./data/mockGeoFeatures";
 
 function DashboardPage() {
   const [theme, colorMode] = useMode();
@@ -47,9 +52,8 @@ function DashboardPage() {
       value: 38.456,
     },
     salesQuantity: mockBarData,
-    trafficGeo: mockGeographyData
+    trafficGeo: mockGeographyData,
   });
-
 
   //call api
   useEffect(() => {
@@ -57,8 +61,7 @@ function DashboardPage() {
       // call api
       // ...
       // setState
-
-    }
+    };
     init();
   }, []);
 
@@ -66,54 +69,58 @@ function DashboardPage() {
     <div className="dashboard-page">
       <SidebarComponent isSidebar={isSidebar} />
       <main className="content">
-      <Topbar />
-      <Box m="20px">
-      {/* HEADER */}
-      <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="DASHBOARD" subtitle="Dữ liệu về báo cáo nội thất" />
-        <Box>
-          <Button
-            sx={{
-              backgroundColor: colors.blueAccent[700],
-              color: colors.grey[100],
-              fontSize: "14px",
-              fontWeight: "bold",
-              padding: "10px 20px",
-            }}
+        <Topbar />
+        <Box m="20px">
+          {/* HEADER */}
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
           >
-            <DownloadOutlined sx={{ mr: "10px" }} />
-            Download Reports
-          </Button>
+            <Header title="DASHBOARD" subtitle="Dữ liệu về báo cáo nội thất" />
+            <Box>
+              <Button
+                sx={{
+                  backgroundColor: colors.blueAccent[700],
+                  color: colors.grey[100],
+                  fontSize: "14px",
+                  fontWeight: "bold",
+                  padding: "10px 20px",
+                }}
+              >
+                <DownloadOutlined sx={{ mr: "10px" }} />
+                Download Reports
+              </Button>
+            </Box>
+          </Box>
+
+          {/* GRID & CHARTS */}
+
+          <div
+            style={{
+              maxHeight: "calc(100vh - 220px)",
+              overflowY: "auto",
+            }}
+            className="hidden-scrollbar"
+          >
+            <StatBoxList
+              totalEmail={dashboardData.totalEmail}
+              totalSales={dashboardData.totalSales}
+              totalUsers={dashboardData.totalUsers}
+              totalTraffic={dashboardData.totalTraffic}
+            />
+            <StatGraphList
+              revenueGenerated={dashboardData.revenueGenerated}
+              recentTransactions={dashboardData.recentTransactions}
+              campaign={dashboardData.campaign}
+              salesQuantity={dashboardData.salesQuantity}
+              trafficGeo={dashboardData.trafficGeo}
+            />
+          </div>
         </Box>
-      </Box>
-
-      {/* GRID & CHARTS */}
-
-      <div style={{
-        maxHeight: "calc(100vh - 220px)",
-        overflowY: "auto",
-      }}
-      className="hidden-scrollbar"
-      >
-        <StatBoxList 
-          totalEmail={dashboardData.totalEmail}
-          totalSales={dashboardData.totalSales}
-          totalUsers={dashboardData.totalUsers}
-          totalTraffic={dashboardData.totalTraffic}
-        />
-        <StatGraphList 
-          revenueGenerated={dashboardData.revenueGenerated}
-          recentTransactions={dashboardData.recentTransactions}
-          campaign={dashboardData.campaign}
-          salesQuantity={dashboardData.salesQuantity}
-          trafficGeo={dashboardData.trafficGeo}
-        />
-      </div>
-
-    </Box>
       </main>
     </div>
-  )
+  );
 }
 
-export default DashboardPage
+export default DashboardPage;
