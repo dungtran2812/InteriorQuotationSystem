@@ -10,6 +10,7 @@
     "@mui/icons-material": "^5.15.6",
     "@mui/material": "^5.15.6",
     "@mui/styled-engine-sc": "^6.0.0-alpha.13",
+    "@mui/styles": "^5.15.11",
     "@nivo/bar": "^0.84.0",
     "@nivo/geo": "^0.84.0",
     "@nivo/line": "^0.84.0",

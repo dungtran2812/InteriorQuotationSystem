@@ -24,23 +24,22 @@ export default function SampleSearch() {
   }, []);
 
   const handleSearchChange = (event) => {
+    
     setSearchTerm(event.target.value);
   };
   const handleStyleChange = (event) => {
+    console.log(event.target);
     setSelectedStyle(event.target.value);
   };
   
   let filteredSamples = [];
   if (sampleList) {
     filteredSamples = sampleList.filter(sample =>
-        sample.name.toLowerCase().includes(searchTerm.toLowerCase())
-        
+        sample.name.toLowerCase().includes(searchTerm.toLowerCase()) &&  sample.style.toLowerCase().includes(selectedStyle.toLowerCase())
       );
-      filteredSamples = sampleList.filter(sample =>
-          sample.style.toLowerCase().includes(selectedStyle.toLowerCase())
-          
-        );
+     
   }
+  
     
   
 
