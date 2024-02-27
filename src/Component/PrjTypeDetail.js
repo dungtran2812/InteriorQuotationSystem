@@ -8,7 +8,7 @@ export default function PrjTypeDetail() {
     //project detail page: quote table, sample of project. Using project category to render quote section
     <div className='container'>
       
-        <Typography variant='h4' sx={{backgroundColor:'rgba(255,200,20,0.5)', textAlign:'center'}}>Dự án chung cư</Typography>
+      <Typography variant='h4' sx={{backgroundColor:'rgba(255,200,20,0.5)', textAlign:'center'}}>Dự án chung cư</Typography>
         <strong >Báo giá thi công nội thất chung cư trọn gói</strong>
         <p className='quote-title'>Để có thông tin chi tiết và báo giá phù hợp với căn hộ của bạn, chúng tôi đề xuất bạn liên hệ trực tiếp với chúng tôi. Chi phí hoàn thiện phần thô thực tế phụ thuộc vào nhiều yếu tố như mặt bằng công trình, yêu cầu cụ thể của khách hàng về mẫu mã, chất liệu, kích thước và các yếu tố khác. Chúng tôi sẽ cung cấp thông tin chi tiết và tư vấn cho bạn để đảm bảo rằng dự án của bạn được thực hiện đúng theo mong muốn và ngân sách của bạn. Đừng ngần ngại liên hệ với chúng tôi để biết thêm thông tin.</p>
         <strong>Báo giá hoàn thiện phần thô chung cư</strong> <br/>

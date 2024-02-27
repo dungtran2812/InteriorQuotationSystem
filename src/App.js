@@ -17,10 +17,13 @@ import ProjectDetail from './Component/ProjectDetail';
 import DashboardPage from './Component/Dashboard';
 
 import SampleSearch from './Component/SampleSearch';
+import ScrollToTop from './Component/ScrollToTop';
+
+import UserPage from './Component/UserProfile/UserPage';
 
 
 function App() {
-
+  
   return (
     <>
       <Routes>
@@ -45,11 +48,12 @@ function App() {
           <>
             <Header />
             <Quotepage />
-
+            <Footer />
           </>
         } />
         <Route path='/interior-construction/apartmentproject' element={
           <>
+            <ScrollToTop/>
             <Header />
             <PrjTypeDetail />
             <Footer />
@@ -63,10 +67,24 @@ function App() {
             <Footer />
           </>
         } />
+        <Route path={'sampleprojectpage/detail/:id'} element={
+          <>
+            <Header />
+            <ProjectDetail />
+            <Footer />
+          </>
+        } />
         <Route path={'sampleprojectpage'} element={
           <>
             <Header />
             <SampleSearch/>
+            <Footer />
+          </>
+        } />
+        <Route path={'profile'} element={
+          <>
+            <Header />
+            <UserPage/>
             <Footer />
           </>
         } />

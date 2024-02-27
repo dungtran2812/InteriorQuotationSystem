@@ -13,6 +13,7 @@ const LoginWithGG = ({ setUser }) => {
       const user = result.user;
       localStorage.setItem("user", JSON.stringify(user));
       setUser(user);
+      console.log(user);
       await loginWithGG(user.accessToken);
       navigate("/");
       // Add additional logic as needed, e.g., redirect to another page
