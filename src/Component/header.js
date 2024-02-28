@@ -119,8 +119,22 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}><Link to='/profile'>Profile</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link to="/profile">Profile</Link>
+      </MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {user || localStorageUser ? (
+        <MenuItem
+          onClick={() => {
+            setUser(null);
+            localStorage.removeItem("user");
+          }}
+        >
+          Sign out
+        </MenuItem>
+      ) : (
+        <MenuItem>Sign in</MenuItem>
+      )}
     </Menu>
   );
 
@@ -147,7 +161,9 @@ export default function Header() {
             <MailIcon />
           </Badge>
         </IconButton>
-        
+
+        <p>Messages</p>
+
       </MenuItem>
       <MenuItem>
         <IconButton
@@ -155,12 +171,11 @@ export default function Header() {
           aria-label="show 17 new notifications"
           color="inherit"
         >
-
           <Badge badgeContent={17} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
-        
+        <p>Notifications</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -170,17 +185,17 @@ export default function Header() {
           aria-haspopup="true"
           color="inherit"
         >
+          <AccountCircle />
+        <p>Profile</p>
           <img
-                  src={user?.photoURL || localStorageUser?.photoURL || ""}
-                  alt="user"
-                  style={{ borderRadius: "50%", width: "30px" }}
-                />
+            src={user?.photoURL || localStorageUser?.photoURL || ""}
+            alt="user"
+            style={{ borderRadius: "50%", width: "30px" }}
+          />
         </IconButton>
-        
       </MenuItem>
     </Menu>
   );
-
 
   return (
     <Box paddingBottom={10}>
@@ -255,8 +270,7 @@ export default function Header() {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-
-            
+            {user || localStorageUser ? (
               <IconButton
                 size="large"
                 edge="end"
@@ -272,7 +286,21 @@ export default function Header() {
                   style={{ borderRadius: "50%", width: "30px" }}
                 />
               </IconButton>
-            
+            ) : (
+              // <LoginWithGG setUser={setUser} />
+              <Link to="/login">
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </Link>
+            )}
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -283,7 +311,6 @@ export default function Header() {
               onClick={handleMobileMenuOpen}
               color="inherit"
             >
-              
               <MoreIcon />
             </IconButton>
           </Box>
