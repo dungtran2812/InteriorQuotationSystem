@@ -52,6 +52,7 @@ function App() {
             <Header />
             <Quotepage />
             <Footer />
+            <StickyModal/>
           </>
         } />
         <Route path='/interior-construction/apartmentproject' element={
@@ -60,6 +61,7 @@ function App() {
             <Header />
             <PrjTypeDetail />
             <Footer />
+            <StickyModal/>
           </>
         } />
         
@@ -68,6 +70,7 @@ function App() {
             <Header />
             <ProjectDetail />
             <Footer />
+            <StickyModal/>
           </>
         } />
         <Route path={'/style-detail/:id'} element={
@@ -75,6 +78,7 @@ function App() {
             <Header />
             <StyleDetail/>
             <Footer />
+            <StickyModal/>
           </>
         } />
         <Route path={'sampleprojectpage/detail/:id'} element={
@@ -82,6 +86,7 @@ function App() {
             <Header />
             <ProjectDetail />
             <Footer />
+            <StickyModal/>
           </>
         } />
         <Route path={'sampleprojectpage'} element={
@@ -89,6 +94,7 @@ function App() {
             <Header />
             <SampleSearch/>
             <Footer />
+            <StickyModal/>
           </>
         } />
         <Route path={'profile'} element={
@@ -96,6 +102,7 @@ function App() {
             <Header />
             <UserPage/>
             <Footer />
+            <StickyModal/>
           </>
         } />
         <Route
@@ -103,6 +110,7 @@ function App() {
           element={
             <>
               <ViewRegisterList />
+              
             </>
           }
         />

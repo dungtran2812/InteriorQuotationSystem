@@ -1,120 +1,147 @@
 .editable-cell {
-    position: relative;
-  }
-  
-  .editable-cell-value-wrap {
-    padding: 5px 12px;
-    cursor: pointer;
-  }
-  
-  .editable-row:hover .editable-cell-value-wrap {
-    padding: 4px 11px;
-    border: 1px solid #d9d9d9;
-    border-radius: 2px;
-  }
-  body {
-    overflow-x: hidden;
-  }
-    /* the slides */
-    .slick-list {margin: 0 -5px;}
-    .slick-slide>div {padding: 0 5px;}
-  li {
-    font-weight: bold;
-  }
-  .image-container {
-    width: 50%; /* Adjust the width as needed */
-    margin: 0 auto; /* Center the image horizontally */
-  }
-  
-  .responsive-image {
-    width: 100%;
-    height: auto;
-  }
-  .container {
-    padding: 0 10%;
-    padding-top: 20px;
-  }
-  
-  .section {
-    margin-bottom: 40px;
-  }
-  
-  .responsive-image {
-    width: 100%;
-    height: auto;
-  }
-  .nav {
-    background-color: #f8f9fa; /* Background color */
-    padding: 10px; /* Padding around the navigation menu */
-  }
-  
-  ul {
-    
-    padding-left: 2%; /* Remove default padding */
-    margin: 0; /* Remove default margin */
-  }
-  
-  .section-title {
-    display: inline; /* Display list items horizontally */
-    margin-right: 20px; /* Add spacing between list items */
-  }
-  
-  /* Styling anchor links */
-  a {
-    text-decoration: none; /* Remove underline */
-    color: #333; /* Text color */
-  }
-  
-  a:hover {
-    text-decoration: underline; /* Add underline on hover */
-    color: #555; /* Text color on hover */
-  }
-  .room-section {
-    margin-top: 50px;
-  }
-  .form-container {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
-  .form-container form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-container label {
-    margin-bottom: 5px;
-  }
-  
-  .form-container input,
-  .form-container textarea {
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  .form-container textarea {
-    height: 100px; /* Adjust height as needed */
-  }
-  
-  .form-container button[type="submit"] {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-  }
-  
-  .form-container button[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-  .image-wrapper {
-    width: 100%;
+  position: relative;
+}
+
+.editable-cell-value-wrap {
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+.editable-row:hover .editable-cell-value-wrap {
+  padding: 4px 11px;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* the slides */
+.slick-list {
+  margin: 0 -5px;
+}
+
+.slick-slide>div {
+  padding: 0 5px;
+}
+
+li {
+  font-weight: bold;
+}
+
+.image-container {
+  width: 50%;
+  /* Adjust the width as needed */
+  margin: 0 auto;
+  /* Center the image horizontally */
+}
+
+.responsive-image {
+  width: 100%;
+  height: auto;
+}
+
+.container {
+  padding: 0 10%;
+  padding-top: 20px;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.responsive-image {
+  width: 100%;
+  height: auto;
+}
+
+.nav {
+  background-color: #f8f9fa;
+  /* Background color */
+  padding: 10px;
+  /* Padding around the navigation menu */
+}
+
+ul {
+
+  padding-left: 2%;
+  /* Remove default padding */
+  margin: 0;
+  /* Remove default margin */
+}
+
+.section-title {
+  display: inline;
+  /* Display list items horizontally */
+  margin-right: 20px;
+  /* Add spacing between list items */
+}
+
+/* Styling anchor links */
+a {
+  text-decoration: none;
+  /* Remove underline */
+  color: #333;
+  /* Text color */
+}
+
+a:hover {
+  text-decoration: underline;
+  /* Add underline on hover */
+  color: #555;
+  /* Text color on hover */
+}
+
+.room-section {
+  margin-top: 50px;
+}
+
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container label {
+  margin-bottom: 5px;
+}
+
+.form-container input,
+.form-container textarea {
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.form-container textarea {
+  height: 100px;
+  /* Adjust height as needed */
+}
+
+.form-container button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.form-container button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.image-wrapper {
+  width: 100%;
   height: 100%;
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
   display: flex;
@@ -122,24 +149,36 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  }
-  .quote-image {
-    width: 50%;
-  }
-  .sticky-item {
-    position: fixed;
-    bottom: 40px;
-    left: 20px;
-    display: flex;
-    height: 50px;
-    align-items: center;
-    background: #FEF200 !important;
-    text-decoration: none;
-    color: #333;
-    font-weight: 700;
-    font-size: 18px;
-    border-radius: 25px;
-    padding: 5px 19px 5px 5px;
 }
 
-  
+.quote-image {
+  width: 50%;
+}
+
+.sticky-item {
+  position: fixed;
+  bottom: 40px;
+  left: 20px;
+  display: flex;
+  height: 50px;
+  align-items: center;
+  background: #f9a33d;
+  text-decoration: none;
+  color: #333;
+  font-weight: 700;
+  font-size: 18px;
+  border-radius: 25px;
+  padding: 5px 19px 5px 5px;
+}
+
+.sticky-item:hover {
+  background: #239a64;
+  color: #ffffff;
+}
+.img-sample {
+  max-width: 100%;
+    height: auto;
+    border: 0;
+    vertical-align: middle;
+    margin: 40px 0 ;
+}
