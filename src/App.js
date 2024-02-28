@@ -13,15 +13,13 @@ import Customfeedback from './Component/Homepage/Customfeedback';
 import Quotepage from './Component/Quotepage';
 import PrjTypeDetail from './Component/PrjTypeDetail';
 import ProjectDetail from './Component/ProjectDetail';
-
 import DashboardPage from './Component/Dashboard';
-
 import SampleSearch from './Component/SampleSearch';
 import ScrollToTop from './Component/ScrollToTop';
-
 import UserPage from './Component/UserProfile/UserPage';
-import StyleDetail from './Component/DesignStylePage/StyleDetail';
 
+import StyleDetail from './Component/DesignStylePage/StyleDetail';
+import ViewRegisterList from "./Component/ViewRegisterList/ViewRegisterList";
 
 function App() {
   
@@ -96,7 +94,14 @@ function App() {
             <Footer />
           </>
         } />
-        
+        <Route
+          path={"viewRegisterList"}
+          element={
+            <>
+              <ViewRegisterList />
+            </>
+          }
+        />
       </Routes>
 
     </>

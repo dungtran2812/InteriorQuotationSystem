@@ -1,19 +1,18 @@
-.dashboard-page{
+.dashboard-page {
     display: flex;
-    height: 100vh;
     gap: 10px;
-    background-color: #151A2D;
+    background-color: #ffffff;
     justify-content: stretch;
 }
 
-.dashboard-page .content{
+.dashboard-page .content {
     flex: 1 1 0%;
     border: none;
 }
 
-.pro-menu-item.active{
-    background-color: #1E2535;
-    color: #fff;
+.pro-menu-item.active {
+    background-color: #ffffff;
+    color: #000;
 }
 
 
@@ -23,6 +22,8 @@
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .hidden-scrollbar {
--ms-overflow-style: none;  /* IE and Edge */
-scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }

@@ -32,10 +32,10 @@ const SidebarComponent = () => {
   const [selected, setSelected] = useState("Dashboard");
 
   return (
-    <Box 
+    <Box
       sx={{
-        "& .ps-menu-button:hover":{
-          backgroundColor: `#151A2D`
+        "& .ps-menu-button:hover": {
+          backgroundColor: `#151A2D`,
         },
         "& .pro-sidebar-inner": {
           backgroundColor: `red`,
@@ -45,7 +45,7 @@ const SidebarComponent = () => {
         },
         "& .pro-inner-item": {
           padding: "5px 0px 5px 0px !important",
-          color: "white"
+          color: "white",
         },
         "& .pro-inner-item:hover": {
           color: "#000",
@@ -56,15 +56,21 @@ const SidebarComponent = () => {
         },
       }}
     >
-      <Sidebar collapsed={isCollapsed} style={{
-        padding: `0px`,
-      }}>
-        <Menu iconShape="square" style={{
-          backgroundColor: `#1F2942`,
-          height: `100vh`,
-          overflowY: `auto`,
-          paddingLeft: `0px`,
-        }}>
+      <Sidebar
+        collapsed={isCollapsed}
+        style={{
+          padding: `0px`,
+        }}
+      >
+        <Menu
+          iconShape="square"
+          style={{
+            backgroundColor: `#1F2942`,
+            height: `100vh`,
+            overflowY: `auto`,
+            paddingLeft: `0px`,
+          }}
+        >
           {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
@@ -81,13 +87,16 @@ const SidebarComponent = () => {
                 alignItems="center"
                 ml="4px"
               >
-                <Typography variant="h5">
-                  ADMIN
-                </Typography>
-                <IconButton onClick={() => setIsCollapsed(!isCollapsed)} color={"#fff"}>
-                  <MenuOutlinedIcon style={{
-                    color: `#fff`
-                  }}/>
+                <Typography variant="h5">ADMIN</Typography>
+                <IconButton
+                  onClick={() => setIsCollapsed(!isCollapsed)}
+                  color={"#fff"}
+                >
+                  <MenuOutlinedIcon
+                    style={{
+                      color: `#fff`,
+                    }}
+                  />
                 </IconButton>
               </Box>
             )}
