@@ -25,8 +25,7 @@ function BookingForm() {
       fullName: '',
       email: '',
       phoneNumber: '',
-      checkInDate: '',
-      checkOutDate: '',
+      cost:'',
       additionalRequests: ''
     });
   };
@@ -69,19 +68,17 @@ function BookingForm() {
           <Grid item xs={6}>
             <TextField
               fullWidth
-              label="Ngày đăng kí"
-              type="date"
-              name="date"
-              value={formData.checkInDate}
+              label="Ngân Sách"
+              name="cost"
+              value={formData.cost}
               onChange={handleInputChange}
-              InputLabelProps={{ shrink: true }}
             />
           </Grid>
           
           <Grid item xs={12}>
             <TextField
               fullWidth
-              label="Ghi chú"
+              label="Thông tin ngôi nhà (số phòng ngủ, diện tích,...)"
               multiline
               rows={4}
               name="additionalRequests"
