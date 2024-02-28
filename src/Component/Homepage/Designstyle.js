@@ -17,7 +17,7 @@ const Designstyle = () => {
   };
   const [styleList,setStyleList] = useState(null)
   useEffect(() => {
-    fetch('https://65a68cd574cf4207b4f05588.mockapi.io/api/swp/DesignStyle', {
+    fetch('https://furniture-quote.azurewebsites.net/designStyle/getAllDesign', {
       method: 'GET',
       headers: { 'content-type': 'application/json' },
     }).then(res => {
@@ -26,14 +26,14 @@ const Designstyle = () => {
       }
      
     }).then(data => {
-      setStyleList(data)
+      setStyleList(data.data)
     }).catch(error => {
       console.log(error);
     })
   }, [])
 
   return (
-    <Box sx={{ paddingTop: 6 }}>
+    <div className='container'>
       <Box sx={{ paddingBottom: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         
         <Typography variant="h4" sx={{paddingLeft:'2%',paddingRight:'2%',fontWeight:"bold"}}> Hot design trends in 2024 </Typography>
@@ -41,8 +41,8 @@ const Designstyle = () => {
       </Box>
       <Slider {...settings}>
         {styleList ? (styleList.map((designData) => (
-          <Paper key={designData.id} sx={{ display: 'flex', justifyContent: 'center', paddingLeft:'10%'}}>
-            <Card sx={{ maxWidth: 400, boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', transition: 'transform 0.3s ease-in-out' }}>
+          <Paper key={designData.id} sx={{ display: 'flex', justifyContent: 'center', maxWidth: 400}}>
+            <Card sx={{ maxWidth: 400}}>
               <CardMedia
                 sx={{ height: 200, objectFit: 'cover' }}
                 image={designData.img}
@@ -64,7 +64,7 @@ const Designstyle = () => {
           </Paper>
         ))): <Typography>loading...</Typography>}
       </Slider>
-    </Box>
+    </div>
   );
 };
 
