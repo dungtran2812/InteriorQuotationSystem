@@ -20,6 +20,8 @@ import UserPage from './Component/UserProfile/UserPage';
 
 import StyleDetail from './Component/DesignStylePage/StyleDetail';
 import ViewRegisterList from "./Component/ViewRegisterList/ViewRegisterList";
+import ProjectVideo from './Component/Homepage/ProjectVideo';
+import StickyModal from './Component/StickyModal';
 
 function App() {
   
@@ -34,8 +36,10 @@ function App() {
             <Quotationbanner />
             <Designstyle />
             <Workflowpage />
+            <ProjectVideo/>
             <Customfeedback />
             <Footer />
+            <StickyModal/>
           </>
         } />
 

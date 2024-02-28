@@ -126,5 +126,20 @@
   .quote-image {
     width: 50%;
   }
-  
+  .sticky-item {
+    position: fixed;
+    bottom: 40px;
+    left: 20px;
+    display: flex;
+    height: 50px;
+    align-items: center;
+    background: #FEF200 !important;
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 25px;
+    padding: 5px 19px 5px 5px;
+}
+
   
