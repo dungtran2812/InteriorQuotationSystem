@@ -20,6 +20,7 @@ import SampleSearch from './Component/SampleSearch';
 import ScrollToTop from './Component/ScrollToTop';
 
 import UserPage from './Component/UserProfile/UserPage';
+import StyleDetail from './Component/DesignStylePage/StyleDetail';
 
 
 function App() {
@@ -64,6 +65,13 @@ function App() {
           <>
             <Header />
             <ProjectDetail />
+            <Footer />
+          </>
+        } />
+        <Route path={'/style-detail/:id'} element={
+          <>
+            <Header />
+            <StyleDetail/>
             <Footer />
           </>
         } />
