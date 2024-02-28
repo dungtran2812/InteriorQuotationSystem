@@ -17,7 +17,10 @@ import DashboardPage from './Component/Dashboard';
 import SampleSearch from './Component/SampleSearch';
 import ScrollToTop from './Component/ScrollToTop';
 import UserPage from './Component/UserProfile/UserPage';
+
+import StyleDetail from './Component/DesignStylePage/StyleDetail';
 import ViewRegisterList from "./Component/ViewRegisterList/ViewRegisterList";
+
 function App() {
   
   return (
@@ -60,6 +63,13 @@ function App() {
           <>
             <Header />
             <ProjectDetail />
+            <Footer />
+          </>
+        } />
+        <Route path={'/style-detail/:id'} element={
+          <>
+            <Header />
+            <StyleDetail/>
             <Footer />
           </>
         } />

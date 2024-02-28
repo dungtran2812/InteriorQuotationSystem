@@ -54,7 +54,7 @@ const Designstyle = () => {
                 </Typography>
               </CardContent>
               <CardActions sx={{ justifyContent: 'center' }}>
-                <Link to={`detail/${designData.id}`} style={{ textDecoration: 'none' }}>
+                <Link to={`style-detail/${designData.id}`} style={{ textDecoration: 'none' }}>
                   <Button variant="contained" size="small">
                     Detail
                   </Button>
