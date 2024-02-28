@@ -27,6 +27,7 @@ const Designstyle = () => {
      
     }).then(data => {
       setStyleList(data.data)
+      console.log(data)
     }).catch(error => {
       console.log(error);
     })
