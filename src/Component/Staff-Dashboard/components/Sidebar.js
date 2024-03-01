@@ -89,7 +89,7 @@ const SidebarComponent = () => {
                 alignItems="center"
                 ml="4px"
               >
-                <Typography variant="h5" color={"#fff"} >ADMIN</Typography>
+                <Typography variant="h5" color={"#fff"} >Staff</Typography>
                 <IconButton
                   onClick={() => setIsCollapsed(!isCollapsed)}
                   color={"#fff"}
@@ -116,7 +116,7 @@ const SidebarComponent = () => {
                   interior Design
                 </Typography>
                 <Typography variant="p" color={colors.grey[900]}>
-                  VP Fancy Admin
+                  VP Fancy Staff
                 </Typography>
               </Box>
             </Box>
@@ -125,7 +125,7 @@ const SidebarComponent = () => {
           <Box>
             <Item
               title="Dashboard"
-              to="/dashboard"
+              to="/staff-dashboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -139,23 +139,9 @@ const SidebarComponent = () => {
               Data
             </Typography>
             <Item
-              title="Add Staff"
-              to="/staff/add"
+              title="View Register List"
+              to="/staff-dashboard/viewRegisterList"
               icon={<ContactsOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Staff Team"
-              to="/staff"
-              icon={<ReceiptOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Staff Information"
-              to="/staff/information"
-              icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />

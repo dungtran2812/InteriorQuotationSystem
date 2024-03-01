@@ -1,16 +1,15 @@
-import * as React from "react";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import TextField from "@mui/material/TextField";
+import * as React from "react";
 
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import LoginWithGG from "./LoginWithGG";
 import { loginWithUserName } from "../api/auth/loginWithUsername";
+import LoginWithGG from "./LoginWithGG";
 
 export default function LoginPage() {
   const handleSubmit = async (event) => {
