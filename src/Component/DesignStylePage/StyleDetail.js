@@ -16,8 +16,8 @@ export default function StyleDetail() {
       }
 
     }).then(data => {
-      setStyleDetail(data.data)
-
+      setStyleDetail(data.data);
+      
     }).catch(error => {
       console.log(error);
     })
@@ -25,7 +25,7 @@ export default function StyleDetail() {
   if (!styleDetail) return null;
   return (
     <div className='container'>
-      <Typography variant='h4' sx={{ backgroundColor: 'rgba(255,200,20,0.5)', textAlign: 'center' }}>{styleDetail.name}</Typography>
+      <Typography variant='h4' sx={{ backgroundColor: 'rgba(255,200,20,0.5)', textAlign: 'center' }}>Phong Cách {styleDetail.name}</Typography>
       <strong>Tổng quan về thiết kế :</strong>
       <Typography>{styleDetail.description}</Typography>
       <p>&gt;&gt; Xem thêm:</p>

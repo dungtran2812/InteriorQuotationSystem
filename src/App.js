@@ -18,9 +18,7 @@ import SignUp from './Component/SignUp';
 import StaffDashboardPage from './Component/Staff-Dashboard';
 import ViewRegisterListPage from './Component/Staff-Dashboard/pages/ViewRegisterList';
 import UserPage from './Component/UserProfile/UserPage';
-
 import Header from './Component/header';
-
 import StyleDetail from './Component/DesignStylePage/StyleDetail';
 import ViewRegisterList from "./Component/ViewRegisterList/ViewRegisterList";
 import ProjectVideo from './Component/Homepage/ProjectVideo';
