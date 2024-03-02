@@ -18,7 +18,14 @@ import SignUp from './Component/SignUp';
 import StaffDashboardPage from './Component/Staff-Dashboard';
 import ViewRegisterListPage from './Component/Staff-Dashboard/pages/ViewRegisterList';
 import UserPage from './Component/UserProfile/UserPage';
+
 import Header from './Component/header';
+
+import StyleDetail from './Component/DesignStylePage/StyleDetail';
+import ViewRegisterList from "./Component/ViewRegisterList/ViewRegisterList";
+import ProjectVideo from './Component/Homepage/ProjectVideo';
+import StickyModal from './Component/StickyModal';
+
 function App() {
   
   return (
@@ -32,8 +39,10 @@ function App() {
             <Quotationbanner />
             <Designstyle />
             <Workflowpage />
+            <ProjectVideo/>
             <Customfeedback />
             <Footer />
+            <StickyModal/>
           </>
         } />
 
@@ -55,6 +64,7 @@ function App() {
             <Header />
             <Quotepage />
             <Footer />
+            <StickyModal/>
           </>
         } />
         <Route path='/interior-construction/apartmentproject' element={
@@ -63,6 +73,7 @@ function App() {
             <Header />
             <PrjTypeDetail />
             <Footer />
+            <StickyModal/>
           </>
         } />
         
@@ -71,6 +82,15 @@ function App() {
             <Header />
             <ProjectDetail />
             <Footer />
+            <StickyModal/>
+          </>
+        } />
+        <Route path={'/style-detail/:id'} element={
+          <>
+            <Header />
+            <StyleDetail/>
+            <Footer />
+            <StickyModal/>
           </>
         } />
         <Route path={'sampleprojectpage/detail/:id'} element={
@@ -78,6 +98,7 @@ function App() {
             <Header />
             <ProjectDetail />
             <Footer />
+            <StickyModal/>
           </>
         } />
         <Route path={'sampleprojectpage'} element={
@@ -85,6 +106,7 @@ function App() {
             <Header />
             <SampleSearch/>
             <Footer />
+            <StickyModal/>
           </>
         } />
         <Route path={'profile'} element={
@@ -92,8 +114,18 @@ function App() {
             <Header />
             <UserPage/>
             <Footer />
+            <StickyModal/>
           </>
         } />
+        <Route
+          path={"viewRegisterList"}
+          element={
+            <>
+              <ViewRegisterList />
+              
+            </>
+          }
+        />
       </Routes>
 
     </>
