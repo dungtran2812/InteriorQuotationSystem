@@ -12,14 +12,33 @@ import { loginWithUserName } from "../api/auth/loginWithUsername";
 import LoginWithGG from "./LoginWithGG";
 
 export default function LoginPage() {
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get("userName"),
       password: data.get("password"),
     });
-    await loginWithUserName(data.get("userName"), data.get("password"));
+    loginWithUserName(data.get("userName"), data.get("password"))
+    .then(res => {
+      if(res.error){
+        console.log(res.error);
+      }
+      else{
+        if(res.data){
+          console.log(res.data);
+          // redirect to home page
+          if(res.data?.role == "ROLE_STAFF"){
+            window.location.href = "/staff-dashboard";
+          }
+          if(res.data?.role == "ROLE_ADMIN"){
+            window.location.href = "/dashboard";
+          }else{
+            window.location.href = "/";
+          }
+        }
+      }
+    })
   };
 
   return (
