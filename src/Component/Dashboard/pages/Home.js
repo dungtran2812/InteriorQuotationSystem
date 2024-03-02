@@ -1,23 +1,20 @@
 import { DownloadOutlined } from "@mui/icons-material";
 import { Box, Button } from "@mui/material";
-import { useEffect, useState } from "react";
-import Header from "./components/Header";
-import SidebarComponent from "./components/Sidebar";
-import StatBoxList from "./components/StatBoxList";
-import StatGraphList from "./components/StatGraphList";
-import Topbar from "./components/Topbar";
-import { tokens, useMode } from "./components/theme";
-import "./dashboard.css";
+import React, { useEffect, useState } from 'react';
+import Header from "../components/Header";
+import StatBoxList from "../components/StatBoxList";
+import StatGraphList from "../components/StatGraphList";
+import { tokens, useMode } from "../components/theme";
+import "../dashboard.css";
 import {
-  mockBarData,
-  mockGeographyData,
-  mockLineData,
-  mockTransactions,
-} from "./data/mock-data";
-import { geoFeatures } from "./data/mockGeoFeatures";
+    mockBarData,
+    mockGeographyData,
+    mockLineData,
+    mockTransactions,
+} from "../data/mock-data";
 
-function DashboardPage() {
-  const [theme, colorMode] = useMode();
+function Home() {
+    const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
   const colors = tokens(theme.palette.mode);
 
@@ -64,13 +61,9 @@ function DashboardPage() {
     };
     init();
   }, []);
-
+  
   return (
-    <div className="dashboard-page">
-      <SidebarComponent isSidebar={isSidebar} />
-      <main className="content" style={{
-        backgroundColor: "#f5f5f5"      }}>
-        <Topbar />
+    <div>
         <Box m="20px">
           {/* HEADER */}
           <Box
@@ -119,9 +112,8 @@ function DashboardPage() {
             />
           </div>
         </Box>
-      </main>
     </div>
-  );
+  )
 }
 
-export default DashboardPage;
+export default Home
