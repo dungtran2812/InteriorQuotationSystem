@@ -39,11 +39,11 @@ export default function Customfeedback() {
   };
 
   return (
-    <Box sx={{paddingBottom:5, paddingLeft:'10%', paddingRight:'10%'}}>
+    <Box sx={{paddingBottom:5, paddingLeft:'10%', paddingRight:'10%', marginTop:10}}>
         <Typography variant='h4' textAlign='center' sx={{paddingBottom:5, fontWeight:'bold'}}> Custom feedback</Typography>
         <Box sx={{display:'flex', justifyContent:'center'}}>
             {FeedbackData.map((Feedback, index) => (
-                <Card key={index} sx={{ maxWidth: 345 }}>
+                <Card key={index} sx={{ maxWidth: 345 , marginRight:'3%'}}>
                     <CardHeader
                         avatar={
                             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
