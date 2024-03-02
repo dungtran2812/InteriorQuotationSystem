@@ -128,6 +128,7 @@ export default function Header() {
           onClick={() => {
             setUser(null);
             localStorage.removeItem("user");
+            handleMenuClose();
           }}
         >
           Sign out
