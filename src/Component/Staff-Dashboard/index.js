@@ -16,7 +16,7 @@ import {
 } from "./data/mock-data";
 import { geoFeatures } from "./data/mockGeoFeatures";
 
-function DashboardPage() {
+function StaffDashboardPage() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
   const colors = tokens(theme.palette.mode);
@@ -124,4 +124,4 @@ function DashboardPage() {
   );
 }
 
-export default DashboardPage;
+export default StaffDashboardPage;

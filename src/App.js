@@ -1,22 +1,25 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import DashboardPage from './Component/Dashboard';
+import Footer from './Component/Footer';
 import Banner from './Component/Homepage/Banner';
-import Sampledesign from './Component/Homepage/Sampledesign';
-import Header from './Component/header';
+import Customfeedback from './Component/Homepage/Customfeedback';
 import Designstyle from './Component/Homepage/Designstyle';
 import Quotationbanner from './Component/Homepage/Quotationbanner';
+import Sampledesign from './Component/Homepage/Sampledesign';
 import Workflowpage from './Component/Homepage/Workflowpage';
-import Footer from './Component/Footer';
 import LoginPage from './Component/LoginPage';
-import SignUp from './Component/SignUp';
-import Customfeedback from './Component/Homepage/Customfeedback';
-import Quotepage from './Component/Quotepage';
 import PrjTypeDetail from './Component/PrjTypeDetail';
 import ProjectDetail from './Component/ProjectDetail';
-import DashboardPage from './Component/Dashboard';
+import Quotepage from './Component/Quotepage';
 import SampleSearch from './Component/SampleSearch';
 import ScrollToTop from './Component/ScrollToTop';
+import SignUp from './Component/SignUp';
+import StaffDashboardPage from './Component/Staff-Dashboard';
+import ViewRegisterListPage from './Component/Staff-Dashboard/pages/ViewRegisterList';
 import UserPage from './Component/UserProfile/UserPage';
+
+import Header from './Component/header';
 
 import StyleDetail from './Component/DesignStylePage/StyleDetail';
 import ViewRegisterList from "./Component/ViewRegisterList/ViewRegisterList";
@@ -46,6 +49,15 @@ function App() {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/SignUp' element={<SignUp />} />
         <Route path='/dashboard' element={<DashboardPage />} />
+        <Route path='/staff-dashboard' element={<StaffDashboardPage />} />
+        <Route
+          path={"/staff-dashboard/viewRegisterList"}
+          element={
+            <>
+              <ViewRegisterListPage />
+            </>
+          }
+        />
 
         <Route path='/quotepage' element={
           <>
