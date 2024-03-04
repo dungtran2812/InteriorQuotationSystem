@@ -14,7 +14,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Drawer,
   List,
@@ -46,15 +46,6 @@ const Search = styled("div")(({ theme }) => ({
   },
 }));
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
@@ -75,6 +66,9 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [user, setUser] = React.useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+  
   const localStorageUser = JSON.parse(localStorage.getItem("user"));
 
   const isMenuOpen = Boolean(anchorEl);
@@ -102,6 +96,7 @@ export default function Header() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+  
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -203,6 +198,12 @@ export default function Header() {
   const handleInputChange = (event) => {
     setSearchText(event.target.value);
   };
+  const handleNavigate = () => {
+    if (location.pathname == "/") {
+      
+      navigate(`sampleprojectpage/${searchText}`);
+    }
+  };
 
   
 
@@ -255,7 +256,9 @@ export default function Header() {
           >
             
             
-                <Link to={`sampleprojectpage/${searchText}`}><button className="search-icon"><SearchIcon /></button></Link>
+                
+                  <button className="search-icon" onClick={() => handleNavigate()}><SearchIcon /></button>
+                  
               
             
             <StyledInputBase
