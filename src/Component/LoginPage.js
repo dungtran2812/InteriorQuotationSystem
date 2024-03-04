@@ -28,10 +28,10 @@ export default function LoginPage() {
         if(res.data){
           console.log(res.data);
           // redirect to home page
+          console.log(res.data?.role)
           if(res.data?.role == "ROLE_STAFF"){
             window.location.href = "/staff-dashboard";
-          }
-          if(res.data?.role == "ROLE_ADMIN"){
+          }else if(res.data?.role == "ROLE_ADMIN"){
             window.location.href = "/dashboard";
           }else{
             window.location.href = "/";
