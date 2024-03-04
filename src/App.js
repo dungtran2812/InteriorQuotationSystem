@@ -99,7 +99,15 @@ function App() {
             <StickyModal/>
           </>
         } />
-        <Route path={'sampleprojectpage'} element={
+        <Route path={'sampleprojectpage/'} element={
+          <>
+            <Header />
+            <SampleSearch/>
+            <Footer />
+            <StickyModal/>
+          </>
+        } />
+        <Route path={'sampleprojectpage/:search'} element={
           <>
             <Header />
             <SampleSearch/>

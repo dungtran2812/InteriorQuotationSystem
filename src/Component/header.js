@@ -29,6 +29,7 @@ import ChairIcon from "@mui/icons-material/Chair";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import { signInWithGoogle } from "../service/firebase";
 import LoginWithGG from "./LoginWithGG";
+import { useState } from "react";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -197,6 +198,13 @@ export default function Header() {
       </MenuItem>
     </Menu>
   );
+  const [searchText, setSearchText] = useState('');
+
+  const handleInputChange = (event) => {
+    setSearchText(event.target.value);
+  };
+
+  
 
   return (
     <Box paddingBottom={10}>
@@ -234,21 +242,28 @@ export default function Header() {
 
           <Search
             sx={{
+              
               marginLeft: 0,
               border: "1px solid #ccc", // Add a border
               backgroundColor: "rgba(255, 255, 255, 0.8)", // Set a semi-transparent white background
               borderRadius: 5, // Add border-radius for rounded corners
               "&:hover": {
                 backgroundColor: "rgba(255, 255, 255, 1)", // Change background color on hover
+                
               },
             }}
           >
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
+            
+            
+                <Link to={`sampleprojectpage/${searchText}`}><button className="search-icon"><SearchIcon /></button></Link>
+              
+            
             <StyledInputBase
-              placeholder="Search…"
+              
+              placeholder="Tìm dự án mẫu..."
               inputProps={{ "aria-label": "search" }}
+              value={searchText}
+              onChange={handleInputChange}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />

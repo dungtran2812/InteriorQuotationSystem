@@ -182,3 +182,14 @@ a:hover {
     vertical-align: middle;
     margin: 40px 0 ;
 }
+.search-icon {
+  
+  border-radius: 50%;
+  background: #f9a33d;
+  border: black;
+  cursor: pointer;
+  height: 33px;
+  
+  margin-top: 5px;
+  margin-left: 10px;
+}
