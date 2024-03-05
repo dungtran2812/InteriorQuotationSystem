@@ -168,7 +168,7 @@ export default function Header() {
         <p>Messages</p>
 
       </MenuItem>
-      <MenuItem  onClick={() => setOpen(true)}>
+      <MenuItem  onClick={() => setOpen(!open)}>
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
