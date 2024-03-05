@@ -7,11 +7,15 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginWithUserName } from "../api/auth/loginWithUsername";
 import LoginWithGG from "./LoginWithGG";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../store/currenUserSlice";
 
 export default function LoginPage() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -27,15 +31,19 @@ export default function LoginPage() {
       else{
         if(res.data){
           console.log(res.data);
+
+          dispatch(updateUser(res?.data))
           // redirect to home page
           console.log(res.data?.role)
-          if(res.data?.role == "ROLE_STAFF"){
-            window.location.href = "/staff-dashboard";
-          }else if(res.data?.role == "ROLE_ADMIN"){
-            window.location.href = "/dashboard";
-          }else{
-            window.location.href = "/";
-          }
+          setTimeout(() => {
+            if(res.data?.role == "ROLE_STAFF"){
+              navigate("/staff-dashboard")
+            }else if(res.data?.role == "ROLE_ADMIN"){
+              navigate("/dashboard")
+            }else{
+              navigate("/")
+            }
+          }, 1000);
         }
       }
     })
