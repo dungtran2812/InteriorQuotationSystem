@@ -1,20 +1,16 @@
-import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import InputBase from "@mui/material/InputBase";
-import Badge from "@mui/material/Badge";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import ChairIcon from "@mui/icons-material/Chair";
+import ConstructionIcon from "@mui/icons-material/Construction";
+import DesignServicesIcon from "@mui/icons-material/DesignServices";
+import InfoIcon from "@mui/icons-material/Info";
 import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+import MenuIcon from "@mui/icons-material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { Link } from "react-router-dom";
+import NewspaperIcon from "@mui/icons-material/Newspaper";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import SearchIcon from "@mui/icons-material/Search";
 import {
   Drawer,
   List,
@@ -22,13 +18,18 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import InfoIcon from "@mui/icons-material/Info";
-import DesignServicesIcon from "@mui/icons-material/DesignServices";
-import ConstructionIcon from "@mui/icons-material/Construction";
-import ChairIcon from "@mui/icons-material/Chair";
-import NewspaperIcon from "@mui/icons-material/Newspaper";
-import { signInWithGoogle } from "../service/firebase";
-import LoginWithGG from "./LoginWithGG";
+import AppBar from "@mui/material/AppBar";
+import Badge from "@mui/material/Badge";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import InputBase from "@mui/material/InputBase";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Toolbar from "@mui/material/Toolbar";
+import { alpha, styled } from "@mui/material/styles";
+import React from "react";
+import { Link } from "react-router-dom";
+
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -75,6 +76,8 @@ export default function Header() {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [user, setUser] = React.useState(null);
   const localStorageUser = JSON.parse(localStorage.getItem("user"));
+  const [open, setOpen] = React.useState(false);
+  const handleToggle = () => setOpen(!open);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -165,7 +168,7 @@ export default function Header() {
         <p>Messages</p>
 
       </MenuItem>
-      <MenuItem>
+      <MenuItem  onClick={() => setOpen(true)}>
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
@@ -175,7 +178,46 @@ export default function Header() {
             <NotificationsIcon />
           </Badge>
         </IconButton>
-        <p>Notifications</p>
+        <div className="relative z-50 bg-red-300">
+            {
+            open && (
+              <div className="absolute p-4 bg-white rounded-md right-0 z-40 w-[400px] top-16 shadow-sm">
+                <span className="flex gap-2 text-base ">
+                  <NotificationsOutlinedIcon/>
+                  Notification
+                </span>
+                <div>
+                  <span className="text-sm">You have 3 new notifications</span>
+                  <div className="flex flex-col gap-4 mt-4">
+                    <div className="flex gap-4 items-center ">
+                      <PersonOutlinedIcon/>
+                      <span className="text-sm flex flex-col items-start">
+                        New user registered
+                        <span>11/4/2003</span>
+                      </span>
+                    </div>
+
+                    <div className="flex gap-4 items-center ">
+                      <PersonOutlinedIcon/>
+                      <span className="text-sm flex flex-col items-start">
+                        New user registered
+                        <span>11/4/2003</span>
+                      </span>
+                    </div>
+
+                    <div className="flex gap-4 items-center ">
+                      <PersonOutlinedIcon/>
+                      <span className="text-sm flex flex-col items-start">
+                        New user registered
+                        <span>11/4/2003</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+            }
+          </div>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -265,11 +307,53 @@ export default function Header() {
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
+              onClick={() => setOpen(!open)}
             >
               <Badge badgeContent={17} color="error">
                 <NotificationsIcon />
               </Badge>
+              
             </IconButton>
+            <div className="relative z-50 bg-red-300">
+            {
+            open && (
+              <div className="absolute p-4 bg-white rounded-md right-0 z-40 w-[400px] top-16 shadow-sm">
+                <span className="flex gap-2 text-base ">
+                  <NotificationsOutlinedIcon/>
+                  Notification
+                </span>
+                <div>
+                  <span className="text-sm">You have 3 new notifications</span>
+                  <div className="flex flex-col gap-4 mt-4">
+                    <div className="flex gap-4 items-center ">
+                      <PersonOutlinedIcon/>
+                      <span className="text-sm flex flex-col items-start">
+                        New user registered
+                        <span>11/4/2003</span>
+                      </span>
+                    </div>
+
+                    <div className="flex gap-4 items-center ">
+                      <PersonOutlinedIcon/>
+                      <span className="text-sm flex flex-col items-start">
+                        New user registered
+                        <span>11/4/2003</span>
+                      </span>
+                    </div>
+
+                    <div className="flex gap-4 items-center ">
+                      <PersonOutlinedIcon/>
+                      <span className="text-sm flex flex-col items-start">
+                        New user registered
+                        <span>11/4/2003</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+            }
+          </div>
             {user || localStorageUser ? (
               <IconButton
                 size="large"
