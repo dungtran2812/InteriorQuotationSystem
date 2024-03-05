@@ -18,6 +18,12 @@ const Topbar = () => {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleToggle = () => {
+    setOpen(!open);
+  };
+
   const handleChange = (event) => {
     setAuth(event.target.checked);
   };
@@ -71,12 +77,53 @@ const Topbar = () => {
             />
           )}
         </IconButton>
-        <IconButton>
-          <NotificationsOutlinedIcon
-            style={{
-              color: "#000",
-            }}
-          />
+        <IconButton   onClick={handleToggle}>
+          <div className="relative">
+            <NotificationsOutlinedIcon
+              style={{
+                color: "#000",
+              }}
+            />
+            {
+            open && (
+              <div className="absolute p-4 bg-white rounded-md right-0 z-40 w-[400px]">
+                <span className="flex gap-2 text-base ">
+                  <NotificationsOutlinedIcon/>
+                  Notification
+                </span>
+                <div>
+                  <span className="text-sm">You have 3 new notifications</span>
+                  <div className="flex flex-col gap-4 mt-4">
+                    <div className="flex gap-4 items-center ">
+                      <PersonOutlinedIcon/>
+                      <span className="text-sm flex flex-col items-start">
+                        New user registered
+                        <span>11/4/2003</span>
+                      </span>
+                    </div>
+
+                    <div className="flex gap-4 items-center ">
+                      <PersonOutlinedIcon/>
+                      <span className="text-sm flex flex-col items-start">
+                        New user registered
+                        <span>11/4/2003</span>
+                      </span>
+                    </div>
+
+                    <div className="flex gap-4 items-center ">
+                      <PersonOutlinedIcon/>
+                      <span className="text-sm flex flex-col items-start">
+                        New user registered
+                        <span>11/4/2003</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          }
+          </div>
+          
         </IconButton>
         <IconButton>
           <SettingsOutlinedIcon

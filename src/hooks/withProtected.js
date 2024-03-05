@@ -10,7 +10,7 @@ export function ProtectedAdminRoute({
     const navigate = useNavigate();
     const currenUser = useSelector((store) => store?.currentUser?.user);
 
-    if(currenUser?.role !== "ROLE_ADMIN"){
+    if(currenUser && currenUser?.role !== "ROLE_ADMIN"){
         navigate("/login")
     }
 
@@ -41,10 +41,13 @@ export function ProtectedStaffRoute({
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const currenUser = useSelector((store) => store?.currentUser?.user);
+    // get token
+    const token = localStorage.getItem('token');
 
-    if(currenUser?.role !== "ROLE_STAFF"){
+    if(currenUser && currenUser?.role !== "ROLE_STAFF"){
         navigate("/login")
     }
+
 
     useEffect(() => {
         const init = async () => {
