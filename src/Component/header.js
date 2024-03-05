@@ -125,13 +125,13 @@ export default function Header() {
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
       {user || localStorageUser ? (
         <MenuItem
-          onClick={() => {
+          onClick={handleMenuClose => {
             setUser(null);
             localStorage.removeItem("user");
             handleMenuClose();
           }}
         >
-          Sign out
+          Logout
         </MenuItem>
       ) : (
         <MenuItem>Sign in</MenuItem>

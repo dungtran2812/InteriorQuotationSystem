@@ -20,9 +20,10 @@ import ViewRegisterListPage from './Component/Staff-Dashboard/pages/ViewRegister
 import UserPage from './Component/UserProfile/UserPage';
 import Header from './Component/header';
 import StyleDetail from './Component/DesignStylePage/StyleDetail';
-import ViewRegisterList from "./Component/ViewRegisterList/ViewRegisterList";
 import ProjectVideo from './Component/Homepage/ProjectVideo';
 import StickyModal from './Component/StickyModal';
+import ViewRegisterList from "./Component/ViewRegisterList/ViewRegisterList";
+import { ProtectedAdminRoute, ProtectedStaffRoute } from './hooks/withProtected';
 
 function App() {
   
@@ -46,14 +47,16 @@ function App() {
 
         <Route path='/login' element={<LoginPage />} />
         <Route path='/SignUp' element={<SignUp />} />
-        <Route path='/dashboard' element={<DashboardPage />} />
-        <Route path='/staff-dashboard' element={<StaffDashboardPage />} />
+        <Route path='/dashboard' element={<ProtectedAdminRoute><DashboardPage /></ProtectedAdminRoute>} />
+        <Route path='/staff-dashboard' element={<ProtectedStaffRoute>
+            <StaffDashboardPage />
+          </ProtectedStaffRoute>} />
         <Route
           path={"/staff-dashboard/viewRegisterList"}
           element={
-            <>
+            <ProtectedStaffRoute>
               <ViewRegisterListPage />
-            </>
+            </ProtectedStaffRoute>
           }
         />
 

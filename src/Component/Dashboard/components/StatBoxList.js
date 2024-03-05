@@ -26,25 +26,6 @@ const StatBoxList = ({ totalEmail, totalSales, totalUsers, totalTraffic }) => {
         justifyContent="center"
       >
         <StatBox
-          subtitle="Emails Sent"
-          title={totalEmail.value}
-          progress={totalEmail.progress}
-          increase={totalEmail.increase}
-          icon={
-            <EmailIcon
-              sx={{ color: colors.greenAccent[500], fontSize: "26px" }}
-            />
-          }
-        />
-      </Box>
-      <Box
-        gridColumn="span 3"
-        backgroundColor={colors.primary[400]}
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <StatBox
           subtitle="Sales Obtained"
           title={totalSales.value}
           progress={totalSales.progress}
@@ -70,25 +51,6 @@ const StatBoxList = ({ totalEmail, totalSales, totalUsers, totalTraffic }) => {
           increase={totalUsers.increase}
           icon={
             <PersonAddIcon
-              sx={{ color: colors.greenAccent[500], fontSize: "26px" }}
-            />
-          }
-        />
-      </Box>
-      <Box
-        gridColumn="span 3"
-        backgroundColor={colors.primary[400]}
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <StatBox
-          subtitle="Traffic Received"
-          title={totalTraffic.value}
-          progress={totalTraffic.progress}
-          increase={totalTraffic.increase}
-          icon={
-            <TrafficIcon
               sx={{ color: colors.greenAccent[500], fontSize: "26px" }}
             />
           }

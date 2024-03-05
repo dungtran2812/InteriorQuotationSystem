@@ -1,8 +1,8 @@
-import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
+// import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
+// import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
+// import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { useState } from "react";
 import { Menu, Sidebar, MenuItem } from "react-pro-sidebar";
@@ -113,10 +113,10 @@ const SidebarComponent = () => {
                   fontWeight="bold"
                   sx={{ m: "30px 0 0 0" }}
                 >
-                  interior Design
+
                 </Typography>
                 <Typography variant="p" color={colors.grey[900]}>
-                  VP Fancy Admin
+
                 </Typography>
               </Box>
             </Box>
@@ -131,7 +131,7 @@ const SidebarComponent = () => {
               setSelected={setSelected}
             />
 
-            <Typography
+            {/* <Typography
               variant="h6"
               color={"#eee"}
               sx={{ m: "15px 0 5px 20px" }}
@@ -158,7 +158,7 @@ const SidebarComponent = () => {
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
           </Box>
         </Menu>
       </Sidebar>
