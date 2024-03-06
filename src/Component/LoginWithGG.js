@@ -11,6 +11,7 @@ const LoginWithGG = ({ setUser }) => {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
+
       localStorage.setItem("user", JSON.stringify(user));
       setUser(user);
       console.log(user);

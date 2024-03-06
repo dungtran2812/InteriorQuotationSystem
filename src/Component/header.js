@@ -15,6 +15,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+
 import {
   Drawer,
   List,
@@ -68,7 +69,7 @@ export default function Header() {
   const [user, setUser] = React.useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   const localStorageUser = JSON.parse(localStorage.getItem("user"));
 
   const isMenuOpen = Boolean(anchorEl);
@@ -96,7 +97,7 @@ export default function Header() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-  
+
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -183,7 +184,7 @@ export default function Header() {
           color="inherit"
         >
           <AccountCircle />
-        <p>Profile</p>
+          <p>Profile</p>
           <img
             src={user?.photoURL || localStorageUser?.photoURL || ""}
             alt="user"
@@ -199,13 +200,10 @@ export default function Header() {
     setSearchText(event.target.value);
   };
   const handleNavigate = () => {
-    if (location.pathname == "/") {
-      
-      navigate(`sampleprojectpage/${searchText}`);
-    }
+    navigate(`./../../sampleprojectpage/${searchText}`);
   };
 
-  
+
 
   return (
     <Box paddingBottom={10}>
@@ -243,31 +241,26 @@ export default function Header() {
 
           <Search
             sx={{
-              
+
               marginLeft: 0,
               border: "1px solid #ccc", // Add a border
               backgroundColor: "rgba(255, 255, 255, 0.8)", // Set a semi-transparent white background
               borderRadius: 5, // Add border-radius for rounded corners
               "&:hover": {
                 backgroundColor: "rgba(255, 255, 255, 1)", // Change background color on hover
-                
+
               },
             }}
           >
-            
-            
-                
-                  <button className="search-icon" onClick={() => handleNavigate()}><SearchIcon /></button>
-                  
-              
-            
+
             <StyledInputBase
-              
+
               placeholder="Tìm dự án mẫu..."
               inputProps={{ "aria-label": "search" }}
               value={searchText}
               onChange={handleInputChange}
             />
+            <button className="search-icon" onClick={() => handleNavigate()}><SearchIcon /></button>
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
@@ -285,7 +278,7 @@ export default function Header() {
               aria-label="show 17 new notifications"
               color="inherit"
             >
-              <Badge badgeContent={17} color="error">
+              <Badge badgeContent={3} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
