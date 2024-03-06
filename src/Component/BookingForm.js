@@ -31,7 +31,7 @@ function BookingForm() {
   };
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="sm" >
       <Typography variant="h4" gutterBottom>
         Đăng kí mẫu thiết kế
       </Typography>

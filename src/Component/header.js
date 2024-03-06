@@ -3,7 +3,6 @@ import ChairIcon from "@mui/icons-material/Chair";
 import ConstructionIcon from "@mui/icons-material/Construction";
 import DesignServicesIcon from "@mui/icons-material/DesignServices";
 import InfoIcon from "@mui/icons-material/Info";
-import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
 
@@ -33,13 +32,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import { alpha, styled } from "@mui/material/styles";
 import React from "react";
-import { Link } from "react-router-dom";
 
-import InfoIcon from "@mui/icons-material/Info";
-import DesignServicesIcon from "@mui/icons-material/DesignServices";
-import ConstructionIcon from "@mui/icons-material/Construction";
-import ChairIcon from "@mui/icons-material/Chair";
-import NewspaperIcon from "@mui/icons-material/Newspaper";
 import { signInWithGoogle } from "../service/firebase";
 import LoginWithGG from "./LoginWithGG";
 import { useState } from "react";
