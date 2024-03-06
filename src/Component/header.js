@@ -128,9 +128,10 @@ export default function Header() {
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
       {user || localStorageUser ? (
         <MenuItem
-          onClick={handleMenuClose => {
+          onClick={() => {
             setUser(null);
             localStorage.removeItem("user");
+            handleMenuClose();
           }}
         >
           Logout
@@ -158,23 +159,13 @@ export default function Header() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-
-        <p>Messages</p>
-
-      </MenuItem>
       <MenuItem  onClick={() => setOpen(!open)}>
         <IconButton
           size="large"
-          aria-label="show 17 new notifications"
+          aria-label="show 3 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
+          <Badge badgeContent={3} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -294,7 +285,7 @@ export default function Header() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
+            {/* <IconButton
               size="large"
               aria-label="show 4 new mails"
               color="inherit"
@@ -302,14 +293,14 @@ export default function Header() {
               <Badge badgeContent={4} color="error">
                 <MailIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
             <IconButton
               size="large"
-              aria-label="show 17 new notifications"
+              aria-label="show 3 new notifications"
               color="inherit"
               onClick={() => setOpen(!open)}
             >
-              <Badge badgeContent={17} color="error">
+              <Badge badgeContent={3} color="error">
                 <NotificationsIcon />
               </Badge>
               
