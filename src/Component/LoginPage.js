@@ -37,7 +37,7 @@ export default function LoginPage() {
           console.log(res.data?.role)
           setTimeout(() => {
             if(res.data?.role == "ROLE_STAFF"){
-              navigate("/staff-dashboard")
+              navigate("/staff-dashboard/viewRegisterList")
             }else if(res.data?.role == "ROLE_ADMIN"){
               navigate("/dashboard")
             }else{
