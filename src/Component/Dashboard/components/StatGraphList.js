@@ -1,5 +1,4 @@
-import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
-import { Box, IconButton, Typography, useTheme } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import React from 'react';
 import LineChart from './LineGraph';
 import { tokens } from "./theme";
@@ -45,13 +44,6 @@ export default function StatGraphList({
             >
             ${revenueGenerated.value}
             </Typography>
-        </Box>
-        <Box>
-            <IconButton>
-            <DownloadOutlinedIcon
-                sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
-            />
-            </IconButton>
         </Box>
         </Box>
             <Box height="250px" m="-20px 0 0 0">
