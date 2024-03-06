@@ -1,28 +1,15 @@
 import { Box, IconButton, Menu, MenuItem, useTheme } from "@mui/material";
 import React, { useContext } from "react";
-import InputBase from "@mui/material/InputBase";
-import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import { ColorModeContext, tokens } from "./theme";
 import { AccountCircle } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 
 const Topbar = () => {
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-  const colorMode = React.useContext(ColorModeContext);
-
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const currenUser = useSelector((store) => store?.currentUser?.user);
   console.log(currenUser)
-
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
