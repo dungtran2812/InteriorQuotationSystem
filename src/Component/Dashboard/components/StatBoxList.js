@@ -1,7 +1,5 @@
-import EmailIcon from "@mui/icons-material/Email";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-import TrafficIcon from "@mui/icons-material/Traffic";
 import { Box, useTheme } from "@mui/material";
 import React from "react";
 import StatBox from "./StatBox";
