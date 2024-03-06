@@ -1,7 +1,5 @@
-import EmailIcon from "@mui/icons-material/Email";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-import TrafficIcon from "@mui/icons-material/Traffic";
 import { Box, useTheme } from "@mui/material";
 import React from "react";
 import StatBox from "./StatBox";
@@ -18,25 +16,6 @@ const StatBoxList = ({ totalEmail, totalSales, totalUsers, totalTraffic }) => {
       gap="20px"
     >
       {/* ROW 1 */}
-      <Box
-        gridColumn="span 3"
-        backgroundColor={colors.primary[400]}
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <StatBox
-          subtitle="Emails Sent"
-          title={totalEmail.value}
-          progress={totalEmail.progress}
-          increase={totalEmail.increase}
-          icon={
-            <EmailIcon
-              sx={{ color: colors.greenAccent[500], fontSize: "26px" }}
-            />
-          }
-        />
-      </Box>
       <Box
         gridColumn="span 3"
         backgroundColor={colors.primary[400]}
@@ -70,25 +49,6 @@ const StatBoxList = ({ totalEmail, totalSales, totalUsers, totalTraffic }) => {
           increase={totalUsers.increase}
           icon={
             <PersonAddIcon
-              sx={{ color: colors.greenAccent[500], fontSize: "26px" }}
-            />
-          }
-        />
-      </Box>
-      <Box
-        gridColumn="span 3"
-        backgroundColor={colors.primary[400]}
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <StatBox
-          subtitle="Traffic Received"
-          title={totalTraffic.value}
-          progress={totalTraffic.progress}
-          increase={totalTraffic.increase}
-          icon={
-            <TrafficIcon
               sx={{ color: colors.greenAccent[500], fontSize: "26px" }}
             />
           }

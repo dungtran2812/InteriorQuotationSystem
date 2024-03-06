@@ -1,11 +1,12 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { loginWithGG } from "../api/auth/loginWithGG";
+import { app } from "../service/firebase";
 const LoginWithGG = ({ setUser }) => {
   const navigate = useNavigate();
 
   const handleGoogleSignIn = async () => {
-    const auth = getAuth();
+    const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
 
     try {

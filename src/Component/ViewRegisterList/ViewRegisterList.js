@@ -52,7 +52,7 @@ export default function ViewRegisterList() {
               <TableCell>Phone</TableCell>
               <TableCell>Regist Date</TableCell>
               <TableCell>Note</TableCell>
-              <TableCell>Action</TableCell>
+              <TableCell>Quote</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -70,11 +70,14 @@ export default function ViewRegisterList() {
                   }}
                 >
                   <Button variant="contained" color="primary">
+                    View
+                  </Button>
+                  {/* <Button variant="contained" color="primary">
                     Accept
                   </Button>
                   <Button variant="contained" color="error">
-                    Delete
-                  </Button>
+                    Reject
+                  </Button> */}
                 </TableCell>
               </TableRow>
             ))}

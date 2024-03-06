@@ -113,30 +113,29 @@ const SidebarComponent = () => {
                   fontWeight="bold"
                   sx={{ m: "30px 0 0 0" }}
                 >
-                  interior Design
+
                 </Typography>
                 <Typography variant="p" color={colors.grey[900]}>
-                  VP Fancy Staff
+
                 </Typography>
               </Box>
             </Box>
           )}
 
           <Box>
-            <Item
+            {/* <Item
               title="Dashboard"
               to="/staff-dashboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
 
             <Typography
               variant="h6"
               color={"#eee"}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Data
             </Typography>
             <Item
               title="View Register List"
