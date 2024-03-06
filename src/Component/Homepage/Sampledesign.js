@@ -60,7 +60,7 @@ export default function Sampledesign() {
         </Grid>
       </Container>
       <Container sx={{ paddingTop: 6, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Link to={'/Sampleprojectpage'} style={{ textDecoration: 'none' }}><Typography variant='h6' sx={{ border: 1, textDecoration: 'none', padding: 2 }}>Watch More</Typography></Link>
+        <Link to={`/sampleprojectpage/`} style={{ textDecoration: 'none' }}><Typography variant='h6' sx={{ border: 1, textDecoration: 'none', padding: 2 }}>Watch More</Typography></Link>
 
       </Container>
     </>

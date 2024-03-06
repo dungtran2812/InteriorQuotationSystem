@@ -6,11 +6,15 @@ import InfoIcon from "@mui/icons-material/Info";
 import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
+
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
+
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
 import {
   Drawer,
   List,
@@ -18,6 +22,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
+
 import AppBar from "@mui/material/AppBar";
 import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
@@ -29,6 +34,15 @@ import Toolbar from "@mui/material/Toolbar";
 import { alpha, styled } from "@mui/material/styles";
 import React from "react";
 import { Link } from "react-router-dom";
+
+import InfoIcon from "@mui/icons-material/Info";
+import DesignServicesIcon from "@mui/icons-material/DesignServices";
+import ConstructionIcon from "@mui/icons-material/Construction";
+import ChairIcon from "@mui/icons-material/Chair";
+import NewspaperIcon from "@mui/icons-material/Newspaper";
+import { signInWithGoogle } from "../service/firebase";
+import LoginWithGG from "./LoginWithGG";
+import { useState } from "react";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -46,15 +60,6 @@ const Search = styled("div")(({ theme }) => ({
   },
 }));
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
@@ -75,6 +80,9 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [user, setUser] = React.useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const localStorageUser = JSON.parse(localStorage.getItem("user"));
   const [open, setOpen] = React.useState(false);
   const handleToggle = () => setOpen(!open);
@@ -104,6 +112,7 @@ export default function Header() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -219,7 +228,7 @@ export default function Header() {
           color="inherit"
         >
           <AccountCircle />
-        <p>Profile</p>
+          <p>Profile</p>
           <img
             src={user?.photoURL || localStorageUser?.photoURL || ""}
             alt="user"
@@ -229,6 +238,16 @@ export default function Header() {
       </MenuItem>
     </Menu>
   );
+  const [searchText, setSearchText] = useState('');
+
+  const handleInputChange = (event) => {
+    setSearchText(event.target.value);
+  };
+  const handleNavigate = () => {
+    navigate(`./../../sampleprojectpage/${searchText}`);
+  };
+
+
 
   return (
     <Box paddingBottom={10}>
@@ -266,22 +285,26 @@ export default function Header() {
 
           <Search
             sx={{
+
               marginLeft: 0,
               border: "1px solid #ccc", // Add a border
               backgroundColor: "rgba(255, 255, 255, 0.8)", // Set a semi-transparent white background
               borderRadius: 5, // Add border-radius for rounded corners
               "&:hover": {
                 backgroundColor: "rgba(255, 255, 255, 1)", // Change background color on hover
+
               },
             }}
           >
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
+
             <StyledInputBase
-              placeholder="Search…"
+
+              placeholder="Tìm dự án mẫu..."
               inputProps={{ "aria-label": "search" }}
+              value={searchText}
+              onChange={handleInputChange}
             />
+            <button className="search-icon" onClick={() => handleNavigate()}><SearchIcon /></button>
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
