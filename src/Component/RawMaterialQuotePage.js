@@ -18,7 +18,7 @@ const RawMaterialQuotePage = () => {
           }
         });
         if (response.status === 200) {
-            setRawMaterial(response.data.data.content);
+          setRawMaterial(response.data.data.content);
         } else {
           throw new Error('Network response was not ok');
         }
@@ -37,10 +37,10 @@ const RawMaterialQuotePage = () => {
     const newData = {
       key: count.toString(),
       RawMaterial: '',
-      M2:'',
+      M2: '',
       pricePerM2: '',
       TotalCost: '',
-      Note:'',
+      Note: '',
     };
     setDataSource([...dataSource, newData]);
     setCount(count + 1);
@@ -61,15 +61,18 @@ const RawMaterialQuotePage = () => {
     const newData = dataSource.map((item) => {
       if (item.key === key) {
         const selectedRawMaterial = rawMaterial.find(f => f.name === value);
+        const totalCost = (item.M2 || 0) * (selectedRawMaterial?.pricePerM2 || 0);
         return {
           ...item,
           RawMaterial: value,
-          pricePerM2: selectedRawMaterial?.pricePerM2 || ''
+          pricePerM2: selectedRawMaterial?.pricePerM2 || '',
+          TotalCost: totalCost
         };
       }
       return item;
     });
     setDataSource(newData);
+    console.log(newData)
   };
 
   const columns = [
@@ -79,7 +82,7 @@ const RawMaterialQuotePage = () => {
       width: '10%',
       render: (_, record) => (
         <Select
-          
+
           showSearch
           placeholder="Select a RawMaterial"
           optionFilterProp="children"
@@ -90,7 +93,12 @@ const RawMaterialQuotePage = () => {
         />
       ),
     },
-    { title: 'pricePerM2', dataIndex: 'pricePerM2', width: '5%' },
+    {
+      title: 'pricePerM2', dataIndex: 'pricePerM2', width: '5%'
+      , render: (text) => (
+         <span>{parseInt(text).toLocaleString('vi-VN')} VND</span> 
+      ),
+    },
     {
       title: 'M2',
       dataIndex: 'M2',
@@ -108,13 +116,21 @@ const RawMaterialQuotePage = () => {
       dataIndex: 'Note',
       width: '20%',
       render: (_, record) => (
-        <Input 
-        placeholder="Ghi Chú"
-        onChange={(value) => handleSave({ ...record, Note: value })} />
+        <Input
+          placeholder="Ghi Chú"
+          onChange={(value) => handleSave({ ...record, Note: value })} />
       ),
     },
 
-    { title: 'Tổng Tiền', dataIndex: 'TotalCost', width: '10%' },
+    { 
+      title: 'Tổng Tiền', 
+      dataIndex: 'TotalCost', 
+      width: '10%',
+      render: (text) => (
+        
+        <span>{parseInt(text).toLocaleString('vi-VN')} VND</span>
+      ),
+    },
     {
       title: 'Chức Năng',
       dataIndex: 'operation',
@@ -129,15 +145,17 @@ const RawMaterialQuotePage = () => {
   ];
 
   return (
-    <div>
-      <Title level={2}>Bảng Tạm Tính Giá Phần Vật Liệu Thô</Title>
-      <Button
-        onClick={handleAdd}
-        type="primary"
-        style={{ marginBottom: 16 }}
-      >
-        Thêm Sản Phẩm
-      </Button>
+    <div className='table-container'>
+      <div className='quotetable-title'>
+        <Title level={2}>Bảng Tạm Tính Giá Phần Vật Liệu Thô</Title>
+        <Button
+          onClick={handleAdd}
+          type="primary"
+          style={{ marginBottom: 16 }}
+        >
+          Thêm Sản Phẩm
+        </Button>
+      </div>
       <Table
         bordered
         dataSource={dataSource}
