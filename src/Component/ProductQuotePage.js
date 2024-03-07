@@ -63,15 +63,18 @@ const ProductQuotePage = () => {
 
   const handleFurnitureChange = (value, key) => {
     const newData = dataSource.map((item) => {
+      
       if (item.key === key) {
         const selectedFurniture = furniture.find(f => f.name === value);
+        const totalCost = (item.Quantity || 0) * (selectedFurniture?.price || 0);
         return {
           ...item,
           Furniture: value,
           Length: selectedFurniture?.length || '',
           Width: selectedFurniture?.width || '',
           Height: selectedFurniture?.height || '',
-          UnitPrice: selectedFurniture?.price || ''
+          UnitPrice: selectedFurniture?.price || '',
+          TotalCost: totalCost,
         };
       }
       return item;
@@ -121,8 +124,25 @@ const ProductQuotePage = () => {
         onChange={(value) => handleSave({ ...record, Note: value })} />
       ),
     },
-    { title: 'Đơn Giá', dataIndex: 'UnitPrice', width: '8%' },
-    { title: 'Tổng Tiền', dataIndex: 'TotalCost', width: '10%' },
+    
+    { 
+      title: 'Đơn Giá', 
+      dataIndex: 'UnitPrice', 
+      width: '10%',
+      render: (text) => (
+        
+        <span>{parseInt(text).toLocaleString('vi-VN')} VND</span>
+      ),
+    },
+    { 
+    title: 'Tổng Tiền', 
+    dataIndex: 'TotalCost', 
+    width: '10%',
+    render: (text) => (
+      
+      <span>{parseInt(text).toLocaleString('vi-VN')} VND</span>
+    ),
+  },
     {
       title: 'Chức Năng',
       dataIndex: 'operation',
@@ -137,15 +157,17 @@ const ProductQuotePage = () => {
   ];
 
   return (
-    <div>
-      <Title level={2}>Bảng Tạm Tính Giá Phần Nội Thất</Title>
-      <Button
-        onClick={handleAdd}
-        type="primary"
-        style={{ marginBottom: 16 }}
-      >
-        Thêm Sản Phẩm
-      </Button>
+    <div className='table-container'>
+      <div className='quotetable-title'>
+        <Title level={2}>Bảng Tạm Tính Giá Phần Nội Thất</Title>
+        <Button
+          onClick={handleAdd}
+          type="primary"
+          style={{ marginBottom: 16 }}
+        >
+          Thêm Sản Phẩm
+        </Button>
+      </div>
       <Table
         bordered
         dataSource={dataSource}
