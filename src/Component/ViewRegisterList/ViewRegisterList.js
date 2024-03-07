@@ -70,14 +70,11 @@ export default function ViewRegisterList() {
                   }}
                 >
                   <Button variant="contained" color="primary">
-                    View
-                  </Button>
-                  {/* <Button variant="contained" color="primary">
-                    Accept
+                    Tạo bảng báo giá mới
                   </Button>
                   <Button variant="contained" color="error">
-                    Reject
-                  </Button> */}
+                    Xem bảng báo giá
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
