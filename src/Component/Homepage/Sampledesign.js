@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function Sampledesign() {
   const [sampleList, setSampleList] = useState(null);
-
+  
   useEffect(() => {
     fetch('https://65a68cd574cf4207b4f05588.mockapi.io/api/swp/SampleProject', {
       method: 'GET',
@@ -16,6 +16,7 @@ export default function Sampledesign() {
      
     }).then(data => {
       setSampleList(data)
+      
     }).catch(error => {
       console.log(error);
     })
@@ -49,8 +50,9 @@ export default function Sampledesign() {
                 </CardContent>
                 <CardActions>
                   <Link to={`detail/${sample.id}`}>
-                    <Button size="small">Detail</Button>
+                    <Button size="small" >Detail</Button>
                   </Link>
+                  
                 </CardActions>
               </Card>
             </Grid>
@@ -58,7 +60,8 @@ export default function Sampledesign() {
         </Grid>
       </Container>
       <Container sx={{ paddingTop: 6, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Link to={'/Sampleprojectpage'} style={{ textDecoration: 'none' }}><Typography variant='h6' sx={{ border: 1, textDecoration: 'none', padding: 2 }}>Watch More</Typography></Link>
+        <Link to={`/sampleprojectpage/`} style={{ textDecoration: 'none' }}><Typography variant='h6' sx={{ border: 1, textDecoration: 'none', padding: 2 }}>Watch More</Typography></Link>
+
       </Container>
     </>
   )

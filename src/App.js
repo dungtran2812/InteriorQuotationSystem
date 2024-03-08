@@ -11,21 +11,23 @@ import Workflowpage from './Component/Homepage/Workflowpage';
 import LoginPage from './Component/LoginPage';
 import PrjTypeDetail from './Component/PrjTypeDetail';
 import ProjectDetail from './Component/ProjectDetail';
-import Quotepage from './Component/Quotepage';
+import ProductQuotePage from './Component/ProductQuotePage';
 import SampleSearch from './Component/SampleSearch';
 import ScrollToTop from './Component/ScrollToTop';
 import SignUp from './Component/SignUp';
 import StaffDashboardPage from './Component/Staff-Dashboard';
 import ViewRegisterListPage from './Component/Staff-Dashboard/pages/ViewRegisterList';
 import UserPage from './Component/UserProfile/UserPage';
-
 import Header from './Component/header';
-
 import StyleDetail from './Component/DesignStylePage/StyleDetail';
 import ProjectVideo from './Component/Homepage/ProjectVideo';
 import StickyModal from './Component/StickyModal';
+
 import ViewRegisterList from "./Component/ViewRegisterList/ViewRegisterList";
 import { ProtectedAdminRoute, ProtectedStaffRoute } from './hooks/withProtected';
+
+import RawMaterialQuotePage from './Component/RawMaterialQuotePage';
+
 
 function App() {
   
@@ -64,8 +66,10 @@ function App() {
 
         <Route path='/quotepage' element={
           <>
+            <ScrollToTop/>
             <Header />
-            <Quotepage />
+            <ProductQuotePage />
+            <RawMaterialQuotePage/>
             <Footer />
             <StickyModal/>
           </>
@@ -104,7 +108,15 @@ function App() {
             <StickyModal/>
           </>
         } />
-        <Route path={'sampleprojectpage'} element={
+        <Route path={'sampleprojectpage/'} element={
+          <>
+            <Header />
+            <SampleSearch/>
+            <Footer />
+            <StickyModal/>
+          </>
+        } />
+        <Route path={'sampleprojectpage/:search'} element={
           <>
             <Header />
             <SampleSearch/>

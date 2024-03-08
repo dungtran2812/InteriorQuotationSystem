@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, CardActions, CardContent, CardMedia, Container, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export default function SampleSearch() {
+  const search = useParams();
   const [sampleList, setSampleList] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedStyle, setSelectedStyle] = useState('');
-
+  
   useEffect(() => {
+    if (search.search) {
+      setSearchTerm(search.search);
+    }
     fetch('https://65a68cd574cf4207b4f05588.mockapi.io/api/swp/SampleProject', {
       method: 'GET',
       headers: { 'content-type': 'application/json' },
@@ -70,9 +74,13 @@ export default function SampleSearch() {
             label="Design Style"
           >
             <MenuItem value="">All</MenuItem>
-            <MenuItem value="Modern">Modern</MenuItem>
-            <MenuItem value="Classic">Classic</MenuItem>
-            <MenuItem value="Vintage">Vintage</MenuItem>
+           
+            {
+            sampleList.map((sample) => (
+              <MenuItem value={sample.style}>{sample.style}</MenuItem>
+            ))}
+            
+            
             {/* Add other design styles as needed */}
           </Select>
         </FormControl>
