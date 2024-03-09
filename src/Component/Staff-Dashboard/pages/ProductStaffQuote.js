@@ -2,10 +2,25 @@ import React, { useEffect, useState } from 'react';
 import { Button, InputNumber, Select, Table, Popconfirm, Typography, Input } from 'antd';
 import axios from 'axios';
 import Title from 'antd/es/typography/Title';
+import { useNavigate } from 'react-router';
 
 const ProductStaffQuote = () => {
   const [furniture, setFurniture] = useState([]);
-  const [dataSource, setDataSource] = useState([]);
+  const navigate = useNavigate();
+  const [dataSource, setDataSource] = useState([
+    {
+      key: '0',
+      Furniture: 'Bàn',
+      Length: '12',
+      Width: '32',
+      Height: '43',
+      Unit: 'M2',
+      Quantity: 2, // Default quantity set to 1
+      UnitPrice: 23000,
+      TotalCost: 46000,
+      Note:'Ban khong gi',
+    },
+  ]);
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -31,23 +46,6 @@ const ProductStaffQuote = () => {
 
   const handleDelete = (key) => {
     setDataSource(dataSource.filter((item) => item.key !== key));
-  };
-
-  const handleAdd = () => {
-    const newData = {
-      key: count.toString(),
-      Furniture: '',
-      Length: '',
-      Width: '',
-      Height: '',
-      Unit: 'Cm',
-      Quantity: 1, // Default quantity set to 1
-      UnitPrice: '',
-      TotalCost: '',
-      Note:'',
-    };
-    setDataSource([...dataSource, newData]);
-    setCount(count + 1);
   };
 
   const handleSave = (row) => {
@@ -87,31 +85,52 @@ const ProductStaffQuote = () => {
       title: 'Nội Thất',
       dataIndex: 'Furniture',
       width: '10%',
-      render: (_, record) => (
-        <Select
-          showSearch
-          placeholder="Select a Furniture"
-          optionFilterProp="children"
-          onChange={(value) => handleFurnitureChange(value, record.key)}
-          filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
-          options={furniture.map(option => ({ value: option.name, label: option.name }))}
-        />
-      ),
     },
-    { title: 'Dài', dataIndex: 'Length', width: '5%' },
-    { title: 'Rộng', dataIndex: 'Width', width: '5%' },
-    { title: 'Cao', dataIndex: 'Height', width: '5%' },
-    { title: 'Đơn Vị', dataIndex: 'Unit', width: '5%' },
+    { title: 'Dài', dataIndex: 'Length', width: '5%', 
+    render: (__, record) => (
+      <Input
+        placeholder="10"
+        value={record.Length}
+        onChange={(e) =>{
+          handleSave({ ...record, Length: e.target.value })
+        }}
+      />
+    ),
+  },
+    { title: 'Rộng', dataIndex: 'Width', width: '5%',
+    render: (__, record) => (
+      <Input
+        placeholder="10"
+        value={record.Width}
+        onChange={(e) =>{
+          handleSave({ ...record, Width: e.target.value })
+        }}
+      />
+    )
+
+  },
+    { title: 'Cao', dataIndex: 'Height', width: '5%',
+    render: (__, record) => (
+      <Input
+        placeholder="10"
+        value={record.Height}
+        onChange={(e) =>{
+          handleSave({ ...record, Height: e.target.value })
+        }}
+      />
+    )
+  },
+    { title: 'Đơn Vị', dataIndex: 'Unit', width: '5%',
+    render: (text) => (
+      <span>{text}</span>
+    ),
+  },
     {
       title: 'Quantity',
       dataIndex: 'Quantity',
       width: '5%',
-      render: (_, record) => (
-        <InputNumber
-          min={1}
-          defaultValue={record.Quantity}
-          onChange={(value) => handleSave({ ...record, Quantity: value })}
-        />
+      render: (text, record) => (
+        <span>{text}</span>
       ),
     },
     {
@@ -119,9 +138,12 @@ const ProductStaffQuote = () => {
       dataIndex: 'Note',
       width: '20%',
       render: (_, record) => (
-        <Input 
-        placeholder="Ghi Chú"
-        onChange={(value) => handleSave({ ...record, Note: value })} />
+        // <Input 
+        // placeholder="Ghi Chú"
+        // onChange={(value) => handleSave({ ...record, Note: value })} />
+        <span>
+          {record.Note}
+        </span>
       ),
     },
     
@@ -131,16 +153,17 @@ const ProductStaffQuote = () => {
       width: '10%',
       render: (text) => (
         
-        <span>{parseInt(text).toLocaleString('vi-VN')} VND</span>
+        <span>{text} VND</span>
       ),
     },
     { 
     title: 'Tổng Tiền', 
     dataIndex: 'TotalCost', 
     width: '10%',
-    render: (text) => (
-      
-      <span>{parseInt(text).toLocaleString('vi-VN')} VND</span>
+    render: (_, record) => (
+      <span>{parseInt(
+        (record.Quantity || 0) * (record.UnitPrice || 0) * (record.Length || 0) * (record.Width || 0) * (record.Height || 0)
+      ).toLocaleString('vi-VN')} VND</span>
     ),
   },
     {
