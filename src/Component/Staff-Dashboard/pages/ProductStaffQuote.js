@@ -3,7 +3,7 @@ import { Button, InputNumber, Select, Table, Popconfirm, Typography, Input } fro
 import axios from 'axios';
 import Title from 'antd/es/typography/Title';
 
-const ProductQuotePage = () => {
+const ProductStaffQuote = () => {
   const [furniture, setFurniture] = useState([]);
   const [dataSource, setDataSource] = useState([]);
   const [count, setCount] = useState(0);
@@ -160,13 +160,13 @@ const ProductQuotePage = () => {
     <div className='table-container'>
       <div className='quotetable-title'>
         <Title level={2}>Bảng Tạm Tính Giá Phần Nội Thất</Title>
-        <Button
+        {/* <Button
           onClick={handleAdd}
           type="primary"
           style={{ marginBottom: 16 }}
         >
           Thêm Sản Phẩm
-        </Button>
+        </Button> */}
       </div>
       <Table
         bordered
@@ -179,4 +179,4 @@ const ProductQuotePage = () => {
   );
 };
 
-export default ProductQuotePage;
+export default ProductStaffQuote;

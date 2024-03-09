@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import SidebarComponent from '../components/Sidebar';
 import Topbar from '../components/Topbar';
-import ProductQuotePage from './ProductStaff';
+import RawMaterialQuote from './RawQuote';
+import ProductStaffQuote from './ProductStaffQuote';
+import { Button } from 'antd/es/radio';
 
 export default function StaffQuotePage() {
     const [isSidebar, setIsSidebar] = useState(true);
@@ -15,8 +17,12 @@ export default function StaffQuotePage() {
         <h1>Staff Quote Page</h1>
 
         <div>
-            <ProductQuotePage />
+            <ProductStaffQuote />
+            <RawMaterialQuote />
         </div>
+        <div className='w-full flex justify-end '>
+          <Button>Create</Button>
+        </div>  
         
       </main>
     </div>
