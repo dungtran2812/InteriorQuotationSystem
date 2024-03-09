@@ -1,9 +1,9 @@
+import { Button } from 'antd/es/radio';
 import React, { useState } from 'react';
 import SidebarComponent from '../components/Sidebar';
 import Topbar from '../components/Topbar';
-import RawMaterialQuote from './RawQuote';
 import ProductStaffQuote from './ProductStaffQuote';
-import { Button } from 'antd/es/radio';
+import RawMaterialQuote from './RawQuote';
 
 export default function StaffQuotePage() {
     const [isSidebar, setIsSidebar] = useState(true);
@@ -21,7 +21,9 @@ export default function StaffQuotePage() {
             <RawMaterialQuote />
         </div>
         <div className='w-full flex justify-end '>
-          <Button>Create</Button>
+          <Button>
+            Save
+          </Button>
         </div>  
         
       </main>
