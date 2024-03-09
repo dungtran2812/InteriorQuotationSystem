@@ -16,7 +16,7 @@ const ProductStaffQuote = () => {
       Height: '43',
       Unit: 'M2',
       Quantity: 2, // Default quantity set to 1
-      UnitPrice: 23000,
+      UnitPrice: 2300,
       TotalCost: 46000,
       Note:'Ban khong gi',
     },
@@ -88,49 +88,48 @@ const ProductStaffQuote = () => {
     },
     { title: 'Dài', dataIndex: 'Length', width: '5%', 
     render: (__, record) => (
-      <Input
-        placeholder="10"
-        value={record.Length}
-        onChange={(e) =>{
-          handleSave({ ...record, Length: e.target.value })
-        }}
-      />
+      <span>
+        {record.Length}
+      </span>
     ),
   },
     { title: 'Rộng', dataIndex: 'Width', width: '5%',
     render: (__, record) => (
-      <Input
-        placeholder="10"
-        value={record.Width}
-        onChange={(e) =>{
-          handleSave({ ...record, Width: e.target.value })
-        }}
-      />
+
+      <span>
+        {record.Width}
+      </span>
     )
 
   },
     { title: 'Cao', dataIndex: 'Height', width: '5%',
     render: (__, record) => (
-      <Input
-        placeholder="10"
-        value={record.Height}
-        onChange={(e) =>{
-          handleSave({ ...record, Height: e.target.value })
-        }}
-      />
+      <span>
+        {record.Height}
+      </span>
     )
   },
-    { title: 'Đơn Vị', dataIndex: 'Unit', width: '5%',
-    render: (text) => (
-      <span>{text}</span>
+    { title: 'Đơn Vị', dataIndex: 'Unit', width: '10%',
+    render: (_, record) => (
+      <Input
+          placeholder="m2"
+          type="text"
+          value={record.Unit}
+          onChange={(e) => handleSave({ ...record, Unit: e.target.value })}
+        />
     ),
   },
     {
       title: 'Quantity',
       dataIndex: 'Quantity',
       width: '5%',
-      render: (text, record) => (
-        <span>{text}</span>
+      render: (_, record) => (
+        <Input
+          placeholder="1"
+          type="number"
+          value={record.Quantity}
+          onChange={(e) => handleSave({ ...record, Quantity: e.target.value })}
+        />
       ),
     },
     {
@@ -138,22 +137,26 @@ const ProductStaffQuote = () => {
       dataIndex: 'Note',
       width: '20%',
       render: (_, record) => (
-        // <Input 
-        // placeholder="Ghi Chú"
-        // onChange={(value) => handleSave({ ...record, Note: value })} />
-        <span>
-          {record.Note}
-        </span>
+        <Input
+          placeholder="Ghi Chú"
+          value={record?.Note}
+          onChange={(e) => handleSave({ ...record, Note: e.target.value })}
+         />
+
       ),
     },
     
     { 
-      title: 'Đơn Giá', 
+      title: 'Đơn Giá Thay Đổi', 
       dataIndex: 'UnitPrice', 
       width: '10%',
-      render: (text) => (
-        
-        <span>{text} VND</span>
+      render: (_, record) => (
+          <Input 
+            placeholder="Gia"
+            value={record?.UnitPrice}
+            onChange={(e) => handleSave({ ...record, UnitPrice: e.target.value })}
+         />
+
       ),
     },
     { 
@@ -162,7 +165,7 @@ const ProductStaffQuote = () => {
     width: '10%',
     render: (_, record) => (
       <span>{parseInt(
-        (record.Quantity || 0) * (record.UnitPrice || 0) * (record.Length || 0) * (record.Width || 0) * (record.Height || 0)
+        (record.Quantity || 0) * (record.UnitPrice || 0) 
       ).toLocaleString('vi-VN')} VND</span>
     ),
   },

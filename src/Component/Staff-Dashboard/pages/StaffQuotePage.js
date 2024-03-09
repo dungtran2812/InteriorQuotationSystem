@@ -4,9 +4,11 @@ import SidebarComponent from '../components/Sidebar';
 import Topbar from '../components/Topbar';
 import ProductStaffQuote from './ProductStaffQuote';
 import RawMaterialQuote from './RawQuote';
+import { useNavigate } from 'react-router';
 
 export default function StaffQuotePage() {
     const [isSidebar, setIsSidebar] = useState(true);
+    const navigate = useNavigate();
 
   return (
     <div className="dashboard-page">
@@ -21,7 +23,7 @@ export default function StaffQuotePage() {
             <RawMaterialQuote />
         </div>
         <div className='w-full flex justify-end '>
-          <Button>
+          <Button onClick={() => navigate("/staff-dashboard/viewRegisterList")}>
             Save
           </Button>
         </div>  
