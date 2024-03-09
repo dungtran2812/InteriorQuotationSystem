@@ -27,6 +27,7 @@ import ViewRegisterList from "./Component/ViewRegisterList/ViewRegisterList";
 import { ProtectedAdminRoute, ProtectedStaffRoute } from './hooks/withProtected';
 
 import RawMaterialQuotePage from './Component/RawMaterialQuotePage';
+import StaffQuotePage from './Component/Staff-Dashboard/pages/StaffQuotePage';
 
 
 function App() {
@@ -60,6 +61,15 @@ function App() {
           element={
             <ProtectedStaffRoute>
               <ViewRegisterListPage />
+            </ProtectedStaffRoute>
+          }
+        />
+
+<Route
+          path={"/staff-dashboard/quotePage"}
+          element={
+            <ProtectedStaffRoute>
+              <StaffQuotePage />
             </ProtectedStaffRoute>
           }
         />

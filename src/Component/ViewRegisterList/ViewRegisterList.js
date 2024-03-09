@@ -7,6 +7,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { format } from "date-fns";
 
 const sampleData = [
   {
@@ -33,6 +36,22 @@ const sampleData = [
 ];
 
 export default function ViewRegisterList() {
+  const navigate = useNavigate()
+  const [project, setProject] = React.useState([])
+
+  React.useEffect(() => {
+    axios.get("https://furniture-quote.azurewebsites.net/project/getAllProjectByStatus?status=NEW")
+    .then((response) => {
+      console.log(response?.data?.data)
+      setProject(response?.data?.data)
+    })
+    .catch((error) => {
+      console.error('There was a problem with the request:', error);
+    })
+
+  }, [])
+
+
   return (
     <div
       style={{
@@ -47,29 +66,31 @@ export default function ViewRegisterList() {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Customer Name</TableCell>
-              <TableCell>Email</TableCell>
-              <TableCell>Phone</TableCell>
-              <TableCell>Regist Date</TableCell>
-              <TableCell>Note</TableCell>
+              <TableCell>Project Name</TableCell>
+              <TableCell>Design Style Name</TableCell>
+              <TableCell>User</TableCell>
+              <TableCell>Created At</TableCell>
+              <TableCell>Status</TableCell>
               <TableCell>Quote</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {sampleData.map((row) => (
-              <TableRow key={row.customerName}>
-                <TableCell>{row.customerName}</TableCell>
-                <TableCell>{row.email}</TableCell>
-                <TableCell>{row.phone}</TableCell>
-                <TableCell>{row.registDate}</TableCell>
-                <TableCell>{row.note}</TableCell>
+            {project.map((row) => (
+              <TableRow key={row?.id}>
+                <TableCell>{row?.name}</TableCell>
+                <TableCell>{row?.designStyleName}</TableCell>
+                <TableCell>{row?.userDetailDTO?.fullName}</TableCell>
+                <TableCell>{format(new Date(row?.createdAt), "PPP")}</TableCell>
+                <TableCell>{row?.status}</TableCell>
                 <TableCell
                   style={{
                     display: "flex",
                     gap: "4px",
                   }}
                 >
-                  <Button variant="contained" color="primary">
+                  <Button variant="contained" color="primary" onClick={() => {
+                    navigate('/staff-dashboard/quotePage')
+                  }}>
                     Tạo bảng báo giá mới
                   </Button>
                   <Button variant="contained" color="error">
