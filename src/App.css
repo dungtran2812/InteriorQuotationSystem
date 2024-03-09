@@ -196,6 +196,7 @@ a:hover {
   margin-right: 10px;
 }
 .quotetable-title {
+  
   display: flex;
   flex-direction: column;
   align-items: center;

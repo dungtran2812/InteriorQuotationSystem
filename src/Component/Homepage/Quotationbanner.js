@@ -13,7 +13,7 @@ export default function Quotationbanner() {
         overflow: 'hidden',
         boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
         position: 'relative',
-        backgroundImage: "url('https://kretzerfirm.com/wp-content/uploads/2019/08/handshake-agreement-laws.jpg')",
+        backgroundImage: "url('https://www.integrichain.com/wp-content/uploads/2022/07/contract-banner.jpg')",
         backgroundSize: 'cover', // Ensure the background image covers the entire box
       }}
     >

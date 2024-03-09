@@ -36,6 +36,7 @@ const ProductQuotePage = () => {
   const handleAdd = () => {
     const newData = {
       key: count.toString(),
+      id:'',
       Furniture: '',
       Length: '',
       Width: '',
@@ -69,6 +70,7 @@ const ProductQuotePage = () => {
         const totalCost = (item.Quantity || 0) * (selectedFurniture?.price || 0);
         return {
           ...item,
+          id: selectedFurniture.id,
           Furniture: value,
           Length: selectedFurniture?.length || '',
           Width: selectedFurniture?.width || '',
@@ -80,6 +82,7 @@ const ProductQuotePage = () => {
       return item;
     });
     setDataSource(newData);
+    console.log(newData)
   };
 
   const columns = [
