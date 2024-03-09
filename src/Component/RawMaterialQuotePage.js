@@ -36,11 +36,12 @@ const RawMaterialQuotePage = () => {
   const handleAdd = () => {
     const newData = {
       key: count.toString(),
+      id: '',
       RawMaterial: '',
       M2: '',
       pricePerM2: '',
       TotalCost: '',
-      Note: '',
+
     };
     setDataSource([...dataSource, newData]);
     setCount(count + 1);
@@ -58,12 +59,15 @@ const RawMaterialQuotePage = () => {
   };
 
   const handleRawMaterialChange = (value, key) => {
+    
     const newData = dataSource.map((item) => {
       if (item.key === key) {
         const selectedRawMaterial = rawMaterial.find(f => f.name === value);
+        
         const totalCost = (item.M2 || 0) * (selectedRawMaterial?.pricePerM2 || 0);
         return {
           ...item,
+          id: selectedRawMaterial.id,
           RawMaterial: value,
           pricePerM2: selectedRawMaterial?.pricePerM2 || '',
           TotalCost: totalCost
@@ -72,7 +76,7 @@ const RawMaterialQuotePage = () => {
       return item;
     });
     setDataSource(newData);
-    console.log(newData)
+    
   };
 
   const columns = [
@@ -82,10 +86,11 @@ const RawMaterialQuotePage = () => {
       width: '10%',
       render: (_, record) => (
         <Select
-
+          
           showSearch
           placeholder="Select a RawMaterial"
           optionFilterProp="children"
+          //key là tên ko phải id
           onChange={(value) => handleRawMaterialChange(value, record.key)}
           filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
           options={rawMaterial.map(option => ({ value: option.name, label: option.name }))}
@@ -96,7 +101,7 @@ const RawMaterialQuotePage = () => {
     {
       title: 'pricePerM2', dataIndex: 'pricePerM2', width: '5%'
       , render: (text) => (
-         <span>{parseInt(text).toLocaleString('vi-VN')} VND</span> 
+        <span>{parseInt(text).toLocaleString('vi-VN')} VND</span>
       ),
     },
     {
@@ -111,23 +116,14 @@ const RawMaterialQuotePage = () => {
         />
       ),
     },
-    {
-      title: 'Ghi Chú',
-      dataIndex: 'Note',
-      width: '20%',
-      render: (_, record) => (
-        <Input
-          placeholder="Ghi Chú"
-          onChange={(value) => handleSave({ ...record, Note: value })} />
-      ),
-    },
 
-    { 
-      title: 'Tổng Tiền', 
-      dataIndex: 'TotalCost', 
+
+    {
+      title: 'Tổng Tiền',
+      dataIndex: 'TotalCost',
       width: '10%',
       render: (text) => (
-        
+
         <span>{parseInt(text).toLocaleString('vi-VN')} VND</span>
       ),
     },

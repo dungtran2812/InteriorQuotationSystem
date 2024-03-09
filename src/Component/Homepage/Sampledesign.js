@@ -27,7 +27,7 @@ export default function Sampledesign() {
     <>
       <Container sx={{ paddingTop: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
-        <Typography variant='h4' sx={{ paddingLeft: '2%', paddingRight: '2%', fontWeight: "bold" }}>Sample design</Typography>
+        <Typography variant='h4' sx={{ paddingLeft: '2%', paddingRight: '2%', fontWeight: "bold" }}>Dự Án Mẫu</Typography>
 
       </Container>
       <Container sx={{ paddingTop: 6 }}>
@@ -45,12 +45,12 @@ export default function Sampledesign() {
                     {sample.name}
                   </Typography>
                   <Typography gutterBottom variant="h6" component="div">
-                    {`Design style: ${sample.style}`}
+                    {`Phong Cách: ${sample.style}`}
                   </Typography>
                 </CardContent>
                 <CardActions>
                   <Link to={`detail/${sample.id}`}>
-                    <Button size="small" >Detail</Button>
+                    <Button size="small" >Chi TIết</Button>
                   </Link>
                   
                 </CardActions>
@@ -60,7 +60,7 @@ export default function Sampledesign() {
         </Grid>
       </Container>
       <Container sx={{ paddingTop: 6, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Link to={`/sampleprojectpage/`} style={{ textDecoration: 'none' }}><Typography variant='h6' sx={{ border: 1, textDecoration: 'none', padding: 2 }}>Watch More</Typography></Link>
+        <Link to={`/sampleprojectpage/`} style={{ textDecoration: 'none' }}><Typography variant='h6' sx={{ border: 1, textDecoration: 'none', padding: 2 }}>Xem Thêm</Typography></Link>
 
       </Container>
     </>

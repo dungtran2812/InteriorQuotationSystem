@@ -37,7 +37,7 @@ const Designstyle = () => {
     <div className='container'>
       <Box sx={{ paddingBottom: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         
-        <Typography variant="h4" sx={{paddingLeft:'2%',paddingRight:'2%',fontWeight:"bold"}}> Hot design trends in 2024 </Typography>
+        <Typography variant="h4" sx={{paddingLeft:'2%',paddingRight:'2%',fontWeight:"bold"}}>Những Phong Cách Thiết Kế Nổi Bật</Typography>
         
       </Box>
       <Slider {...settings}>

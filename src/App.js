@@ -27,6 +27,7 @@ import ViewRegisterList from "./Component/ViewRegisterList/ViewRegisterList";
 import { ProtectedAdminRoute, ProtectedStaffRoute } from './hooks/withProtected';
 
 import RawMaterialQuotePage from './Component/RawMaterialQuotePage';
+import QuoteStep from './Component/QuoteStep';
 
 
 function App() {
@@ -68,8 +69,8 @@ function App() {
           <>
             <ScrollToTop/>
             <Header />
-            <ProductQuotePage />
-            <RawMaterialQuotePage/>
+            <QuoteStep/>
+            
             <Footer />
             <StickyModal/>
           </>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, CardActions, CardContent, CardMedia, Modal, Paper, Typography } from '@mui/material';
 
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import Slider from 'react-slick';
 import { Designstyledata } from '../Shared/ListOfDesign';
@@ -21,10 +21,9 @@ const style = {
 };
 
 export default function ProjectDetail() {
+  const navigation = useNavigate();
   const sample = useParams();
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  
   const settings = {
     dots: true,
     infinite: true,
@@ -157,22 +156,13 @@ export default function ProjectDetail() {
           <Typography color={'white'}> Gọi 0123456789 để được: </Typography>
           <Typography color={'#f9a33d'}> TƯ VẤN MIỄN PHÍ </Typography>
           <Typography color={'white'}> Hoặc đăng ký thông tin tại đây </Typography>
-          <Button onClick={handleOpen} sx={{
+          <Button onClick={()=> navigation('./../../Quotepage')} sx={{
             backgroundColor: '#f9a33d', width: '20%', color: 'black', marginTop: '20px', borderRadius: '20px', '&:hover': {
               backgroundColor: '#239a64',
               color: '#ffffff',
             },
           }}>Đăng ký mẫu thiết kế</Button>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-              <BookingForm/>
-            </Box>
-          </Modal>
+          
         </div>
       </Box>
 
