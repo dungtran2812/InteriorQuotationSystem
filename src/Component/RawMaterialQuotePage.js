@@ -3,7 +3,7 @@ import { Button, InputNumber, Select, Table, Popconfirm, Typography, Input } fro
 import axios from 'axios';
 import Title from 'antd/es/typography/Title';
 
-const RawMaterialQuotePage = () => {
+const RawMaterialQuotePage = (resetData) => {
   const [rawMaterial, setRawMaterial] = useState([]);
   const [dataSource, setDataSource] = useState([]);
   const [count, setCount] = useState(0);
@@ -140,6 +140,12 @@ const RawMaterialQuotePage = () => {
     },
   ];
 
+  useEffect(() => {
+    
+      setDataSource([]);
+      setCount(0);
+    
+  }, [resetData]);
   return (
     <div className='table-container'>
       <div className='quotetable-title'>
