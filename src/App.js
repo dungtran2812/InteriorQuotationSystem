@@ -28,6 +28,8 @@ import { ProtectedAdminRoute, ProtectedStaffRoute } from './hooks/withProtected'
 
 import RawMaterialQuotePage from './Component/RawMaterialQuotePage';
 import StaffQuotePage from './Component/Staff-Dashboard/pages/StaffQuotePage';
+import QuoteStep from './Component/QuoteStep';
+
 
 
 function App() {
@@ -78,8 +80,8 @@ function App() {
           <>
             <ScrollToTop/>
             <Header />
-            <ProductQuotePage />
-            <RawMaterialQuotePage/>
+            <QuoteStep/>
+            
             <Footer />
             <StickyModal/>
           </>

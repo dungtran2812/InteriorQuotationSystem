@@ -1,99 +1,155 @@
-import React, { useState } from 'react';
-import { TextField, Button, Grid, Typography, Container } from '@mui/material';
+import { Typography, Button, Form, Input, Select, message } from 'antd';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-function BookingForm() {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phoneNumber: '',
-    checkInDate: '',
-    checkOutDate: '',
+const { TextArea } = Input;
+
+function BookingForm({setProjectId}) {
+  const [styles, setStyles] = useState([]);
+  const [selectedStyle, setSelectedStyle] = useState('');
+  const userId = localStorage.getItem('userId');
+  const initialValues = {
+    projectName: '',
+    location: '',
+    type:'',
     additionalRequests: ''
-  });
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    //  handle form submission, sending data to server, processing it
-    console.log(formData);
-    // Reset form after submission
-    setFormData({
-      fullName: '',
-      email: '',
-      phoneNumber: '',
-      cost:'',
-      additionalRequests: ''
-    });
+  const validationSchema = Yup.object().shape({
+    projectName: Yup.string().required('Required'),
+    location: Yup.string().required('Required'),
+    type: Yup.string().required('Required'),
+    additionalRequests: Yup.string()
+  });
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://furniture-quote.azurewebsites.net/designStyle/getAllDesign', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("token")}`,
+          }
+        });
+        if (response.status === 200) {
+          console.log(response)
+          setStyles(response.data?.data); // Set styles with the array of style objects
+        } else {
+          throw new Error('Network response was not ok');
+        }
+      } catch (error) {
+        console.error('There was a problem with the request:', error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleSubmit = async (values) => {
+    console.log(values.location)
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(`https://furniture-quote.azurewebsites.net/project/createProject?userId=${userId}&status=NEW`, 
+        {
+          name: values.projectName,
+          location: values.location,
+          type: values.type,
+          designStyleId: selectedStyle, // You need to set this value to the selectedStyle state
+          sample: false
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("token")}`,
+          }
+        });
+        if (response.status === 200) {
+          // setStyles(response.data?.data); // Set styles with the array of style objects
+          setProjectId(response.data?.data);
+          console.log(response.data?.data)
+          message.success('Tạo Dự Án Thành Công')
+        } else {
+          throw new Error('Network response was not ok');
+          
+        }
+      } catch (error) {
+        console.error('There was a problem with the request:', error);
+      }
+    };
+    fetchData();
   };
 
   return (
-    <Container maxWidth="sm" >
-      <Typography variant="h4" gutterBottom>
+    <div className='container'>
+      <Typography.Title level={4} style={{ marginBottom: '16px' }}>
         Đăng kí mẫu thiết kế
-      </Typography>
-      <form onSubmit={handleSubmit}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Họ tên của bạn"
-              name="fullName"
-              value={formData.fullName}
-              onChange={handleInputChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Email"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Điền số điện thoại"
-              name="phoneNumber"
-              value={formData.phoneNumber}
-              onChange={handleInputChange}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField
-              fullWidth
-              label="Ngân Sách"
-              name="cost"
-              value={formData.cost}
-              onChange={handleInputChange}
-            />
-          </Grid>
-          
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Thông tin ngôi nhà (số phòng ngủ, diện tích,...)"
-              multiline
-              rows={4}
-              name="additionalRequests"
-              value={formData.additionalRequests}
-              onChange={handleInputChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Button type="submit" variant="contained" color="primary">
-              Gửi
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
-    </Container>
+      </Typography.Title>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {formikProps => (
+          <Form onSubmit={formikProps.handleSubmit}>
+            <Form.Item label="Tên Dự Án" required>
+              <Input
+                name="projectName"
+                value={formikProps.values.projectName}
+                onChange={formikProps.handleChange}
+                onBlur={formikProps.handleBlur}
+              />
+              {formikProps.errors.projectName && formikProps.touched.projectName && (
+                <div style={{ color: 'red' }}>{formikProps.errors.projectName}</div>
+              )}
+            </Form.Item>
+            <Form.Item label="Địa Điểm" required>
+              <Input
+                name="location"
+                value={formikProps.values.location}
+                onChange={formikProps.handleChange}
+                onBlur={formikProps.handleBlur}
+              />
+              {formikProps.errors.location && formikProps.touched.location && (
+                <div style={{ color: 'red' }}>{formikProps.errors.location}</div>
+              )}
+            </Form.Item>
+            <Form.Item label="Loại Dự Án" required>
+            <Input
+                name="type"
+                value={formikProps.values.type}
+                onChange={formikProps.handleChange}
+                onBlur={formikProps.handleBlur}
+              />
+              {formikProps.errors.type && formikProps.touched.type && (
+                <div style={{ color: 'red' }}>{formikProps.errors.type}</div>
+              )}
+            </Form.Item>
+            <Form.Item label="Ghi Chú (Thông tin ngôi nhà, ngân sách, ...)">
+              <TextArea
+                name="additionalRequests"
+                value={formikProps.values.additionalRequests}
+                onChange={formikProps.handleChange}
+                onBlur={formikProps.handleBlur}
+              />
+            </Form.Item>
+            <Form.Item>
+              <Select
+                showSearch
+                placeholder="Chọn Phong Cách Thiết Kế"
+                optionFilterProp="children"
+                filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
+                options={styles.map(option => ({ value: option.id, label: option.name }))}
+                onChange={(value) => { setSelectedStyle(value); }} // Handle select change
+                value={selectedStyle} // Set selected value
+              />
+            </Form.Item>
+            <Button type="primary" htmlType="submit" onClick={formikProps.handleSubmit}>Submit</Button>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 }
 

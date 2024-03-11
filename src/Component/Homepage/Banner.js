@@ -20,7 +20,7 @@ const Banner = () => {
   };
 
   return (
-    <Box sx={{ paddingTop: 5 }}>
+    <div className='container'>
       <Slider {...settings} >
         <Paper key={'1'} sx={{ display: 'flex', justifyContent: 'center'}}>
 
@@ -115,7 +115,7 @@ const Banner = () => {
          
         </Paper>
       </Slider>
-    </Box>
+    </div>
   );
 };
 

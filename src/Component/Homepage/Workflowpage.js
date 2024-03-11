@@ -8,7 +8,7 @@ import { ReactComponent as Step5 } from '../../SvgIcon/icon5.svg';
 export default function Workflowpage() {
     return (
     <Box sx={{paddingBottom:5}}>
-        <Typography variant='h4' sx={{paddingTop:12, textAlign:'center',fontWeight:"bold"}}>Design and Workflow with Us</Typography>
+        <Typography variant='h4' sx={{paddingTop:12, textAlign:'center',fontWeight:"bold"}}>Quy trình làm việc của chúng tôi</Typography>
         <Grid container spacing={2} alignItems="center" justifyContent="center" paddingTop={8}>
       <Grid item xs={2}>
         <Step1 />

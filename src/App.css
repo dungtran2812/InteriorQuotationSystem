@@ -196,10 +196,17 @@ a:hover {
   margin-right: 10px;
 }
 .quotetable-title {
+  
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .table-container {
   margin-bottom: 50px;
+}
+
+.quotestep-operation {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
 }
