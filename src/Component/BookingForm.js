@@ -1,4 +1,4 @@
-import { Typography, Button, Form, Input, Select } from 'antd';
+import { Typography, Button, Form, Input, Select, message } from 'antd';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import React, { useEffect, useState } from 'react';
@@ -35,6 +35,7 @@ function BookingForm({setProjectId}) {
           }
         });
         if (response.status === 200) {
+          console.log(response)
           setStyles(response.data?.data); // Set styles with the array of style objects
         } else {
           throw new Error('Network response was not ok');
@@ -68,8 +69,10 @@ function BookingForm({setProjectId}) {
           // setStyles(response.data?.data); // Set styles with the array of style objects
           setProjectId(response.data?.data);
           console.log(response.data?.data)
+          message.success('Tạo Dự Án Thành Công')
         } else {
           throw new Error('Network response was not ok');
+          
         }
       } catch (error) {
         console.error('There was a problem with the request:', error);
