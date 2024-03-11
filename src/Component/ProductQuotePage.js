@@ -3,7 +3,7 @@ import { Button, InputNumber, Select, Table, Popconfirm, Typography, Input } fro
 import axios from 'axios';
 import Title from 'antd/es/typography/Title';
 
-const ProductQuotePage = () => {
+const ProductQuotePage = (resetData) => {
   const [furniture, setFurniture] = useState([]);
   const [dataSource, setDataSource] = useState([]);
   const [count, setCount] = useState(0);
@@ -158,6 +158,12 @@ const ProductQuotePage = () => {
       ),
     },
   ];
+  useEffect(() => {
+    if (resetData) {
+      setDataSource([]);
+      setCount(0);
+    }
+  }, [resetData]);
 
   return (
     <div className='table-container'>

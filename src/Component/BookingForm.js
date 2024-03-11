@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const { TextArea } = Input;
 
-function BookingForm() {
+function BookingForm({setProjectId}) {
   const [styles, setStyles] = useState([]);
   const [selectedStyle, setSelectedStyle] = useState('');
   const userId = localStorage.getItem('userId');
@@ -66,7 +66,8 @@ function BookingForm() {
         });
         if (response.status === 200) {
           // setStyles(response.data?.data); // Set styles with the array of style objects
-          console.log(response?.data)
+          setProjectId(response.data?.data);
+          console.log(response.data?.data)
         } else {
           throw new Error('Network response was not ok');
         }
