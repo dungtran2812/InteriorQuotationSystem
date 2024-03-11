@@ -14,11 +14,12 @@ const LoginWithGG = ({ setUser }) => {
       const user = result.user;
 
       localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", user?.accessToken);
       localStorage.setItem("role", "ROLE_USER");
-      localStorage.removeItem("token");
       setUser(user);
       console.log(user);
-      await loginWithGG(user.accessToken);
+      await loginWithGG(user.accessToken)
+
       navigate("/");
       // Add additional logic as needed, e.g., redirect to another page
     } catch (error) {

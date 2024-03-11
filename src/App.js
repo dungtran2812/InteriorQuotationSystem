@@ -153,6 +153,18 @@ function App() {
             </>
           }
         />
+        <Route
+          path={"/quote-calculator"}
+          element={
+            <>
+            <Header />
+              <ProductQuotePage />
+              <RawMaterialQuotePage />
+            <Footer />
+            <StickyModal/>
+            </>
+          }
+        />
       </Routes>
 
     </>
