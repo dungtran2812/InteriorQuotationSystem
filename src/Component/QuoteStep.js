@@ -7,7 +7,7 @@ import RoomAreaForm from './RoomAreaForm';
 import axios from 'axios';
 
 const QuoteStep = () => {
-  const [validProject, setValidProject] = useState(null)
+  
   const [roomId, setRoomId] = useState(null);
   const [roomName, setRoomName] = useState(null);
   const [projectId, setProjectId] = useState(null);
@@ -68,12 +68,12 @@ const QuoteStep = () => {
       content: (
         <>
           <RoomAreaForm projectId={projectId} roomId={roomId} />
-          <ProductQuotePage resetData />
-          <RawMaterialQuotePage resetData />
+          <ProductQuotePage roomId={roomId} resetData />
+          <RawMaterialQuotePage roomId={roomId} resetData />
         </>
       ),
     };
-    setSteps([...steps, newStep]); // Append the new step
+    setSteps([steps[0], newStep]); // Append the new step
   };
 
   const resetSteps = () => {
@@ -101,35 +101,35 @@ const QuoteStep = () => {
   };
 
   return (
-    <>
+    <div className='container'>
       <Steps current={current} items={steps.map(step => ({ key: step.title, title: step.title }))} />
       <div style={contentStyle}>{steps[current].content}</div>
-      <div>
+      <div className='quotestep-operation'>
         {current < steps.length - 1 && (
-          <Button type="primary" onClick={next}>
+          <Button style={{ margin: '8px 8px' }} type="primary" onClick={next}>
             Next
           </Button>
         )}
         {current === steps.length - 1 && (
-          <Button type="primary" onClick={() => message.success('Processing complete!')}>
+          <Button style={{ margin: '8px 8px' }} type="primary" onClick={() => message.success('Processing complete!')}>
             Done
           </Button>
         )}
         {current > 0 && (
-          <Button style={{ margin: '0 8px' }} onClick={prev}>
+          <Button style={{ margin: '8px 8px' }} onClick={prev}>
             Previous
           </Button>
         )}
         {dropdownMenu && (
           <Dropdown overlay={dropdownMenu}>
-            <Button>Thêm Phòng</Button>
+            <Button style={{ margin: '8px 8px' }}>Thêm Phòng</Button>
           </Dropdown>
           
         )}
         
-        <Button onClick={resetSteps}>Tạo Lại</Button>
+        <Button style={{ margin: '8px 8px' }} onClick={resetSteps}>Tạo Lại</Button>
       </div>
-    </>
+    </div>
   );
 };
 
