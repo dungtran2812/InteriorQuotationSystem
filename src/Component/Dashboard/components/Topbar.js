@@ -21,6 +21,8 @@ const Topbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("user");
     window.location.href = "/login";
   }
 

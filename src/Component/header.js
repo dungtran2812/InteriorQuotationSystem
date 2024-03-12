@@ -133,6 +133,9 @@ export default function Header() {
           onClick={() => {
             setUser(null);
             localStorage.removeItem("user");
+            localStorage.removeItem("token");
+            localStorage.removeItem("role");
+
             handleMenuClose();
           }}
         >
