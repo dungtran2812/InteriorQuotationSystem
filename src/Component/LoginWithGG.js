@@ -14,6 +14,7 @@ const LoginWithGG = ({ setUser }) => {
       const user = result.user;
 
       localStorage.setItem("user", JSON.stringify(user));
+      localStorage.removeItem("token");
       setUser(user);
       console.log(user);
       await loginWithGG(user.accessToken);

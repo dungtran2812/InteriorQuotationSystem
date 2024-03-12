@@ -34,6 +34,7 @@ export default function LoginPage() {
           console.log(res.data);
 
           dispatch(updateUser(res?.data))
+          localStorage.removeItem("user")
           // redirect to home page
           console.log(res.data?.role)
           setTimeout(() => {
