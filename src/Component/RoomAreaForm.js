@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Form, Input, Button, message } from 'antd';
 import axios from 'axios';
+import { QuoteContext } from '../Context/QuoteContext';
 
 const RoomAreaForm = (props) => {
   const [area, setArea] = useState('');
   const [roomId, setRoomId] = useState(null);
-  const [quoteId, setQuoteId] = useState(null);
+  const {quoteId, setQuoteId} = useContext(QuoteContext);
   const onFinish = async () => {
 
     if (roomId == null || roomId !== props.roomId) {
@@ -24,12 +25,13 @@ const RoomAreaForm = (props) => {
             },
 
           });
-
+          
         if (response.status === 200) {
           message.success(`Diện Tích Phòng Đã Được Lưu`);
           console.log(response.data.data);
           setRoomId(props.roomId);
           setQuoteId(response.data.data)
+          
           //lưu quote id chỗ này
         } else {
           message.error('Failed to submit area');

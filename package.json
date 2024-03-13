@@ -20,7 +20,7 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.13.3",
     "axios": "^1.6.7",
-    "date-fns": "^3.3.1",
+    "date-fns": "^3.4.0",
     "firebase": "^10.8.0",
     "formik": "^2.4.5",
     "gapi-script": "^1.2.0",
