@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Button, InputNumber, Select, Table, Popconfirm, Typography, Input } from 'antd';
+import React, { useContext, useEffect, useState } from 'react';
+import { Button, InputNumber, Select, Table, Popconfirm, Typography, Input, message } from 'antd';
 import axios from 'axios';
 import Title from 'antd/es/typography/Title';
+import { QuoteContext } from '../Context/QuoteContext';
 
-const ProductQuotePage = (resetData) => {
+const ProductQuotePage = (props) => {
+  const {quoteId, setQuoteId} = useContext(QuoteContext);
   const [furniture, setFurniture] = useState([]);
   const [dataSource, setDataSource] = useState([]);
   const [count, setCount] = useState(0);
@@ -25,7 +27,7 @@ const ProductQuotePage = (resetData) => {
         });
       }
     fetchData();
-  }, []);
+  }, [props]);
 
   const handleDelete = (key) => {
     setDataSource(dataSource.filter((item) => item.key !== key));
@@ -82,6 +84,40 @@ const ProductQuotePage = (resetData) => {
     setDataSource(newData);
     console.log(newData)
   };
+  const handleSubmit = () => {
+    
+    try {
+      dataSource.map(async (product) => {
+        
+        const response =  await axios.post('https://furniture-quote.azurewebsites.net/quoteDetail/product/createQuoteDetail', 
+      { 
+        quoteId: quoteId,
+        quantity: product.Quantity,
+        note: product.Note,
+        
+        productId: product.id
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("token")}`,
+        }
+      });
+      console.log(response)
+      if (response.status === 200) {
+        message.success('Lưu Nội Thất Phòng Thành Công')
+      } else {
+        message.error('Lưu Nội Thất Phòng Thất Bại')
+      }
+      })
+    } catch (error) {
+      console.error('Lưu Nội Thất Phòng Thất Bại', error);
+    }
+    
+      
+    
+    
+  }
 
   const columns = [
     {
@@ -157,11 +193,11 @@ const ProductQuotePage = (resetData) => {
     },
   ];
   useEffect(() => {
-    if (resetData) {
+    
       setDataSource([]);
       setCount(0);
-    }
-  }, [resetData]);
+    
+  }, [props]);
 
   return (
     <div className='table-container'>
@@ -182,6 +218,13 @@ const ProductQuotePage = (resetData) => {
         pagination={false}
         rowKey="key"
       />
+      <Button
+          onClick={handleSubmit}
+          type="primary"
+          style={{ marginBottom: 16 }}
+        >
+          Lưu Phần Nội Thất 
+        </Button>
     </div>
   );
 };

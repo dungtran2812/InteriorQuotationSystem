@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, Steps, message, Dropdown, Menu } from 'antd';
 import ProductQuotePage from './ProductQuotePage';
 import RawMaterialQuotePage from './RawMaterialQuotePage';
 import BookingForm from './BookingForm';
 import RoomAreaForm from './RoomAreaForm';
 import axios from 'axios';
+import { QuoteContext } from '../Context/QuoteContext';
 
 const QuoteStep = () => {
-  
+  const {quoteId, setQuoteId} = useContext(QuoteContext);
   const [roomId, setRoomId] = useState(null);
   const [roomName, setRoomName] = useState(null);
   const [projectId, setProjectId] = useState(null);
@@ -67,10 +68,10 @@ const QuoteStep = () => {
       title: roomName,
       content: (
         <>
-          <RoomAreaForm projectId={projectId} roomId={roomId} />
-          <ProductQuotePage roomId={roomId} resetData />
-          <RawMaterialQuotePage roomId={roomId} resetData />
-        </>
+        <RoomAreaForm projectId={projectId} roomId={roomId} />
+        <ProductQuotePage roomId={roomId} quoteId={quoteId}  />
+        <RawMaterialQuotePage roomId={roomId} quoteId={quoteId}  />
+      </>
       ),
     };
     setSteps([steps[0], newStep]); // Append the new step

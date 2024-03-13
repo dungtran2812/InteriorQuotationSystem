@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Button, InputNumber, Select, Table, Popconfirm, Typography, Input } from 'antd';
+import React, { useContext, useEffect, useState } from 'react';
+import { Button, InputNumber, Select, Table, Popconfirm, Typography, Input, message } from 'antd';
 import axios from 'axios';
 import Title from 'antd/es/typography/Title';
+import { QuoteContext } from '../Context/QuoteContext';
 
-const RawMaterialQuotePage = (resetData) => {
+const RawMaterialQuotePage = (props) => {
+  const {quoteId, setQuoteId} = useContext(QuoteContext);
   const [rawMaterial, setRawMaterial] = useState([]);
   const [dataSource, setDataSource] = useState([]);
   const [count, setCount] = useState(0);
@@ -27,7 +29,7 @@ const RawMaterialQuotePage = (resetData) => {
       }
     };
     fetchData();
-  }, []);
+  }, [props]);
 
   const handleDelete = (key) => {
     setDataSource(dataSource.filter((item) => item.key !== key));
@@ -78,6 +80,38 @@ const RawMaterialQuotePage = (resetData) => {
     setDataSource(newData);
     
   };
+  const handleSubmit = () => {
+    
+    try {
+      dataSource.map(async (rawMaterial) => {
+        
+        const response =  await axios.post('https://furniture-quote.azurewebsites.net/quoteDetail/rawMaterial/createQuoteDetail', 
+      { 
+        quoteId: quoteId,
+        area: rawMaterial.M2,
+        rawMaterialId: rawMaterial.id
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("token")}`,
+        }
+      });
+      console.log(response)
+      if (response.status === 200) {
+        message.success('Lưu Vật Liệu Thô Thành Công')
+      } else {
+        message.error('Lưu Vật Liệu Thô Thất Bại')
+      }
+      })
+    } catch (error) {
+      console.error('Lưu Nội Thất Phòng Thất Bại', error);
+    }
+    
+      
+    
+    
+  }
 
   const columns = [
     {
@@ -145,7 +179,7 @@ const RawMaterialQuotePage = (resetData) => {
       setDataSource([]);
       setCount(0);
     
-  }, [resetData]);
+  }, [props]);
   return (
     <div className='table-container'>
       <div className='quotetable-title'>
@@ -165,7 +199,16 @@ const RawMaterialQuotePage = (resetData) => {
         pagination={false}
         rowKey="key"
       />
+      <Button
+          onClick={handleSubmit}
+          type="primary"
+          style={{ marginBottom: 16 }}
+        >
+          Lưu Vật Liệu Thô
+        </Button>
+      
     </div>
+
   );
 };
 
