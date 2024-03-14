@@ -1,6 +1,7 @@
 // import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import ChairIcon from '@mui/icons-material/Chair';
 // import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 // import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
@@ -127,6 +128,13 @@ const SidebarComponent = () => {
               title="Dashboard"
               to="/dashboard"
               icon={<HomeOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Manage Product"
+              to="/manage-product"
+              icon={<ChairIcon />}
               selected={selected}
               setSelected={setSelected}
             />

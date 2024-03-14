@@ -29,11 +29,13 @@ import { ProtectedAdminRoute, ProtectedStaffRoute } from './hooks/withProtected'
 import RawMaterialQuotePage from './Component/RawMaterialQuotePage';
 import StaffQuotePage from './Component/Staff-Dashboard/pages/StaffQuotePage';
 import QuoteStep from './Component/QuoteStep';
+import UserProjectPage from './Component/UserProfile/UserProjectPage';
+import ProductListPage from './Component/Dashboard/pages/ProductListPage';
 
 
 
 function App() {
-  
+
   return (
     <>
       <Routes>
@@ -45,19 +47,20 @@ function App() {
             <Quotationbanner />
             <Designstyle />
             <Workflowpage />
-            <ProjectVideo/>
+            <ProjectVideo />
             <Customfeedback />
             <Footer />
-            <StickyModal/>
+            <StickyModal />
           </>
         } />
 
         <Route path='/login' element={<LoginPage />} />
         <Route path='/SignUp' element={<SignUp />} />
         <Route path='/dashboard' element={<ProtectedAdminRoute><DashboardPage /></ProtectedAdminRoute>} />
+        <Route path='/manage-product' element={<ProtectedAdminRoute><ProductListPage /></ProtectedAdminRoute>} />
         <Route path='/staff-dashboard' element={<ProtectedStaffRoute>
-            <StaffDashboardPage />
-          </ProtectedStaffRoute>} />
+          <StaffDashboardPage />
+        </ProtectedStaffRoute>} />
         <Route
           path={"/staff-dashboard/viewRegisterList"}
           element={
@@ -67,7 +70,7 @@ function App() {
           }
         />
 
-<Route
+        <Route
           path={"/staff-dashboard/quotePage"}
           element={
             <ProtectedStaffRoute>
@@ -78,38 +81,38 @@ function App() {
 
         <Route path='/quotepage' element={
           <>
-            <ScrollToTop/>
+            <ScrollToTop />
             <Header />
-            <QuoteStep/>
-            
+            <QuoteStep />
+
             <Footer />
-            <StickyModal/>
+            <StickyModal />
           </>
         } />
         <Route path='/interior-construction/apartmentproject' element={
           <>
-            <ScrollToTop/>
+            <ScrollToTop />
             <Header />
             <PrjTypeDetail />
             <Footer />
-            <StickyModal/>
+            <StickyModal />
           </>
         } />
-        
+
         <Route path={'/detail/:id'} element={
           <>
             <Header />
             <ProjectDetail />
             <Footer />
-            <StickyModal/>
+            <StickyModal />
           </>
         } />
         <Route path={'/style-detail/:id'} element={
           <>
             <Header />
-            <StyleDetail/>
+            <StyleDetail />
             <Footer />
-            <StickyModal/>
+            <StickyModal />
           </>
         } />
         <Route path={'sampleprojectpage/detail/:id'} element={
@@ -117,31 +120,39 @@ function App() {
             <Header />
             <ProjectDetail />
             <Footer />
-            <StickyModal/>
+            <StickyModal />
           </>
         } />
         <Route path={'sampleprojectpage/'} element={
           <>
             <Header />
-            <SampleSearch/>
+            <SampleSearch />
             <Footer />
-            <StickyModal/>
+            <StickyModal />
           </>
         } />
         <Route path={'sampleprojectpage/:search'} element={
           <>
             <Header />
-            <SampleSearch/>
+            <SampleSearch />
             <Footer />
-            <StickyModal/>
+            <StickyModal />
           </>
         } />
         <Route path={'profile'} element={
           <>
             <Header />
-            <UserPage/>
+            <UserPage />
             <Footer />
-            <StickyModal/>
+            <StickyModal />
+          </>
+        } />
+        <Route path={'user-project'} element={
+          <>
+            <Header />
+            <UserProjectPage/>
+            <Footer />
+            <StickyModal />
           </>
         } />
         <Route
@@ -149,7 +160,7 @@ function App() {
           element={
             <>
               <ViewRegisterList />
-              
+
             </>
           }
         />

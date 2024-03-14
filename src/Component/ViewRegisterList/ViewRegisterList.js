@@ -11,29 +11,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { format } from "date-fns";
 
-const sampleData = [
-  {
-    customerName: "John Doe",
-    email: "johndoe@example.com",
-    phone: "555-555-5555",
-    registDate: "2022-01-01",
-    note: "Some note about this customer",
-  },
-  {
-    customerName: "Jane Doe",
-    email: "janedoe@example.com",
-    phone: "555-555-5556",
-    registDate: "2022-01-02",
-    note: "Some note about this customer",
-  },
-  {
-    customerName: "Bob Smith",
-    email: "bobsmith@example.com",
-    phone: "555-555-5557",
-    registDate: "2022-01-03",
-    note: "Some note about this customer",
-  },
-];
 
 export default function ViewRegisterList() {
   const navigate = useNavigate()
@@ -91,10 +68,10 @@ export default function ViewRegisterList() {
                   <Button variant="contained" color="primary" onClick={() => {
                     navigate('/staff-dashboard/quotePage')
                   }}>
-                    Tạo bảng báo giá mới
+                    Xem Bảng Báo Giá
                   </Button>
                   <Button variant="contained" color="error">
-                    Xem bảng báo giá
+                  Xác Nhận Báo Giá
                   </Button>
                 </TableCell>
               </TableRow>
