@@ -12,12 +12,12 @@ import axios from "axios";
 import { format } from "date-fns";
 
 
-export default function ViewRegisterList() {
+export default function ViewQuotingList() {
   const navigate = useNavigate()
   const [project, setProject] = React.useState([])
 
   React.useEffect(() => {
-    axios.get("https://furniture-quote.azurewebsites.net/project/getAllProjectByStatus?status=NEW")
+    axios.get("https://furniture-quote.azurewebsites.net/project/getAllProjectByStatus?status=QUOTING")
     .then((response) => {
       console.log(response?.data?.data)
       setProject(response?.data?.data)
@@ -27,19 +27,6 @@ export default function ViewRegisterList() {
     })
 
   }, [])
-  
-  const handleQuoteConfirm = (id) => {
-    
-      axios.put(`https://furniture-quote.azurewebsites.net/project/updateProjectByStatus?projectId=${id}&status=QUOTING`)
-      .then((response) => {
-        console.log(response?.data?.data)
-        
-      })
-      .catch((error) => {
-        console.error('There was a problem with the request:', error);
-      })
-  
-    }
   
 
   return (
@@ -83,9 +70,7 @@ export default function ViewRegisterList() {
                   }}>
                     Xem Bảng Báo Giá
                   </Button>
-                  <Button onClick={()=> handleQuoteConfirm(row.id)} variant="contained" color="error">
-                  Xác Nhận Báo Giá
-                  </Button>
+                  
                 </TableCell>
               </TableRow>
             ))}

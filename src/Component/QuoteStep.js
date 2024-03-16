@@ -8,7 +8,7 @@ import axios from 'axios';
 import { QuoteContext } from '../Context/QuoteContext';
 
 const QuoteStep = () => {
-  const {quoteId, setQuoteId} = useContext(QuoteContext);
+  const { quoteId, setQuoteId } = useContext(QuoteContext);
   const [roomId, setRoomId] = useState(null);
   const [roomName, setRoomName] = useState(null);
   const [projectId, setProjectId] = useState(null);
@@ -20,6 +20,7 @@ const QuoteStep = () => {
     },
   ]);
   const [dropdownMenu, setDropdownMenu] = useState(null);
+  const [roomsCreated, setRoomsCreated] = useState(0);
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -30,8 +31,8 @@ const QuoteStep = () => {
             'Authorization': `Bearer ${localStorage.getItem("token")}`,
           }
         });
-        
-        if (response.status === 200) { 
+
+        if (response.status === 200) {
           const rooms = response.data.data;
           const menuItems = rooms.map(room => (
             <Menu.Item key={room.id} onClick={() => handleRoomSelection(room.id, room.name)}>
@@ -56,25 +57,25 @@ const QuoteStep = () => {
       addStep(roomId, roomName);
     }
   }, [projectId, roomId, roomName]);
-  
+
   const handleRoomSelection = (id, name) => {
     setRoomId(id);
     setRoomName(name);
-    
   };
-  
+
   const addStep = (roomId, roomName) => {
     const newStep = {
       title: roomName,
       content: (
         <>
-        <RoomAreaForm projectId={projectId} roomId={roomId} />
-        <ProductQuotePage roomId={roomId} quoteId={quoteId}  />
-        <RawMaterialQuotePage roomId={roomId} quoteId={quoteId}  />
-      </>
+          <RoomAreaForm projectId={projectId} roomId={roomId} />
+          <ProductQuotePage roomId={roomId} quoteId={quoteId} />
+          <RawMaterialQuotePage roomId={roomId} quoteId={quoteId} />
+        </>
       ),
     };
-    setSteps([steps[0], newStep]); // Append the new step
+    setSteps([...steps, newStep]); // Append the new step
+    setRoomsCreated(prev => prev + 1); // Increment rooms created count
   };
 
   const resetSteps = () => {
@@ -85,6 +86,7 @@ const QuoteStep = () => {
       },
     ]);
     setCurrent(0); // Reset current step index
+    setRoomsCreated(0); // Reset rooms created count
   };
 
   const next = () => {
@@ -111,7 +113,7 @@ const QuoteStep = () => {
             Next
           </Button>
         )}
-        {current === steps.length - 1 && (
+        {roomsCreated > 0 && current === steps.length - 1 && (
           <Button style={{ margin: '8px 8px' }} type="primary" onClick={() => message.success('Processing complete!')}>
             Done
           </Button>
@@ -123,11 +125,9 @@ const QuoteStep = () => {
         )}
         {dropdownMenu && (
           <Dropdown overlay={dropdownMenu}>
-            <Button style={{ margin: '8px 8px' }}>Thêm Phòng</Button>
+            <Button style={{ margin: '8px 8px' }}>Tạo Thêm Phòng</Button>
           </Dropdown>
-          
         )}
-        
         <Button style={{ margin: '8px 8px' }} onClick={resetSteps}>Tạo Lại</Button>
       </div>
     </div>

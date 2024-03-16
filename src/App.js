@@ -31,6 +31,7 @@ import StaffQuotePage from './Component/Staff-Dashboard/pages/StaffQuotePage';
 import QuoteStep from './Component/QuoteStep';
 import UserProjectPage from './Component/UserProfile/UserProjectPage';
 import ProductListPage from './Component/Dashboard/pages/ProductListPage';
+import ViewQuotingList from './Component/ViewRegisterList/ViewQuotingList';
 
 
 
@@ -160,6 +161,15 @@ function App() {
           element={
             <>
               <ViewRegisterList />
+
+            </>
+          }
+        />
+        <Route
+          path={"/viewquotinglist"}
+          element={
+            <>
+              <ViewQuotingList />
 
             </>
           }
