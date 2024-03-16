@@ -24,7 +24,7 @@ import ProjectVideo from './Component/Homepage/ProjectVideo';
 import StickyModal from './Component/StickyModal';
 
 import ViewRegisterList from "./Component/ViewRegisterList/ViewRegisterList";
-import { ProtectedAdminRoute, ProtectedStaffRoute } from './hooks/withProtected';
+import { ProtectedAdminRoute, ProtectedPublic, ProtectedStaffRoute } from './hooks/withProtected';
 
 import RawMaterialQuotePage from './Component/RawMaterialQuotePage';
 import StaffQuotePage from './Component/Staff-Dashboard/pages/StaffQuotePage';
@@ -41,7 +41,7 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={
-          <>
+          <ProtectedPublic>
             <Header />
             <Sampledesign />
             <Banner />
@@ -51,8 +51,10 @@ function App() {
             <ProjectVideo />
             <Customfeedback />
             <Footer />
-            <StickyModal />
-          </>
+
+            <StickyModal/>
+          </ProtectedPublic>
+
         } />
 
         <Route path='/login' element={<LoginPage />} />
@@ -166,11 +168,14 @@ function App() {
           }
         />
         <Route
-          path={"/viewquotinglist"}
+          path={"/quote-calculator"}
           element={
             <>
-              <ViewQuotingList />
-
+            <Header />
+              <ProductQuotePage />
+              <RawMaterialQuotePage />
+            <Footer />
+            <StickyModal/>
             </>
           }
         />
