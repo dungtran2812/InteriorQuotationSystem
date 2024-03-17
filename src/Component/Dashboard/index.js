@@ -68,8 +68,11 @@ function DashboardPage() {
   return (
     <div className="dashboard-page">
       <SidebarComponent isSidebar={isSidebar} />
-      <main className="content" style={{
-        backgroundColor: "#f5f5f5"      }}>
+      <main className="content" 
+      style={{
+        backgroundColor: "#f5f5f5"      
+      }}
+        >
         <Topbar />
         <Box m="20px">
           {/* HEADER */}

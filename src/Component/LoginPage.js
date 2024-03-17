@@ -41,6 +41,7 @@ export default function LoginPage() {
             if(res.data?.role == "ROLE_STAFF"){
               navigate("/staff-dashboard/viewRegisterList")
             }else if(res.data?.role == "ROLE_ADMIN"){
+              localStorage.setItem("admin_id", res.data?.id)
               navigate("/dashboard")
             }else{
               navigate("/")

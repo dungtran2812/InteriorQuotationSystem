@@ -2,6 +2,9 @@
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import ChairIcon from '@mui/icons-material/Chair';
+import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 // import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 // import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
@@ -11,8 +14,7 @@ import { Link } from "react-router-dom";
 import { tokens } from "./theme";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+  
   return (
     <Link to={to}>
       <MenuItem
@@ -36,7 +38,7 @@ const SidebarComponent = () => {
 
   return (
     <Box
-      sx={{
+      sx={{     
         "& .ps-menu-button:hover": {
           backgroundColor: `#151A2D`,
         },
@@ -48,7 +50,7 @@ const SidebarComponent = () => {
         },
         "& .pro-inner-item": {
           padding: "5px 0px 5px 0px !important",
-          color: "white",
+          color: "black",
         },
         "& .pro-inner-item:hover": {
           color: "#000",
@@ -62,16 +64,19 @@ const SidebarComponent = () => {
       <Sidebar
         collapsed={isCollapsed}
         style={{
-          padding: `0px`,
+          padding: `0px`, 
+          height: "100%",  
         }}
       >
         <Menu
           iconShape="square"
           style={{
-            backgroundColor: `#FF7000`,
+            // backgroundColor: `#00e5ff`,
+            backgroundImage: `linear-gradient(to right top, #ffab91, #ffb085, #ffb678, #ffbe6b, #ffc75f, #f1d360, #e0df66, #cdea72, #aaf498, #8dfbbf, #7efee3, #84ffff)`,
             height: `100vh`,
+            minHeight:"100%",
             overflowY: `auto`,
-            paddingLeft: `0px`,
+            paddingLeft: `0px`,          
           }}
         >
           {/* LOGO AND MENU ICON */}
@@ -80,7 +85,7 @@ const SidebarComponent = () => {
             icon={isCollapsed ? <MenuOutlinedIcon color="#fff" /> : undefined}
             style={{
               margin: "8px 0 8px 0",
-              color: "#fff",
+              color: "#455a64",
             }}
           >
             {!isCollapsed && (
@@ -90,14 +95,13 @@ const SidebarComponent = () => {
                 alignItems="center"
                 ml="4px"
               >
-                <Typography variant="h5" color={"#fff"} >ADMIN</Typography>
+                <Typography variant="h5" >ADMIN PAGE</Typography>
                 <IconButton
-                  onClick={() => setIsCollapsed(!isCollapsed)}
-                  color={"#fff"}
+                  onClick={() => setIsCollapsed(!isCollapsed)}                
                 >
                   <MenuOutlinedIcon
                     style={{
-                      color: `#fff`,
+                      color: `#0091F2`,
                     }}
                   />
                 </IconButton>
@@ -105,7 +109,7 @@ const SidebarComponent = () => {
             )}
           </MenuItem>
 
-          {!isCollapsed && (
+          {/* {!isCollapsed && (
             <Box mb="25px">
               <Box textAlign="center">
                 <Typography
@@ -121,7 +125,7 @@ const SidebarComponent = () => {
                 </Typography>
               </Box>
             </Box>
-          )}
+          )} */}
 
           <Box>
             <Item
@@ -138,7 +142,28 @@ const SidebarComponent = () => {
               selected={selected}
               setSelected={setSelected}
             />
-
+            <Item
+              title="Manage User"
+              to="/manage-user"
+              icon={<PeopleAltOutlinedIcon/>}
+              
+              selected={selected}
+              setSelected={setSelected}
+            />
+             <Item
+              title="Manage Raw Material"
+              to="/manage-rawMaterial"
+              icon={<ListAltIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+             <Item
+              title="Profile"
+              to="/manage-profile"
+              icon={<AccountBoxOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
             {/* <Typography
               variant="h6"
               color={"#eee"}

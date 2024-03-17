@@ -1,6 +1,6 @@
 .dashboard-page {
     display: flex;
-    gap: 10px;
+    gap: 0px !important;
     background-color: #ffffff;
     justify-content: stretch;
 }

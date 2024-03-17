@@ -145,7 +145,7 @@ function BookingForm({setProjectId}) {
                 value={selectedStyle} // Set selected value
               />
             </Form.Item>
-            <Button type="primary" htmlType="submit" onClick={formikProps.handleSubmit}>Tạo Dự Án </Button>
+            <Button type="primary" htmlType="submit" onClick={formikProps.handleSubmit}>Submit</Button>
           </Form>
         )}
       </Formik>

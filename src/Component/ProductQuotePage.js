@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Button, InputNumber, Select, Table, Popconfirm, Typography, Input, message } from 'antd';
-import axios from 'axios';
+import { Button, Input, InputNumber, Popconfirm, Select, Table, message } from 'antd';
 import Title from 'antd/es/typography/Title';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
 import { QuoteContext } from '../Context/QuoteContext';
 
 const ProductQuotePage = (props) => {
@@ -12,20 +12,22 @@ const ProductQuotePage = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-        axios.get('https://furniture-quote.azurewebsites.net/product/getAllProduct?page=0&size=30&sort=id', {
+      try {
+        const response = await axios.get('https://furniture-quote.azurewebsites.net/product/getAllProduct?page=0&size=30&sort=id', {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem("token")}`,
           }
-        })
-        .then((response) => {
-          console.log(response);
-          setFurniture(response?.data?.data?.content);
-        })
-        .catch((error) => {
-          console.error('There was a problem with the request:', error);
         });
+        if (response.status === 200) {
+          setFurniture(response.data.data.content);
+        } else {
+          throw new Error('Network response was not ok');
+        }
+      } catch (error) {
+        console.error('There was a problem with the request:', error);
       }
+    };
     fetchData();
   }, [props]);
 
@@ -88,13 +90,12 @@ const ProductQuotePage = (props) => {
     
     try {
       dataSource.map(async (product) => {
-        
+        console.log("Note nà: ",product.Note);      
         const response =  await axios.post('https://furniture-quote.azurewebsites.net/quoteDetail/product/createQuoteDetail', 
       { 
         quoteId: quoteId,
         quantity: product.Quantity,
         note: product.Note,
-        
         productId: product.id
       },
       {
@@ -158,7 +159,7 @@ const ProductQuotePage = (props) => {
       render: (_, record) => (
         <Input 
         placeholder="Ghi Chú"
-        onChange={(value) => handleSave({ ...record, Note: value })} />
+        onChange={(value) => handleSave({ ...record, Note: value.target.value })} />
       ),
     },
     

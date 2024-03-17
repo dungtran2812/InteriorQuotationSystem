@@ -1,14 +1,15 @@
+import '@fontsource/roboto/500.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import '@fontsource/roboto/500.css';
-import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import App from './App';
+import { QuoteProvider } from './Context/QuoteContext';
+import './index.css';
+import reportWebVitals from './reportWebVitals';
 import { store } from './store/store';
-import { QuoteContext, QuoteProvider } from './Context/QuoteContext';
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +21,17 @@ root.render(
       </QuoteProvider>
     </Provider>
     </BrowserRouter>
+    <ToastContainer
+            position="top-right"
+            autoClose={6000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover         
+        />
   </React.StrictMode>
 );
 

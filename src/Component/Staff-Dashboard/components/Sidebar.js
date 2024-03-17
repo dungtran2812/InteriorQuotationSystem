@@ -35,7 +35,7 @@ const SidebarComponent = () => {
 
   return (
     <Box
-      sx={{
+      sx={{     
         "& .ps-menu-button:hover": {
           backgroundColor: `#151A2D`,
         },
@@ -47,7 +47,7 @@ const SidebarComponent = () => {
         },
         "& .pro-inner-item": {
           padding: "5px 0px 5px 0px !important",
-          color: "white",
+          color: "black",
         },
         "& .pro-inner-item:hover": {
           color: "#000",
@@ -61,16 +61,19 @@ const SidebarComponent = () => {
       <Sidebar
         collapsed={isCollapsed}
         style={{
-          padding: `0px`,
+          padding: `0px`, 
+          height: "100%",  
         }}
       >
         <Menu
           iconShape="square"
           style={{
-            backgroundColor: `#FF7000`,
+            // backgroundColor: `#00e5ff`,
+            backgroundImage: `linear-gradient(to right top, #ffab91, #ffb085, #ffb678, #ffbe6b, #ffc75f, #f1d360, #e0df66, #cdea72, #aaf498, #8dfbbf, #7efee3, #84ffff)`,
             height: `100vh`,
+            minHeight:"100%",
             overflowY: `auto`,
-            paddingLeft: `0px`,
+            paddingLeft: `0px`,          
           }}
         >
           {/* LOGO AND MENU ICON */}
@@ -79,7 +82,7 @@ const SidebarComponent = () => {
             icon={isCollapsed ? <MenuOutlinedIcon color="#fff" /> : undefined}
             style={{
               margin: "8px 0 8px 0",
-              color: "#fff",
+              color: "#455a64",
             }}
           >
             {!isCollapsed && (
@@ -89,14 +92,13 @@ const SidebarComponent = () => {
                 alignItems="center"
                 ml="4px"
               >
-                <Typography variant="h5" color={"#fff"} >Staff</Typography>
+                <Typography variant="h5" >STAFF PAGE</Typography>
                 <IconButton
-                  onClick={() => setIsCollapsed(!isCollapsed)}
-                  color={"#fff"}
+                  onClick={() => setIsCollapsed(!isCollapsed)}                
                 >
                   <MenuOutlinedIcon
                     style={{
-                      color: `#fff`,
+                      color: `#0091F2`,
                     }}
                   />
                 </IconButton>
@@ -104,7 +106,7 @@ const SidebarComponent = () => {
             )}
           </MenuItem>
 
-          {!isCollapsed && (
+          {/* {!isCollapsed && (
             <Box mb="25px">
               <Box textAlign="center">
                 <Typography
@@ -120,7 +122,7 @@ const SidebarComponent = () => {
                 </Typography>
               </Box>
             </Box>
-          )}
+          )} */}
 
           <Box>
             {/* <Item
@@ -131,12 +133,12 @@ const SidebarComponent = () => {
               setSelected={setSelected}
             /> */}
 
-            <Typography
+            {/* <Typography
               variant="h6"
               color={"#eee"}
               sx={{ m: "15px 0 5px 20px" }}
             >
-            </Typography>
+            </Typography> */}
             <Item
               title="View Register List"
               to="/staff-dashboard/viewRegisterList"
