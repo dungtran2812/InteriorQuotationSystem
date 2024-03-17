@@ -11,76 +11,104 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { format } from "date-fns";
 import { Typography } from "@mui/material";
-
+import TablePagination from '@mui/material/TablePagination';
 
 export default function UserProjectPage() {
-  const navigate = useNavigate()
-  const [project, setProject] = React.useState([])
+  const navigate = useNavigate();
+  const [project, setProject] = React.useState([]);
+  const [pagination, setPagination] = React.useState({
+    page: 0,
+    size: 6,
+    total: 0
+  });
+  const userId = localStorage.getItem('userId');
+
+  const fetchProjects = async (page, size) => {
+    try {
+      const response = await axios.get(`https://furniture-quote.azurewebsites.net/project/getAllPageProjectByStatusAndUserId?page=${page}&size=${size}&sort=id&userId=${userId}`);
+      const { content, totalPages, totalElements } = response?.data?.data;
+      setProject(content);
+      setPagination({
+        page,
+        size,
+        total: totalElements
+      });
+    } catch (error) {
+      console.error('There was a problem with the request:', error);
+    }
+  };
 
   React.useEffect(() => {
-    axios.get("https://furniture-quote.azurewebsites.net/project/getAllProjectByStatus?status=NEW")
-    .then((response) => {
-      console.log(response?.data?.data)
-      setProject(response?.data?.data)
-    })
-    .catch((error) => {
-      console.error('There was a problem with the request:', error);
-    })
+    fetchProjects(0, pagination.size);
+  }, []);
 
-  }, [])
+  const handleChangePage = (event, newPage) => {
+    fetchProjects(newPage, pagination.size);
+  };
 
+  const handleChangeRowsPerPage = (event) => {
+    const newSize = parseInt(event.target.value, 10);
+    fetchProjects(0, newSize);
+  };
 
   return (
     <div className="container">
-        <Typography variant="h4" sx={{marginBottom:'30px'}}>Dự Án Của Tôi</Typography>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "1200px",
-            margin: "auto",
-            paddingBottom:'30px'
-          }}
-        >
-            
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Project Name</TableCell>
-                  <TableCell>Design Style Name</TableCell>
-                  <TableCell>User</TableCell>
-                  <TableCell>Created At</TableCell>
-                  <TableCell>Status</TableCell>
-                  <TableCell>Quote</TableCell>
+      <Typography variant="h4" sx={{ marginBottom: '30px' }}>Dự Án Của Tôi</Typography>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "1200px",
+          margin: "auto",
+          paddingBottom: '30px'
+        }}
+      >
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Project Name</TableCell>
+                <TableCell>Design Style Name</TableCell>
+                <TableCell>User</TableCell>
+                <TableCell>Created At</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell>Quote</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {project.map((row) => (
+                <TableRow key={row?.id}>
+                  <TableCell>{row?.name}</TableCell>
+                  <TableCell>{row?.designStyleName}</TableCell>
+                  <TableCell>{row?.userDetailDTO?.fullName}</TableCell>
+                  <TableCell>{format(new Date(row?.createdAt), "PPP")}</TableCell>
+                  <TableCell>{row?.status}</TableCell>
+                  <TableCell
+                    style={{
+                      display: "flex",
+                      gap: "4px",
+                    }}
+                  >
+                    <Button variant="contained" color="error">
+                      Xem bảng báo giá
+                    </Button>
+                  </TableCell>
                 </TableRow>
-              </TableHead>
-              <TableBody>
-                {project.map((row) => (
-                  <TableRow key={row?.id}>
-                    <TableCell>{row?.name}</TableCell>
-                    <TableCell>{row?.designStyleName}</TableCell>
-                    <TableCell>{row?.userDetailDTO?.fullName}</TableCell>
-                    <TableCell>{format(new Date(row?.createdAt), "PPP")}</TableCell>
-                    <TableCell>{row?.status}</TableCell>
-                    <TableCell
-                      style={{
-                        display: "flex",
-                        gap: "4px",
-                      }}
-                    >
-                      
-                      <Button variant="contained" color="error">
-                        Xem bảng báo giá
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </div>
+              ))}
+            </TableBody>
+          </Table>
+          <TablePagination
+            rowsPerPageOptions={[6, 10, 20]}
+            component="div"
+            count={pagination.total}
+            rowsPerPage={pagination.size}
+            page={pagination.page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </TableContainer>
+      </div>
     </div>
   );
 }
