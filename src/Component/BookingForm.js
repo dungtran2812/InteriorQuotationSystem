@@ -6,14 +6,14 @@ import axios from 'axios';
 
 const { TextArea } = Input;
 
-function BookingForm({setProjectId}) {
+function BookingForm({ setProjectId }) {
   const [styles, setStyles] = useState([]);
   const [selectedStyle, setSelectedStyle] = useState('');
   const userId = localStorage.getItem('userId');
   const initialValues = {
     projectName: '',
     location: '',
-    type:'',
+    type: '',
     additionalRequests: ''
   };
 
@@ -25,7 +25,7 @@ function BookingForm({setProjectId}) {
   });
 
   useEffect(() => {
-    
+
     const fetchData = async () => {
       try {
         const response = await axios.get('https://furniture-quote.azurewebsites.net/designStyle/getAllDesign', {
@@ -51,20 +51,20 @@ function BookingForm({setProjectId}) {
     console.log(values.location)
     const fetchData = async () => {
       try {
-        const response = await axios.post(`https://furniture-quote.azurewebsites.net/project/createProject?userId=${userId}&status=NEW`, 
-        {
-          name: values.projectName,
-          location: values.location,
-          type: values.type,
-          designStyleId: selectedStyle, // You need to set this value to the selectedStyle state
-          sample: false
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem("token")}`,
-          }
-        });
+        const response = await axios.post(`https://furniture-quote.azurewebsites.net/project/createProject?userId=${userId}&status=NEW`,
+          {
+            name: values.projectName,
+            location: values.location,
+            type: values.type,
+            designStyleId: selectedStyle, // You need to set this value to the selectedStyle state
+            sample: false
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem("token")}`,
+            }
+          });
         if (response.status === 200) {
           // setStyles(response.data?.data); // Set styles with the array of style objects
           setProjectId(response.data?.data);
@@ -72,7 +72,7 @@ function BookingForm({setProjectId}) {
           message.success('Tạo Dự Án Thành Công')
         } else {
           throw new Error('Network response was not ok');
-          
+
         }
       } catch (error) {
         console.error('There was a problem with the request:', error);
@@ -82,7 +82,7 @@ function BookingForm({setProjectId}) {
   };
 
   return (
-    <div className='container'>
+    <div className='container' style={{ width: '79%' , marginBottom:'40px'}}>
       <Typography.Title level={4} style={{ marginBottom: '16px' }}>
         Đăng kí mẫu thiết kế
       </Typography.Title>
@@ -116,12 +116,18 @@ function BookingForm({setProjectId}) {
               )}
             </Form.Item>
             <Form.Item label="Loại Dự Án" required>
-            <Input
-                name="type"
+              <Select
+                placeholder="Chọn Loại Dự Án"
+                onChange={value => formikProps.setFieldValue('type', value)}
+                onBlur={() => formikProps.setFieldTouched('type', true)}
                 value={formikProps.values.type}
-                onChange={formikProps.handleChange}
-                onBlur={formikProps.handleBlur}
-              />
+                allowClear
+              >
+                <Select.Option value="Chung Cư">Chung Cư</Select.Option>
+                <Select.Option value="Nhà Phố">Nhà Phố</Select.Option>
+                <Select.Option value="Biệt Thự">Biệt Thự</Select.Option>
+                <Select.Option value="Văn Phòng">Văn Phòng</Select.Option>
+              </Select>
               {formikProps.errors.type && formikProps.touched.type && (
                 <div style={{ color: 'red' }}>{formikProps.errors.type}</div>
               )}
@@ -134,7 +140,7 @@ function BookingForm({setProjectId}) {
                 onBlur={formikProps.handleBlur}
               />
             </Form.Item>
-            <Form.Item>
+            <Form.Item label="Phong Cách Thiết Kế" required>
               <Select
                 showSearch
                 placeholder="Chọn Phong Cách Thiết Kế"
