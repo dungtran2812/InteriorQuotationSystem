@@ -10,10 +10,7 @@ export function ProtectedAdminRoute({
     const navigate = useNavigate();
     const currenUser = useSelector((store) => store?.currentUser?.user);
 
-    const token = localStorage.getItem('token');
-    const role = localStorage.getItem('role');
-
-    if(token && role !== "ROLE_ADMIN"){
+    if(currenUser && currenUser?.role !== "ROLE_ADMIN"){
         navigate("/login")
     }
 
@@ -46,10 +43,8 @@ export function ProtectedStaffRoute({
     const currenUser = useSelector((store) => store?.currentUser?.user);
     // get token
     const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
-    const role = localStorage.getItem('role');
 
-    if(token && role !== "ROLE_STAFF"){
+    if(currenUser && currenUser?.role !== "ROLE_STAFF"){
         navigate("/login")
     }
 
@@ -71,36 +66,4 @@ export function ProtectedStaffRoute({
      <div className='w-screen h-screen flex items-center justify-center'>
         Loading...
     </div>;
-}
-
-export function ProtectedPublic({
-    children
-}) {
-    const authenticated = useSelector((store) => store.currentUser.authenticated);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const currenUser = useSelector((store) => store?.currentUser?.user);
-    // get token
-    const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
-    const role = localStorage.getItem('role');
-
-    
-
-
-    useEffect(() => {
-        const init = async () => {
-            if(role == null || role != "ROLE_USER"){
-                if(role == "ROLE_ADMIN"){
-                    navigate("/dashboard")
-                }else if(role == "ROLE_STAFF"){
-                    navigate("/staff-dashboard")
-                }
-            }
-        }
-        init();
-    }, []);
-
-    return <div>{children}</div>
-
 }

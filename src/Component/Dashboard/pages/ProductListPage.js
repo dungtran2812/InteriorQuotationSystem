@@ -1,189 +1,172 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Select, Table, Button, Modal, Form, Input, InputNumber } from 'antd';
-import SidebarComponent from '../components/Sidebar';
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { Button, Divider, Stack, Typography } from "@mui/material";
+import { Select } from "antd";
+import React, { useCallback, useEffect, useState } from "react";
+import { axiosClient } from "../../../api/axiosClients";
+import Loading from "../../Loading";
+import ModalCreateProduct from "../components/CreateProduct";
+import SidebarComponent from "../components/Sidebar";
+import TableProducts from "../components/Tables/TableProduct";
 
 const { Option } = Select;
-const { confirm } = Modal;
-
+//
 export default function ProductListPage() {
   const [productTypes, setProductTypes] = useState([]);
   const [selectedType, setSelectedType] = useState(null);
   const [products, setProducts] = useState([]);
-  const [form] = Form.useForm();
+  const [isLoading, setIsLoading] = useState(true);
+  const [showModalCreate, setShowModalCreate] = useState(false);
+  const [filterObject, setFilterObject] = useState({
+    page: 0,
+    size: 10,
+    sort: ["id"],
+    type: null,
+  });
+  const [pagination, setPagination] = useState({
+    page: 0,
+    size: 10,
+    total: 10,
+  });
 
+  const fetchProducts = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const params = filterObject;
+      const response = await axiosClient.get(
+        "/product/getAllPageProductByType",
+        {
+          params,
+          paramsSerializer: {
+            indexes: null, // by default: false
+          },
+        }
+      );
+      setProducts(response?.data?.data?.content ?? []);
+      setPagination({
+        page: response.data?.data.number,
+        size: response.data?.data.size,
+        total: response.data?.data.totalElements,
+      });
+      console.log("zo đây ???");
+    } catch (error) {
+      console.log("Error fetching products:", error);
+    } finally {
+      setIsLoading(false);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [filterObject]);
   useEffect(() => {
-    // Fetch product types
+    // Fetch list types of products
     const fetchProductTypes = async () => {
       try {
-        const response = await axios.get('https://furniture-quote.azurewebsites.net/product/getAllType', {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem("token")}`,
-          }
-        });
-        if (response.status === 200) {
-          setProductTypes(response.data.data);
-        } else {
-          throw new Error('Failed to fetch product types');
-        }
+        setIsLoading(true);
+        const response = await axiosClient.get("/product/getAllType");
+        setProductTypes(response.data.data ?? []);
+        window.scrollTo({ top: 0, behavior: "smooth" });
       } catch (error) {
-        console.error('Error fetching product types:', error);
+        console.error("Error fetching product types:", error);
       }
     };
-
+    fetchProducts();
     fetchProductTypes();
-  }, []);
+  }, [fetchProducts]);
 
-  useEffect(() => {
-    // Fetch products by type when selectedType changes
-    const fetchProductsByType = async () => {
-      try {
-        if (selectedType) {
-          const response = await axios.get(`https://furniture-quote.azurewebsites.net/product/getAllProductByType?type=${selectedType}`, {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem("token")}`,
-            }
-          });
-          if (response.status === 200) {
-            setProducts(response.data.data);
-          } else {
-            throw new Error('Failed to fetch products by type');
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching products by type:', error);
-      }
-    };
-
-    fetchProductsByType();
-  }, [selectedType]);
+  // useEffect(() => {
+  //   // Fetch products by type when selectedType changes
+  //   const fetchProductsByType = async () => {
+  //     try {
+  //       if (selectedType) {
+  //         setIsLoading(true);
+  //         const response = await axiosClient.get(
+  //           `/product/getAllProductByType?type=${selectedType}`
+  //         );
+  //         setProducts(response.data.data ?? []);
+  //         setPagination(null);
+  //         setIsLoading(false);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching products by type:", error);
+  //       setIsLoading(false);
+  //     }
+  //   };
+  //   selectedType === null ? fetchProducts() : fetchProductsByType();
+  // }, [selectedType, fetchProducts]);
 
   const handleTypeChange = (value) => {
-    setSelectedType(value);
+    if (value) setFilterObject({ ...filterObject, type: value });
+    else setFilterObject({ ...filterObject, type: null });
   };
-
-  const handleUpdate = (record) => {
-    form.setFieldsValue({
-      ...record,
-      productId: record.id // Assuming the productId is stored in the 'id' field of the record
-    });
-    confirm({
-      title: 'Update Product',
-      content: (
-        <Form
-          form={form}
-          layout="vertical"
-          onFinish={updateProduct}
-        >
-          <Form.Item name="productId" noStyle>
-            <Input type="hidden" />
-          </Form.Item>
-          <Form.Item name="name" label="Name" rules={[{ required: true, message: 'Please enter the name' }]}>
-            <Input />
-          </Form.Item>
-          <Form.Item name="description" label="Description" rules={[{ required: true, message: 'Please enter the description' }]}>
-            <Input.TextArea />
-          </Form.Item>
-          <Form.Item name="height" label="Height" rules={[{ required: true, message: 'Please enter the height' }]}>
-            <InputNumber />
-          </Form.Item>
-          <Form.Item name="length" label="Length" rules={[{ required: true, message: 'Please enter the length' }]}>
-            <InputNumber />
-          </Form.Item>
-          <Form.Item name="width" label="Width" rules={[{ required: true, message: 'Please enter the width' }]}>
-            <InputNumber />
-          </Form.Item>
-          <Button type="primary" htmlType="submit">Submit</Button>
-        </Form>
-      )
-    });
-  };
-
-  const updateProduct = async (values) => {
-    try {
-        console.log(values)
-      const response = await axios.put(`https://furniture-quote.azurewebsites.net/product/updateProduct`, values, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem("token")}`,
-        }
-      });
-      if (response.status === 200) {
-        const updatedProducts = products.map(product => {
-          if (product.id === values.productId) {
-            return { ...product, ...values };
-          }
-          return product;
-        });
-        setProducts(updatedProducts);
-        Modal.success({
-          title: 'Success',
-          content: 'Product updated successfully',
-        });
-      } else {
-        throw new Error('Failed to update product');
-      }
-    } catch (error) {
-      console.error('Error updating product:', error);
-      Modal.error({
-        title: 'Error',
-        content: 'Failed to update product',
-      });
-    }
-  };
-
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Description',
-      dataIndex: 'description',
-      key: 'description',
-    },
-    {
-        title: 'Height',
-        dataIndex: 'height',
-        key: 'height',
-      },
-      {
-        title: 'Length',
-        dataIndex: 'length',
-        key: 'length',
-      },
-      {
-        title: 'Width',
-        dataIndex: 'width',
-        key: 'width',
-      },
-    {
-      title: 'Action',
-      key: 'action',
-      render: (text, record) => (
-        <Button type="primary" onClick={() => handleUpdate(record)}>Update</Button>
-      ),
-    },
-  ];
 
   return (
-    <div className='dashboard-page'>
+    <div className="dashboard-page">
+      <Loading isLoading={isLoading} />
       <SidebarComponent />
-      <div style={{ display: 'block' }}>
-        <h2>Product List</h2>
-        <div style={{ marginBottom: 16 }}>
-          <label htmlFor="productType">Chọn Loại Sản Phẩm:</label>
-          <Select id="productType" value={selectedType} onChange={handleTypeChange} style={{ width: 200 }}>
-            <Option value="">-- Select Type --</Option>
-            {productTypes.map(type => (
-              <Option key={type} value={type}>{type}</Option>
-            ))}
-          </Select>
-        </div>
-        <Table columns={columns} dataSource={products} />
+      <div
+        style={{ display: "block", width: "100%", backgroundColor: "#F2F5F8" }}
+      >
+        <Typography variant="h5" sx={{ m: 3 }}>
+          List Product
+        </Typography>
+        <Divider sx={{ mb: 2 }} />
+        <Stack
+          direction={"row"}
+          minWidth={"80vw"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          mb={3}
+        >
+          <div style={{ marginLeft: "16px" }}>
+            <label
+              htmlFor="productType"
+              style={{ fontWeight: 600, marginRight: "5px" }}
+            >
+              Filter by type:
+            </label>
+            <Select
+              id="productType"
+              value={filterObject.type}
+              onChange={handleTypeChange}
+              style={{ width: 200 }}
+            >
+              <Option value="">All</Option>
+              {productTypes.map((type) => (
+                <Option key={type} value={type}>
+                  {type}
+                </Option>
+              ))}
+            </Select>
+          </div>
+          <Button
+            startIcon={<AddCircleOutlineIcon />}
+            variant="contained"
+            size="small"
+            sx={{
+              mr: 3,
+              color: "black",
+              backgroundImage: `linear-gradient(to right top, #ffab91, #ffb793, #ffc497, #ffd09d, #ffdca5, #f7e3a6, #eeebaa, #e3f2b1, #c8f6b8, #aaf9c6, #87fbd9, #5ffbf1)`,
+            }}
+            onClick={() => setShowModalCreate(true)}
+          >
+            Create Product
+          </Button>
+        </Stack>
+        {showModalCreate && (
+          <ModalCreateProduct
+            setIsLoading={setIsLoading}
+            open={showModalCreate}
+            setOpen={setShowModalCreate}
+            fetchProducts={fetchProducts}
+          />
+        )}
+        <TableProducts
+          products={products}
+          pagination={pagination}
+          filterObject={filterObject}
+          setFilterObject={setFilterObject}
+          fetchProducts={fetchProducts}
+          loading={isLoading}
+          setIsLoading={setIsLoading}
+        />
       </div>
     </div>
   );

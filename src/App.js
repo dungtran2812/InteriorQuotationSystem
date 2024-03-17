@@ -24,14 +24,16 @@ import ProjectVideo from './Component/Homepage/ProjectVideo';
 import StickyModal from './Component/StickyModal';
 
 import ViewRegisterList from "./Component/ViewRegisterList/ViewRegisterList";
-import { ProtectedAdminRoute, ProtectedPublic, ProtectedStaffRoute } from './hooks/withProtected';
+import { ProtectedAdminRoute, ProtectedStaffRoute } from './hooks/withProtected';
 
 import RawMaterialQuotePage from './Component/RawMaterialQuotePage';
 import StaffQuotePage from './Component/Staff-Dashboard/pages/StaffQuotePage';
 import QuoteStep from './Component/QuoteStep';
 import UserProjectPage from './Component/UserProfile/UserProjectPage';
 import ProductListPage from './Component/Dashboard/pages/ProductListPage';
-import ViewQuotingList from './Component/ViewRegisterList/ViewQuotingList';
+import UserListPage from './Component/Dashboard/pages/UserListPage';
+import RawMaterialListPage from './Component/Dashboard/pages/RawMaterialList';
+import ProfileSetting from './Component/Dashboard/pages/ProfileSetting';
 
 
 
@@ -41,7 +43,7 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={
-          <ProtectedPublic>
+          <>
             <Header />
             <Sampledesign />
             <Banner />
@@ -51,16 +53,17 @@ function App() {
             <ProjectVideo />
             <Customfeedback />
             <Footer />
-
-            <StickyModal/>
-          </ProtectedPublic>
-
+            <StickyModal />
+          </>
         } />
 
         <Route path='/login' element={<LoginPage />} />
         <Route path='/SignUp' element={<SignUp />} />
         <Route path='/dashboard' element={<ProtectedAdminRoute><DashboardPage /></ProtectedAdminRoute>} />
         <Route path='/manage-product' element={<ProtectedAdminRoute><ProductListPage /></ProtectedAdminRoute>} />
+        <Route path='/manage-user' element={<ProtectedAdminRoute><UserListPage /></ProtectedAdminRoute>} />
+        <Route path='/manage-rawMaterial' element={<ProtectedAdminRoute><RawMaterialListPage /></ProtectedAdminRoute>} />
+        <Route path='/manage-profile' element={<ProtectedAdminRoute><ProfileSetting /></ProtectedAdminRoute>} />
         <Route path='/staff-dashboard' element={<ProtectedStaffRoute>
           <StaffDashboardPage />
         </ProtectedStaffRoute>} />
@@ -74,7 +77,7 @@ function App() {
         />
 
         <Route
-          path={"/staff-dashboard/quotePage"}
+          path={"/staff-dashboard/quotePage/:id"}
           element={
             <ProtectedStaffRoute>
               <StaffQuotePage />
@@ -164,18 +167,6 @@ function App() {
             <>
               <ViewRegisterList />
 
-            </>
-          }
-        />
-        <Route
-          path={"/quote-calculator"}
-          element={
-            <>
-            <Header />
-              <ProductQuotePage />
-              <RawMaterialQuotePage />
-            <Footer />
-            <StickyModal/>
             </>
           }
         />
