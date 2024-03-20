@@ -201,9 +201,7 @@ a:hover {
   flex-direction: column;
   align-items: center;
 }
-.table-container {
-  margin-bottom: 50px;
-}
+
 
 .quotestep-operation {
   display: flex;

@@ -14,6 +14,7 @@ export default function UserListPage() {
     page: 0,
     size: 10,
     sort: ["id"],
+    roleId:null
   });
   const [pagination, setPagination] = useState({
     page: 0,
@@ -30,7 +31,7 @@ export default function UserListPage() {
         paramsSerializer: {
           indexes: null, // by default: false
         },
-      });    
+      });
       setUsers(response?.data?.data?.content ?? []);
       setPagination({
         page: response.data?.data.number,
@@ -77,13 +78,17 @@ export default function UserListPage() {
     <div className="dashboard-page">
       <Loading isLoading={isLoading} />
       <SidebarComponent />
-      <div style={{ display: "block",width:"100%",backgroundColor:"#F2F5F8" }}>
-        <Typography variant="h5" sx={{m: 3}}>List User</Typography>
+      <div
+        style={{ display: "block", width: "100%", backgroundColor: "#F2F5F8" }}
+      >
+        <Typography variant="h5" sx={{ m: 3 }}>
+          Danh sách người dùng
+        </Typography>
         <Divider sx={{ mb: 2 }} />
         <TextField
           size="small"
-          placeholder="Input email here ..."
-          label="Search User(s) by email"
+          placeholder="Điền email vào đây ..."
+          label="Tìm kiếm người dung bằng email"
           onBlur={handleTextChange}
           sx={{ mt: 2, mb: 3, ml: 3, width: "345px" }}
           InputProps={{

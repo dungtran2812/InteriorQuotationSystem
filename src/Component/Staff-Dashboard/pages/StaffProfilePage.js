@@ -1,14 +1,15 @@
-import { Box, Button, CardActionArea,Avatar, Divider, TextField, Stack } from "@mui/material";
+import { Avatar, Box, Button, Divider, Stack, TextField } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { axiosClient } from "../../../api/axiosClients";
+import useAuth from "../../../hooks/useAuth";
 import Loading from "../../Loading";
 import SidebarComponent from "../components/Sidebar";
-import { toast } from "react-toastify";
-export default function ProfileSetting() {
+export default function StaffProfilePage() {
+    const {auth} = useAuth()
   const [profileData, setProfileData] = useState({
     name:"Trịnh Bình Minh",
     phone:"0888666888",
@@ -22,7 +23,7 @@ export default function ProfileSetting() {
       try {
         setIsLoading(true);
         const params = {
-          id: localStorage.getItem("admin_id"),
+          id: auth?.id,
         };
         const response = await axiosClient.get("/user/getUserById", {
           params,
@@ -48,7 +49,7 @@ export default function ProfileSetting() {
             setIsLoading(true);
             const fileSubmit = new FormData()
             fileSubmit.append("fileImg", profileData.imageFile)
-            const response = await axiosClient.put(`/user/updateUser?userId=${localStorage.getItem('admin_id')}&fullName=${profileData.name}&phone=${profileData.phone}&address=${profileData.address}`,
+            const response = await axiosClient.put(`/user/updateUser?userId=${auth?.id}&fullName=${profileData.name}&phone=${profileData.phone}&address=${profileData.address}`,
             fileSubmit,
             {
                 headers: {

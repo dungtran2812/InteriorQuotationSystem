@@ -3,7 +3,7 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
 import * as React from "react";
-
+import Loading from "./Loading"
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -12,12 +12,17 @@ import { loginWithUserName } from "../api/auth/loginWithUsername";
 import LoginWithGG from "./LoginWithGG";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../store/currenUserSlice";
+import useAuth from "../hooks/useAuth";
+import { useState } from "react";
 
 export default function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {setAuth} = useAuth()
+  const [loading, setLoading] = useState(false)
   const handleSubmit = (event) => {
     event.preventDefault();
+    setLoading(true);
     const data = new FormData(event.currentTarget);
     
     console.log({
@@ -27,23 +32,24 @@ export default function LoginPage() {
     loginWithUserName(data.get("userName"), data.get("password"))
     .then(res => {
       if(res.error){
-        console.log(res.error);
+        setLoading(false)
       }
       else{
         if(res.data){
-          console.log(res.data);
-
           dispatch(updateUser(res?.data))
           localStorage.removeItem("user")
-          // redirect to home page
-          console.log(res.data?.role)
+          localStorage.setItem('userInfor', JSON.stringify(res.data));
+          setAuth(res.data)
           setTimeout(() => {
-            if(res.data?.role == "ROLE_STAFF"){
+            if(res.data?.role === "ROLE_STAFF"){
+              setLoading(false)
               navigate("/staff-dashboard/viewRegisterList")
-            }else if(res.data?.role == "ROLE_ADMIN"){
+            }else if(res.data?.role === "ROLE_ADMIN"){
+              setLoading(false)
               localStorage.setItem("admin_id", res.data?.id)
               navigate("/dashboard")
             }else{
+              setLoading(false)
               navigate("/")
             }
           }, 1000);
@@ -65,6 +71,7 @@ export default function LoginPage() {
         justifyContent: "center",
       }}
     >
+      <Loading isLoading={loading} />
       <Box
         sx={{
           marginTop: 8,

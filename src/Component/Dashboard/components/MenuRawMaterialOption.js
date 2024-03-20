@@ -82,18 +82,18 @@ export default function MenuActionOfRawMaterial({
       >
         <MenuItem onClick={() => handleUpdate()}>
           <EditIcon sx={{ mr: "4px" }} color="info" />
-          <span>Update</span>
+          <span>Cập nhật</span>
         </MenuItem>
         {rawMaterial?.status === "ACTIVE" && (
           <MenuItem onClick={() => handleDelete("INACTIVE")}>
             <DeleteForeverIcon sx={{ mr: "4px" }} color="error" />
-            <span>Delete</span>
+            <span>Xóa</span>
           </MenuItem>
         )}
         {rawMaterial?.status === "INACTIVE" && (
           <MenuItem onClick={() => handleDelete("ACTIVE")}>
             <CheckCircleOutlineIcon sx={{ mr: "4px" }} color="success" />
-            <span>ACTIVE</span>
+            <span>Kích hoạt</span>
           </MenuItem>
         )}
       </Menu>

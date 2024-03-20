@@ -12,7 +12,6 @@ const { Option } = Select;
 //
 export default function ProductListPage() {
   const [productTypes, setProductTypes] = useState([]);
-  const [selectedType, setSelectedType] = useState(null);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showModalCreate, setShowModalCreate] = useState(false);
@@ -37,7 +36,7 @@ export default function ProductListPage() {
         {
           params,
           paramsSerializer: {
-            indexes: null, // by default: false
+            indexes: null, 
           },
         }
       );
@@ -47,7 +46,6 @@ export default function ProductListPage() {
         size: response.data?.data.size,
         total: response.data?.data.totalElements,
       });
-      console.log("zo đây ???");
     } catch (error) {
       console.log("Error fetching products:", error);
     } finally {
@@ -105,7 +103,7 @@ export default function ProductListPage() {
         style={{ display: "block", width: "100%", backgroundColor: "#F2F5F8" }}
       >
         <Typography variant="h5" sx={{ m: 3 }}>
-          List Product
+          Danh sách sản phẩm
         </Typography>
         <Divider sx={{ mb: 2 }} />
         <Stack
@@ -120,7 +118,7 @@ export default function ProductListPage() {
               htmlFor="productType"
               style={{ fontWeight: 600, marginRight: "5px" }}
             >
-              Filter by type:
+              Lọc theo loại:
             </label>
             <Select
               id="productType"
@@ -147,7 +145,7 @@ export default function ProductListPage() {
             }}
             onClick={() => setShowModalCreate(true)}
           >
-            Create Product
+            Thêm sản phẩm
           </Button>
         </Stack>
         {showModalCreate && (

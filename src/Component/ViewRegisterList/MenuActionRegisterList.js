@@ -6,7 +6,6 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import * as React from "react";
 import { toast } from "react-toastify";
-
 import { useNavigate } from "react-router-dom";
 import { axiosClient } from "../../api/axiosClients";
 
@@ -26,15 +25,15 @@ export default function MenuActionRegisterList({data}) {
   };
   const handleConfirm = () => {
     setAnchorEl(null);
-    const confirmed = window.confirm(`Do you want to confirm ?`);
+    const confirmed = window.confirm(`Bạn có muốn xác nhận báo giá ?`);
     const callAPIConfirm = async () => {
       try {
-        await axiosClient.put(`/product`);
-        toast.success("Confirmed successfully");
-
-      } catch (error) {
-        console.log("error delete: ", error);
-        toast.error("Confirm failed!");
+        await axiosClient.put(`/project/updateProjectByStatus?projectId=${data?.id}&status=QUOTING`)
+        toast.success("Xác nhận báo giá thành công")
+        navigate(0)
+      } catch (err) {
+        console.log(err);
+        toast.error("Xác nhận báo giá thất bại !")
       }
     };
     if (confirmed) {

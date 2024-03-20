@@ -1,17 +1,12 @@
+import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import { useState } from "react";
-import { Menu, Sidebar, MenuItem } from "react-pro-sidebar";
+import { Menu, MenuItem, Sidebar } from "react-pro-sidebar";
 import { Link } from "react-router-dom";
-import { tokens } from "./theme";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   return (
     <Link to={to}>
       <MenuItem
@@ -23,19 +18,16 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
         <Typography>{title}</Typography>
       </MenuItem>
     </Link>
-    
   );
 };
 
 const SidebarComponent = () => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
 
   return (
     <Box
-      sx={{     
+      sx={{
         "& .ps-menu-button:hover": {
           backgroundColor: `#151A2D`,
         },
@@ -61,8 +53,8 @@ const SidebarComponent = () => {
       <Sidebar
         collapsed={isCollapsed}
         style={{
-          padding: `0px`, 
-          height: "100%",  
+          padding: `0px`,
+          height: "100%",
         }}
       >
         <Menu
@@ -71,9 +63,9 @@ const SidebarComponent = () => {
             // backgroundColor: `#00e5ff`,
             backgroundImage: `linear-gradient(to right top, #ffab91, #ffb085, #ffb678, #ffbe6b, #ffc75f, #f1d360, #e0df66, #cdea72, #aaf498, #8dfbbf, #7efee3, #84ffff)`,
             height: `100vh`,
-            minHeight:"100%",
+            minHeight: "100%",
             overflowY: `auto`,
-            paddingLeft: `0px`,          
+            paddingLeft: `0px`,
           }}
         >
           {/* LOGO AND MENU ICON */}
@@ -92,10 +84,8 @@ const SidebarComponent = () => {
                 alignItems="center"
                 ml="4px"
               >
-                <Typography variant="h5" >STAFF PAGE</Typography>
-                <IconButton
-                  onClick={() => setIsCollapsed(!isCollapsed)}                
-                >
+                <Typography variant="h6">TRANG NHÂN VIÊN</Typography>
+                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon
                     style={{
                       color: `#0091F2`,
@@ -140,9 +130,16 @@ const SidebarComponent = () => {
             >
             </Typography> */}
             <Item
-              title="View Register List"
+              title="Danh sách dự án"
               to="/staff-dashboard/viewRegisterList"
               icon={<ContactsOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Thông tin cá nhân"
+              to="/staff/Profile"
+              icon={<AccountBoxOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />

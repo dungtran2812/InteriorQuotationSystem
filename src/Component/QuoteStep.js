@@ -8,15 +8,15 @@ import axios from 'axios';
 import { QuoteContext } from '../Context/QuoteContext';
 
 const QuoteStep = () => {
-  const {quoteId, setQuoteId} = useContext(QuoteContext);
+  const { quoteId, projectId} = useContext(QuoteContext);
+  const [loadAgain, setLoadAgain] = useState(false);
   const [roomId, setRoomId] = useState(null);
   const [roomName, setRoomName] = useState(null);
-  const [projectId, setProjectId] = useState(null);
   const [current, setCurrent] = useState(0);
   const [steps, setSteps] = useState([
     {
       title: 'Nhập Thông Tin Dự Án',
-      content: <BookingForm setProjectId={setProjectId} />,
+      content: <BookingForm setLoadAgain={setLoadAgain}/>,
     },
   ]);
   const [dropdownMenu, setDropdownMenu] = useState(null);
@@ -30,8 +30,8 @@ const QuoteStep = () => {
             'Authorization': `Bearer ${localStorage.getItem("token")}`,
           }
         });
-        
-        if (response.status === 200) { 
+
+        if (response.status === 200) {
           const rooms = response.data.data;
           const menuItems = rooms.map(room => (
             <Menu.Item key={room.id} onClick={() => handleRoomSelection(room.id, room.name)}>
@@ -49,29 +49,35 @@ const QuoteStep = () => {
     };
 
     fetchRooms();
-  }, []);
+  }, [loadAgain]);
 
-  useEffect(() => {
-    if (projectId !== null && roomId !== null && roomName !== null) {
-      addStep(roomId, roomName);
-    }
-  }, [projectId, roomId, roomName]);
   
+
   const handleRoomSelection = (id, name) => {
-    setRoomId(id);
-    setRoomName(name);
-    
+    if (projectId) {
+      setRoomId(id);
+      setRoomName(name);
+      message.success('Tạo Phòng Thành Công !');
+      addStep(id, name)
+      console.log(projectId)
+    } else {
+      console.log(projectId)
+      message.error('Chưa Tạo Project !')
+      console.log(loadAgain)
+    }
+
+
   };
-  
+
   const addStep = (roomId, roomName) => {
     const newStep = {
       title: roomName,
       content: (
         <>
-        <RoomAreaForm projectId={projectId} roomId={roomId} />
-        <ProductQuotePage roomId={roomId} quoteId={quoteId}  />
-        <RawMaterialQuotePage roomId={roomId} quoteId={quoteId}  />
-      </>
+          <RoomAreaForm projectId={projectId} roomId={roomId} />
+          <ProductQuotePage roomId={roomId} quoteId={quoteId} />
+          <RawMaterialQuotePage roomId={roomId} quoteId={quoteId} />
+        </>
       ),
     };
     setSteps([steps[0], newStep]); // Append the new step
@@ -81,7 +87,7 @@ const QuoteStep = () => {
     setSteps([
       {
         title: 'Nhập Thông Tin Dự Án',
-        content: <BookingForm setProjectId={setProjectId} />,
+        content: <BookingForm setLoadAgain={setLoadAgain}/>,
       },
     ]);
     setCurrent(0); // Reset current step index
@@ -100,9 +106,11 @@ const QuoteStep = () => {
     textAlign: 'center',
     marginTop: 16,
   };
+  
 
   return (
     <div className='container'>
+      
       <Steps current={current} items={steps.map(step => ({ key: step.title, title: step.title }))} />
       <div style={contentStyle}>{steps[current].content}</div>
       <div className='quotestep-operation'>
@@ -125,9 +133,9 @@ const QuoteStep = () => {
           <Dropdown overlay={dropdownMenu}>
             <Button style={{ margin: '8px 8px' }}>Thêm Phòng</Button>
           </Dropdown>
-          
+
         )}
-        
+
         <Button style={{ margin: '8px 8px' }} onClick={resetSteps}>Tạo Lại</Button>
       </div>
     </div>

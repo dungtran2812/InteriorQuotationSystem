@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import App from './App';
 import { QuoteProvider } from './Context/QuoteContext';
+import { AuthProvider } from './Context/AuthContext';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { store } from './store/store';
@@ -17,7 +18,9 @@ root.render(
     <BrowserRouter>
     <Provider store={store}>
       <QuoteProvider>
+      <AuthProvider>
         <App />
+        </AuthProvider>
       </QuoteProvider>
     </Provider>
     </BrowserRouter>

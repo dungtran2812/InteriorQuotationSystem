@@ -1,4 +1,10 @@
-import { Chip, Divider, Skeleton, TablePagination, Typography } from "@mui/material";
+import {
+  Chip,
+  Divider,
+  Skeleton,
+  TablePagination,
+  Typography,
+} from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -39,7 +45,7 @@ export default function TableProducts({
   setFilterObject,
   fetchProducts,
   loading,
-  setIsLoading
+  setIsLoading,
 }) {
   const [open, setOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState();
@@ -57,82 +63,100 @@ export default function TableProducts({
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-            <StyledTableCell align="center">#</StyledTableCell>
-              <StyledTableCell align="center">Name</StyledTableCell>
-              <StyledTableCell align="center">Description</StyledTableCell>
-              <StyledTableCell align="center">Height</StyledTableCell>
-              <StyledTableCell align="center">Length</StyledTableCell>
-              <StyledTableCell align="center">Width</StyledTableCell>
-              <StyledTableCell align="center">Status</StyledTableCell>
-              <StyledTableCell align="center">Action</StyledTableCell>
+              <StyledTableCell align="center">#</StyledTableCell>
+              <StyledTableCell align="center">Tên</StyledTableCell>
+              <StyledTableCell align="center">Mô tả</StyledTableCell>
+              <StyledTableCell align="center">Cao</StyledTableCell>
+              <StyledTableCell align="center">Dài</StyledTableCell>
+              <StyledTableCell align="center">Rộng</StyledTableCell>
+              <StyledTableCell align="center">Trạng thái</StyledTableCell>
+              <StyledTableCell align="center"></StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {loading === false && products?.map((product, index) => (
-              <StyledTableRow key={product?.id}>
-                <StyledTableCell align="center">
-                  {index + 1 + pagination?.size * pagination?.page}
-                </StyledTableCell>
-                <StyledTableCell component="th" scope="row">
-                  {product.name}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {product?.description}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {product?.height}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {product?.length}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {product?.width}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  <Chip sx={{p:2}} label={product?.status} color={product?.status === "ACTIVE" ? "success" : "error"}/>
-                </StyledTableCell>
-                <StyledTableCell align="center">             
-                  <MenuActionOfProduct fetchProducts={fetchProducts} setOpen={setOpen} product={product} setSelectedProduct={setSelectedProduct}/>
+            {loading === false &&
+              products?.map((product, index) => (
+                <StyledTableRow key={product?.id}>
+                  <StyledTableCell align="center">
+                    {index + 1 + pagination?.size * pagination?.page}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {product.name}
+                  </StyledTableCell>
+                  <StyledTableCell
+                    align="center"
+                    sx={{
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                      maxWidth: "250px",
+                    }}
+                  >
+                    {product?.description}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {product?.height}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {product?.length}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {product?.width}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <Chip
+                      sx={{ p: 2 }}
+                      label={product?.status}
+                      color={product?.status === "ACTIVE" ? "success" : "error"}
+                    />
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <MenuActionOfProduct
+                      fetchProducts={fetchProducts}
+                      setOpen={setOpen}
+                      product={product}
+                      setSelectedProduct={setSelectedProduct}
+                    />
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            {products?.length === 0 && loading === false && (
+              <StyledTableRow>
+                <StyledTableCell colSpan={7} align="left">
+                  <Typography align="center">Data Empty!</Typography>
                 </StyledTableCell>
               </StyledTableRow>
-            ))}
-            {products?.length === 0 && loading === false &&  
-              <StyledTableRow>
-                  <StyledTableCell colSpan={7} align="left">
-                   <Typography align='center'>Data Empty!</Typography>
+            )}
+            {loading &&
+              [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((index) => (
+                <StyledTableRow hover={true} key={index}>
+                  <StyledTableCell align="left">
+                    <Skeleton variant="rectangular" />
                   </StyledTableCell>
-                  </StyledTableRow>
-
-                  }
-            {loading && [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((index) => (
-                  <StyledTableRow hover={true} key={index}>
-                    <StyledTableCell align="left">
-                      <Skeleton variant="rectangular" />
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      <Skeleton variant="rectangular" />
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      <Skeleton variant="rectangular" />
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      <Skeleton variant="rectangular" />
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      <Skeleton variant="rectangular" />
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      <Skeleton variant="rectangular" />
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      <Skeleton variant="rectangular" />
-                    </StyledTableCell>
-                    </StyledTableRow>
-                    ))}
+                  <StyledTableCell align="left">
+                    <Skeleton variant="rectangular" />
+                  </StyledTableCell>
+                  <StyledTableCell align="left">
+                    <Skeleton variant="rectangular" />
+                  </StyledTableCell>
+                  <StyledTableCell align="left">
+                    <Skeleton variant="rectangular" />
+                  </StyledTableCell>
+                  <StyledTableCell align="left">
+                    <Skeleton variant="rectangular" />
+                  </StyledTableCell>
+                  <StyledTableCell align="left">
+                    <Skeleton variant="rectangular" />
+                  </StyledTableCell>
+                  <StyledTableCell align="left">
+                    <Skeleton variant="rectangular" />
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
-      <Divider/>
+      <Divider />
       {pagination && (
         <TablePagination
           rowsPerPageOptions={[10, 20, 30]}

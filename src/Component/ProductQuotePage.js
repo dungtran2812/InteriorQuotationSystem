@@ -88,32 +88,43 @@ const ProductQuotePage = (props) => {
   };
   const handleSubmit = () => {
     
-    try {
-      dataSource.map(async (product) => {
-        console.log("Note nà: ",product.Note);      
-        const response =  await axios.post('https://furniture-quote.azurewebsites.net/quoteDetail/product/createQuoteDetail', 
-      { 
-        quoteId: quoteId,
-        quantity: product.Quantity,
-        note: product.Note,
-        productId: product.id
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem("token")}`,
-        }
-      });
-      console.log(response)
-      if (response.status === 200) {
-        message.success('Lưu Nội Thất Phòng Thành Công')
-      } else {
+      try {
+        dataSource.map(async (product) => {
+          if (product.id && quoteId) {
+            console.log("Note nà: ",product.Note);      
+            const response =  await axios.post('https://furniture-quote.azurewebsites.net/quoteDetail/product/createQuoteDetail', 
+          { 
+            quoteId: quoteId,
+            quantity: product?.Quantity,
+            note: product?.Note,
+            productId: product?.id
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem("token")}`,
+            }
+          });
+          console.log(response)
+          if (response.status === 200) {
+            message.success('Lưu Nội Thất Phòng Thành Công !')
+          } else {
+            message.error('Lưu Nội Thất Phòng Thất Bại !')
+          }
+          }
+           else if (!quoteId) {
+            message.error('Chưa Nhập Diện Tích Phòng !')
+           }
+           else {
+            message.error('Chưa Chọn Sản Phẩm !')
+          }
+          })
+      } catch (error) {
         message.error('Lưu Nội Thất Phòng Thất Bại')
+        console.error('Lưu Nội Thất Phòng Thất Bại', error);
       }
-      })
-    } catch (error) {
-      console.error('Lưu Nội Thất Phòng Thất Bại', error);
-    }
+    
+    
     
       
     
@@ -222,7 +233,7 @@ const ProductQuotePage = (props) => {
       <Button
           onClick={handleSubmit}
           type="primary"
-          style={{ marginBottom: 16 }}
+          
         >
           Lưu Phần Nội Thất 
         </Button>

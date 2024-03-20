@@ -5,7 +5,7 @@ import Title from 'antd/es/typography/Title';
 import { QuoteContext } from '../Context/QuoteContext';
 
 const RawMaterialQuotePage = (props) => {
-  const {quoteId, setQuoteId} = useContext(QuoteContext);
+  const { quoteId, setQuoteId } = useContext(QuoteContext);
   const [rawMaterial, setRawMaterial] = useState([]);
   const [dataSource, setDataSource] = useState([]);
   const [count, setCount] = useState(0);
@@ -61,11 +61,11 @@ const RawMaterialQuotePage = (props) => {
   };
 
   const handleRawMaterialChange = (value, key) => {
-    
+
     const newData = dataSource.map((item) => {
       if (item.key === key) {
         const selectedRawMaterial = rawMaterial.find(f => f.name === value);
-        
+
         const totalCost = (item.M2 || 0) * (selectedRawMaterial?.pricePerM2 || 0);
         return {
           ...item,
@@ -78,39 +78,43 @@ const RawMaterialQuotePage = (props) => {
       return item;
     });
     setDataSource(newData);
-    
+
   };
   const handleSubmit = () => {
-    
+
     try {
       dataSource.map(async (rawMaterial) => {
-        
-        const response =  await axios.post('https://furniture-quote.azurewebsites.net/quoteDetail/rawMaterial/createQuoteDetail', 
-      { 
-        quoteId: quoteId,
-        area: rawMaterial.M2,
-        rawMaterialId: rawMaterial.id
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem("token")}`,
+        if (rawMaterial.id) {
+
+          const response = await axios.post('https://furniture-quote.azurewebsites.net/quoteDetail/rawMaterial/createQuoteDetail',
+            {
+              quoteId: quoteId,
+              area: rawMaterial.M2,
+              rawMaterialId: rawMaterial.id
+            },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem("token")}`,
+              }
+            });
+          console.log(response)
+          if (response.status === 200) {
+            message.success('Lưu Vật Liệu Thô Thành Công')
+          } else {
+            message.error('Lưu Vật Liệu Thô Thất Bại')
+          }
+        } else {
+          message.error('Chưa Chọn Vật Liệu Thô !')
         }
-      });
-      console.log(response)
-      if (response.status === 200) {
-        message.success('Lưu Vật Liệu Thô Thành Công')
-      } else {
-        message.error('Lưu Vật Liệu Thô Thất Bại')
-      }
       })
     } catch (error) {
       console.error('Lưu Nội Thất Phòng Thất Bại', error);
     }
-    
-      
-    
-    
+
+
+
+
   }
 
   const columns = [
@@ -120,7 +124,7 @@ const RawMaterialQuotePage = (props) => {
       width: '10%',
       render: (_, record) => (
         <Select
-          
+
           showSearch
           placeholder="Select a RawMaterial"
           optionFilterProp="children"
@@ -175,10 +179,10 @@ const RawMaterialQuotePage = (props) => {
   ];
 
   useEffect(() => {
-    
-      setDataSource([]);
-      setCount(0);
-    
+
+    setDataSource([]);
+    setCount(0);
+
   }, [props]);
   return (
     <div className='table-container'>
@@ -200,13 +204,13 @@ const RawMaterialQuotePage = (props) => {
         rowKey="key"
       />
       <Button
-          onClick={handleSubmit}
-          type="primary"
-          style={{ marginBottom: 16 }}
-        >
-          Lưu Vật Liệu Thô
-        </Button>
-      
+        onClick={handleSubmit}
+        type="primary"
+       
+      >
+        Lưu Vật Liệu Thô
+      </Button>
+
     </div>
 
   );

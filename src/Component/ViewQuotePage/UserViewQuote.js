@@ -1,3 +1,4 @@
+import { CheckOutlined } from "@mui/icons-material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
   Accordion,
@@ -13,16 +14,15 @@ import {
 } from "@mui/material";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams,useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import { axiosClient } from "../../../api/axiosClients";
-import Loading from "../../Loading";
-import SidebarComponent from "../components/Sidebar";
-import ProductStaffQuote from "./ProductStaffQuote";
-import RawMaterialStaffQuote from "./RawQuote";
-import { CheckOutlined } from "@mui/icons-material";
-import useMoneyFormatter from "../../../hooks/useMoneyFormatter";
-export default function StaffQuotePage() {
+import ProductView from "./ProductView";
+import RawMaterialView from "./RawMaterialView";
+import useMoneyFormatter from "../../hooks/useMoneyFormatter";
+import { axiosClient } from "../../api/axiosClients";
+import Loading from "../Loading";
+export default function UserViewQuote() {
+  const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(true);
   const [dataFetch, setDataFetch] = useState({});
   const { id } = useParams();
@@ -44,36 +44,14 @@ export default function StaffQuotePage() {
     };
     if (id) fetchData();
   }, [id]);
-  console.log("dataFetch", dataFetch);
   //format money
   const [formatMoney] = useMoneyFormatter();
-  const handleConfirm = async (id) => {
-    const confirmed = window.confirm(`Bạn có muốn xác nhận báo giá ?`);
-    if (confirmed) {
-      try {
-        await axiosClient.put(
-          `/quote/updateProjectByStatus?projectId=${id}&status=QUOTING`
-        );
-        toast.success("Xác nhận báo giá thành công");
-      } catch (err) {
-        console.log(err);
-        toast.error("Xác nhận báo giá thất bại !");
-      }
-    }
-  };
-
+  
   return (
-    <div className="dashboard-page">
+    <div>
       <Loading isLoading={isLoading} />
-      <SidebarComponent />
-      <main
-        className="content "
-        style={{
-          backgroundColor: "#f5f5f5",
-        }}
-      >
         <Typography sx={{ m: 2 }} variant="h5">
-          Staff Quote Page
+          Xem báo giá
         </Typography>
         <Divider />
         <Box width={"100%"} display={"flex"} justifyContent={"center"} mt={3}>
@@ -102,12 +80,10 @@ export default function StaffQuotePage() {
                 Phong cách: {dataFetch?.projectDTO?.designStyleName}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Giá thi công loại thiết kế:{" "}
-                {formatMoney(dataFetch?.constructionPriceType)}
+                Giá thi công loại thiết kế: {formatMoney(dataFetch?.constructionPriceType)}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Giá thi công loại dự án:{" "}
-                {formatMoney(dataFetch?.constructionPriceDesign)}
+                Giá thi công loại dự án: {formatMoney(dataFetch?.constructionPriceDesign)}
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 Tổng giá tiền: {formatMoney(dataFetch?.totalPrice)}
@@ -120,12 +96,11 @@ export default function StaffQuotePage() {
                   color: "black",
                   backgroundImage: `linear-gradient(to right top, #ffab91, #ffb085, #ffb678, #ffbe6b, #ffc75f, #f1d360, #e0df66, #cdea72, #aaf498, #8dfbbf, #7efee3, #84ffff)`,
                 }}
-                startIcon={<CheckOutlined />}
                 fullWidth
-                onClick={() => handleConfirm(dataFetch?.projectDTO?.id)}
+                onClick={()=>{navigate(-1)}}
                 variant="contained"
               >
-                Xác nhận báo giá
+                Trở về
               </Button>
             </CardActions>
           </Card>
@@ -133,7 +108,7 @@ export default function StaffQuotePage() {
         <Box sx={{ p: 3 }}>
           {dataFetch?.withAllQuoteDetailDTOList &&
             dataFetch?.withAllQuoteDetailDTOList?.map((q, index) => (
-              <Box key={index} sx={{ mb: 2 }}>
+              <Box key={index} sx={{mb: 2}}>
                 <Accordion>
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -160,7 +135,7 @@ export default function StaffQuotePage() {
                       q.quoteDetailDTOS?.map((qd, index2) => {
                         if (qd?.product) {
                           return (
-                            <ProductStaffQuote
+                            <ProductView
                               data={qd?.product}
                               quantity={qd?.quantity}
                               qoutePrice={qd?.priceChange}
@@ -174,7 +149,7 @@ export default function StaffQuotePage() {
                           return (
                             <>
                               <Box mb={2}></Box>
-                              <RawMaterialStaffQuote
+                              <RawMaterialView
                                 data={qd?.rawMaterial}
                                 qoutePrice={qd?.totalPrice}
                                 area={qd?.area}
@@ -191,7 +166,6 @@ export default function StaffQuotePage() {
               </Box>
             ))}
         </Box>
-      </main>
     </div>
   );
 }
