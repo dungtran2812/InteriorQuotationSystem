@@ -9,15 +9,16 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 // import SearchIcon from "@mui/icons-material/Search";
 import { ColorModeContext, tokens } from "./theme";
 import { AccountCircle } from "@mui/icons-material";
+import useAuth from "../../../hooks/useAuth";
 
 const Topbar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = React.useContext(ColorModeContext);
 
-  const [auth, setAuth] = React.useState(true);
+  const [auth, setAuthState] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const {setAuth} = useAuth()
   const [open, setOpen] = React.useState(false);
 
   const handleToggle = () => {
@@ -38,6 +39,8 @@ const Topbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("userInfor");
+    setAuth({})
     window.location.href = "/login";
   }
 

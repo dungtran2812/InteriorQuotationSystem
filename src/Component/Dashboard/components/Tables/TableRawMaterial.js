@@ -4,7 +4,6 @@ import {
   Chip,
   Divider,
   Skeleton,
-  Stack,
   TablePagination,
   Typography
 } from "@mui/material";
@@ -18,6 +17,7 @@ import TableRow from "@mui/material/TableRow";
 import { styled } from "@mui/material/styles";
 import * as React from "react";
 import { useState } from "react";
+import useMoneyFormatter from "../../../../hooks/useMoneyFormatter";
 import MenuActionOfRawMaterial from "../MenuRawMaterialOption";
 import ModalUpdateRawMaterial from "../UpdateRawMaterial";
 // import ModalUpdateuser from "../Updateuser";
@@ -49,7 +49,7 @@ export default function TableRawMaterial({
   setFilterObject,
   fetchRawMaterials,
   loading,
-  setIsLoading
+  setIsLoading,
 }) {
   const [open, setOpen] = useState(false);
   const [selectedRawMaterial, setSelectedRawMaterial] = useState();
@@ -61,6 +61,9 @@ export default function TableRawMaterial({
     setFilterObject({ ...filterObject, page: 0, size: +event.target.value });
   };
 
+  //Format Money
+  const [formatMoney] = useMoneyFormatter();
+
   return (
     <Paper sx={{ mr: 3, ml: 2, mb: 5 }}>
       <TableContainer>
@@ -68,13 +71,13 @@ export default function TableRawMaterial({
           <TableHead>
             <TableRow>
               <StyledTableCell align="center">#</StyledTableCell>
-              <StyledTableCell align="center">Name</StyledTableCell>
-              <StyledTableCell align="center">Image</StyledTableCell>
-              <StyledTableCell align="center">Description</StyledTableCell>
-              <StyledTableCell align="center">Type</StyledTableCell>
-              <StyledTableCell align="center">Price</StyledTableCell>
-              <StyledTableCell align="center">Status</StyledTableCell>
-              <StyledTableCell align="center">Action</StyledTableCell>
+              <StyledTableCell align="left">Tên</StyledTableCell>
+              <StyledTableCell align="center">Hình ảnh</StyledTableCell>
+              <StyledTableCell align="center">Mô tả</StyledTableCell>
+              <StyledTableCell align="center">Loại</StyledTableCell>
+              <StyledTableCell align="center">Giá</StyledTableCell>
+              <StyledTableCell align="center">Trạng Thái</StyledTableCell>
+              <StyledTableCell align="center"></StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -84,22 +87,23 @@ export default function TableRawMaterial({
                   <StyledTableCell align="center">
                     {index + 1 + pagination?.size * pagination?.page}
                   </StyledTableCell>
-                  <StyledTableCell component="th" scope="row">
-                    <Stack
-                      direction={"row"}
-                      justifyContent={"flex-start"}
-                      alignItems={"center"}
-                      spacing={2}
-                    >
-                      <Typography align="left">{rawMaterial.name}</Typography>
-                    </Stack>
+                  <StyledTableCell
+                    align="left"
+                    sx={{
+                      maxWidth: 50,
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {rawMaterial.name}
                   </StyledTableCell>
-                  <StyledTableCell align="center">
+                  <StyledTableCell align="center" sx={{ maxWidth: 40 }}>
                     {rawMaterial?.img ? (
                       <Card>
                         <CardMedia
                           component="img"
-                          height="80"
+                          height="60"
                           image={rawMaterial?.img}
                           alt="Raw Material Image"
                         />
@@ -108,21 +112,40 @@ export default function TableRawMaterial({
                       "-"
                     )}
                   </StyledTableCell>
-                  <StyledTableCell align="center">
+                  <StyledTableCell
+                    align="center"
+                    sx={{
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                      maxWidth: "250px",
+                    }}
+                  >
                     {rawMaterial?.description}
                   </StyledTableCell>
                   <StyledTableCell align="center">
                     {rawMaterial?.type}
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                    {rawMaterial?.pricePerM2}
+                    {formatMoney(rawMaterial?.pricePerM2)}
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                  <Chip sx={{p:2}} label={rawMaterial?.status} color={rawMaterial?.status === "ACTIVE" ? "success" : "error"}/>
+                    <Chip
+                      sx={{ p: 2 }}
+                      label={rawMaterial?.status}
+                      color={
+                        rawMaterial?.status === "ACTIVE" ? "success" : "error"
+                      }
+                    />
                   </StyledTableCell>
-                  <StyledTableCell align="center">             
-                  <MenuActionOfRawMaterial  fetchRawMaterials={fetchRawMaterials} setOpen={setOpen} rawMaterial={rawMaterial} setSelectedRawMaterial={setSelectedRawMaterial}/>
-                </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <MenuActionOfRawMaterial
+                      fetchRawMaterials={fetchRawMaterials}
+                      setOpen={setOpen}
+                      rawMaterial={rawMaterial}
+                      setSelectedRawMaterial={setSelectedRawMaterial}
+                    />
+                  </StyledTableCell>
                 </StyledTableRow>
               ))}
             {rawMaterials?.length === 0 && loading === false && (

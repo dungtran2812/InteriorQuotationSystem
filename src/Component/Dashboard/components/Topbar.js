@@ -1,13 +1,12 @@
-import { Box, IconButton, Menu, MenuItem, useTheme } from "@mui/material";
-import React, { useContext } from "react";
 import { AccountCircle } from "@mui/icons-material";
+import { Box, IconButton, Menu, MenuItem } from "@mui/material";
+import React from "react";
 import { useSelector } from "react-redux";
+import useAuth from "../../../hooks/useAuth";
 
 const Topbar = () => {
-  const theme = useTheme();
-  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const {setAuth} = useAuth()
   const currenUser = useSelector((store) => store?.currentUser?.user);
   console.log(currenUser)
 
@@ -21,6 +20,8 @@ const Topbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("userInfor");
+    setAuth({})
     window.location.href = "/login";
   }
 
@@ -38,7 +39,7 @@ const Topbar = () => {
       {/* ICONS */}
       <Box display="flex">
         <IconButton>
-        {auth && (
+      
             <div>
               <IconButton
                 size="large"
@@ -70,7 +71,7 @@ const Topbar = () => {
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </div>
-          )}
+         
         </IconButton>
       </Box>
     </Box>

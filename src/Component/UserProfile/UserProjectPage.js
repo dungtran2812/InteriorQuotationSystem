@@ -1,20 +1,20 @@
-import * as React from "react";
+import { Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
+import TablePagination from '@mui/material/TablePagination';
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { format } from "date-fns";
-import { Typography } from "@mui/material";
-import TablePagination from '@mui/material/TablePagination';
+import * as React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function UserProjectPage() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [project, setProject] = React.useState([]);
   const [pagination, setPagination] = React.useState({
     page: 0,
@@ -22,11 +22,11 @@ export default function UserProjectPage() {
     total: 0
   });
   const userId = localStorage.getItem('userId');
-
+  const navigate = useNavigate()
   const fetchProjects = async (page, size) => {
     try {
-      const response = await axios.get(`https://furniture-quote.azurewebsites.net/project/getAllPageProjectByStatusAndUserId?page=${page}&size=${size}&sort=id&userId=${userId}`);
-      const { content, totalPages, totalElements } = response?.data?.data;
+      const response = await axios.get(`https://furniture-quote.azurewebsites.net/project/getAllPageProjectByStatusAndUserId?page=${page}&size=${size}&sort=id&userId=${userId}&status=NEW`);
+      const { content, totalElements } = response?.data?.data;
       setProject(content);
       setPagination({
         page,
@@ -40,6 +40,7 @@ export default function UserProjectPage() {
 
   React.useEffect(() => {
     fetchProjects(0, pagination.size);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChangePage = (event, newPage) => {
@@ -52,6 +53,7 @@ export default function UserProjectPage() {
   };
 
   return (
+    
     <div className="container">
       <Typography variant="h4" sx={{ marginBottom: '30px' }}>Dự Án Của Tôi</Typography>
       <div
@@ -90,7 +92,7 @@ export default function UserProjectPage() {
                       gap: "4px",
                     }}
                   >
-                    <Button variant="contained" color="error">
+                    <Button variant="contained" color="error" onClick={()=>{navigate(`/quotepage/${row?.id}`)}}>
                       Xem bảng báo giá
                     </Button>
                   </TableCell>

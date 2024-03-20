@@ -1,12 +1,16 @@
 import { Typography, Button, Form, Input, Select, message } from 'antd';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { QuoteContext } from '../Context/QuoteContext';
 
 const { TextArea } = Input;
 
-function BookingForm({ setProjectId }) {
+function BookingForm({setLoadAgain}) {
+  const {projectId, setProjectId} = useContext(QuoteContext);
+  const [projectType, setProjectType] = useState([]);
+  const [selectedType, setSelectedType] = useState('');
   const [styles, setStyles] = useState([]);
   const [selectedStyle, setSelectedStyle] = useState('');
   const userId = localStorage.getItem('userId');
@@ -35,8 +39,30 @@ function BookingForm({ setProjectId }) {
           }
         });
         if (response.status === 200) {
-          console.log(response)
+          console.log('cai nay la style',response)
           setStyles(response.data?.data); // Set styles with the array of style objects
+        } else {
+          throw new Error('Network response was not ok');
+        }
+      } catch (error) {
+        console.error('There was a problem with the request:', error);
+      }
+    };
+    fetchData();
+  }, []);
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://furniture-quote.azurewebsites.net/type/getAllType', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("token")}`,
+          }
+        });
+        if (response.status === 200) {
+          console.log('cai nay la type',response)
+          setProjectType(response.data?.data); // Set styles with the array of style objects
         } else {
           throw new Error('Network response was not ok');
         }
@@ -55,7 +81,7 @@ function BookingForm({ setProjectId }) {
           {
             name: values.projectName,
             location: values.location,
-            type: values.type,
+            typeId: selectedType,
             designStyleId: selectedStyle, // You need to set this value to the selectedStyle state
             sample: false
           },
@@ -67,8 +93,11 @@ function BookingForm({ setProjectId }) {
           });
         if (response.status === 200) {
           // setStyles(response.data?.data); // Set styles with the array of style objects
+          
           setProjectId(response.data?.data);
-          console.log(response.data?.data)
+          setLoadAgain(true)
+          console.log('cai nay la project id',response.data?.data)
+          
           message.success('Tạo Dự Án Thành Công')
         } else {
           throw new Error('Network response was not ok');
@@ -88,7 +117,7 @@ function BookingForm({ setProjectId }) {
       </Typography.Title>
       <Formik
         initialValues={initialValues}
-        validationSchema={validationSchema}
+        // validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
         {formikProps => (
@@ -115,7 +144,7 @@ function BookingForm({ setProjectId }) {
                 <div style={{ color: 'red' }}>{formikProps.errors.location}</div>
               )}
             </Form.Item>
-            <Form.Item label="Loại Dự Án" required>
+            {/* <Form.Item label="Loại Dự Án" required>
               <Select
                 placeholder="Chọn Loại Dự Án"
                 onChange={value => formikProps.setFieldValue('type', value)}
@@ -131,6 +160,20 @@ function BookingForm({ setProjectId }) {
               {formikProps.errors.type && formikProps.touched.type && (
                 <div style={{ color: 'red' }}>{formikProps.errors.type}</div>
               )}
+            </Form.Item> */}
+            <Form.Item label="Loại Dự Án" required>
+              <Select
+                showSearch
+                placeholder="Chọn Loại Dự Án"
+                optionFilterProp="children"
+                filterOption={(input, option) => (option?.label ?? '').toLowerCase().includes(input.toLowerCase())}
+                options={projectType.map(option => ({ value: option.id, label: option.name }))}
+                onChange={(value) => {
+                  console.log("value: " , value);
+                   setSelectedType(value); 
+                  }} // Handle select change
+                value={selectedType} // Set selected value
+              />
             </Form.Item>
             <Form.Item label="Ghi Chú (Thông tin ngôi nhà, ngân sách, ...)">
               <TextArea

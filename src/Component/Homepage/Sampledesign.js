@@ -1,12 +1,11 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import { Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Sampledesign() {
-  const [sampleList, setSampleList] = useState(null);
-  
+  const [sampleList, setSampleList] = useState([]);
   useEffect(() => {
-    fetch('https://65a68cd574cf4207b4f05588.mockapi.io/api/swp/SampleProject', {
+    fetch('https://furniture-quote.azurewebsites.net/quote/getAllQuoteByProjectSample?isSample=true', {
       method: 'GET',
       headers: { 'content-type': 'application/json' },
     }).then(res => {
@@ -15,11 +14,13 @@ export default function Sampledesign() {
       }
      
     }).then(data => {
-      setSampleList(data)
+      console.log(data.data)
+      setSampleList(data.data)
       
     }).catch(error => {
       console.log(error);
     })
+  
   }, [])
  
   if (!sampleList) return null;
@@ -45,7 +46,7 @@ export default function Sampledesign() {
                     {sample.name}
                   </Typography>
                   <Typography gutterBottom variant="h6" component="div">
-                    {`Phong Cách: ${sample.style}`}
+                    {`Phong Cách: ${sample.designStyleName}`}
                   </Typography>
                 </CardContent>
                 <CardActions>
