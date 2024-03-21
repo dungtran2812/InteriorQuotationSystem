@@ -194,7 +194,7 @@ function BookingForm({setLoadAgain}) {
                 value={selectedStyle} // Set selected value
               />
             </Form.Item>
-            <Button type="primary" htmlType="submit" onClick={formikProps.handleSubmit}>Submit</Button>
+            <Button type="primary" htmlType="submit" onClick={formikProps.handleSubmit}>Tạo Dự Án</Button>
           </Form>
         )}
       </Formik>

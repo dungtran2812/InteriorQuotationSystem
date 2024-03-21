@@ -25,7 +25,7 @@ export default function UserProjectPage() {
   const navigate = useNavigate()
   const fetchProjects = async (page, size) => {
     try {
-      const response = await axios.get(`https://furniture-quote.azurewebsites.net/project/getAllPageProjectByStatusAndUserId?page=${page}&size=${size}&sort=id&userId=${userId}&status=NEW`);
+      const response = await axios.get(`https://furniture-quote.azurewebsites.net/project/getAllPageProjectByStatusAndUserId?page=${page}&size=${size}&sort=id&userId=${userId}`);
       const { content, totalElements } = response?.data?.data;
       setProject(content);
       setPagination({

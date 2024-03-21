@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 export default function Quotationbanner() {
   return (
     <div className='container'>
+      <Link to='/Quotepage' style={{textDecoration:'none'}}>
       <Box
         sx={{
           marginTop: 4,
@@ -18,29 +19,30 @@ export default function Quotationbanner() {
           backgroundSize: 'cover', // Ensure the background image covers the entire box
         }}
       >
-        
+
         <Grid container spacing={2}>
-          <Grid item xs={12} md={6} sx={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
-            <Typography variant='h4' sx={{ color: '#f9a11b', padding: 6, fontWeight:"bold" }}>
-              Order now
+          <Grid item xs={12} md={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+            <Typography variant='h4' sx={{ color: '#18FF15', padding: 6, fontWeight: "bold" }}>
+              Đăng Kí Ngay
             </Typography>
-            <Typography variant='h6' sx={{backgroundColor:'rgba(255,255,255,0.5)', borderRadius:5, color: 'black', padding: 6, textAlign:'center', textShadow: '2px 2px 4px rgba(255, 255, 255, 0.5)'}}>
-              To receive the fastest and most accurate interior design and construction quote.
-              Please contact via Hotline:0123456789. Thank you!
+            <Typography variant='h6' sx={{ backgroundColor: 'rgba(255,255,255,0.5)', borderRadius: 5, color: 'black', padding: 6, textAlign: 'center', textShadow: '2px 2px 4px rgba(255, 255, 255, 0.5)' }}>
+
+              Để nhận được báo giá thiết kế, thi công nội thất nhanh và chính xác nhất. Vui lòng liên hệ quaHotline:0123456789. Cảm ơn!
             </Typography>
           </Grid>
           <Grid item xs={12} md={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <Link to='/Quotepage' style={{ textDecoration: 'none' }}>
+            
               <Button
                 variant='contained'
-                sx={{ backgroundColor: '#f9a11b', color: 'white', '&:hover': { backgroundColor: yellow[700] } }}
+                sx={{width:'200px', backgroundColor: '#f9a11b', color: 'white', '&:hover': { backgroundColor: yellow[700] } }}
               >
-                Get Quotation Now
+                Nhận Báo Giá 
               </Button>
-            </Link>
+            
           </Grid>
         </Grid>
       </Box>
+      </Link>
     </div>
   );
 }

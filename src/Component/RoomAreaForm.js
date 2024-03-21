@@ -60,7 +60,7 @@ const RoomAreaForm = (props) => {
     >
       <Form.Item
         name="area"
-        label="Diện Tích Phòng"
+        label="Diện Tích Phòng (m2): "
         rules={[
           {
             required: true,
