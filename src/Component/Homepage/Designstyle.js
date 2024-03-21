@@ -53,6 +53,9 @@ const Designstyle = () => {
                 <Typography gutterBottom variant="h5" component="div" sx={{textAlign:'center'}}>
                   {designData.name}
                 </Typography>
+                <Typography gutterBottom variant="h7" component="div" sx={{textAlign:'center'}}>
+                  Giá Thi Công: {designData.price} 
+                </Typography>
               </CardContent>
               <CardActions sx={{ justifyContent: 'center' }}>
                 <Link to={`style-detail/${designData.id}`} style={{ textDecoration: 'none' }}>

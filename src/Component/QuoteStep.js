@@ -6,9 +6,11 @@ import BookingForm from './BookingForm';
 import RoomAreaForm from './RoomAreaForm';
 import axios from 'axios';
 import { QuoteContext } from '../Context/QuoteContext';
+import { useNavigate } from 'react-router-dom';
 
 const QuoteStep = () => {
-  const { quoteId, projectId} = useContext(QuoteContext);
+  const navigate = useNavigate();
+  const { quoteId, projectId, setQuoteId, setProjectId} = useContext(QuoteContext);
   const [loadAgain, setLoadAgain] = useState(false);
   const [roomId, setRoomId] = useState(null);
   const [roomName, setRoomName] = useState(null);
@@ -52,7 +54,22 @@ const QuoteStep = () => {
   }, [loadAgain]);
 
   
+  const handleDoneAllStep = () => {
+   if (projectId && quoteId) {
+    message.success('Hoàn Thành Gửi Yêu Cầu!')
+    navigate('/');
+    setQuoteId(null);
+    setProjectId(null);
 
+   }
+   else if (!projectId) {
+    message.error('Chưa Tạo Dự Án')
+    
+   }
+    else {
+      message.error('Tạo ít nhất 1 phòng trong dự án')
+   }
+  }
   const handleRoomSelection = (id, name) => {
     if (projectId) {
       setRoomId(id);
@@ -120,8 +137,8 @@ const QuoteStep = () => {
           </Button>
         )}
         {current === steps.length - 1 && (
-          <Button style={{ margin: '8px 8px' }} type="primary" onClick={() => message.success('Processing complete!')}>
-            Done
+          <Button style={{ margin: '8px 8px' }} type="primary" onClick={handleDoneAllStep}>
+            Hoàn Thành Đăng Kí
           </Button>
         )}
         {current > 0 && (

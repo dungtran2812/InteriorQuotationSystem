@@ -107,10 +107,7 @@ export default function LoginPage() {
             id="password"
             autoComplete="current-password"
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+          
           <Button
             type="submit"
             fullWidth
@@ -120,19 +117,7 @@ export default function LoginPage() {
             Sign in
           </Button>
 
-          <Grid container>
-            <Grid item xs>
-              <Link to="#" variant="body2">
-                Forgot Password?
-              </Link>
-            </Grid>
-            <Grid item>
-              Don't have an account?
-              <Link to="/signup" variant="body2">
-                SignUp
-              </Link>
-            </Grid>
-          </Grid>
+          
         </Box>
 
         <p className="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
