@@ -79,7 +79,7 @@ const QuoteStep = () => {
       console.log(projectId)
     } else {
       console.log(projectId)
-      message.error('Chưa Tạo Project !')
+      message.error('Chưa Tạo dự án !')
       console.log(loadAgain)
     }
 

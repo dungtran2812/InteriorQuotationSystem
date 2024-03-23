@@ -113,7 +113,7 @@ function BookingForm({setLoadAgain}) {
   return (
     <div className='container' style={{ width: '79%' , marginBottom:'40px'}}>
       <Typography.Title level={4} style={{ marginBottom: '16px' }}>
-        Đăng kí mẫu thiết kế
+        Đăng kí dự án mới
       </Typography.Title>
       <Formik
         initialValues={initialValues}
@@ -144,23 +144,7 @@ function BookingForm({setLoadAgain}) {
                 <div style={{ color: 'red' }}>{formikProps.errors.location}</div>
               )}
             </Form.Item>
-            {/* <Form.Item label="Loại Dự Án" required>
-              <Select
-                placeholder="Chọn Loại Dự Án"
-                onChange={value => formikProps.setFieldValue('type', value)}
-                onBlur={() => formikProps.setFieldTouched('type', true)}
-                value={formikProps.values.type}
-                allowClear
-              >
-                <Select.Option value="Chung Cư">Chung Cư</Select.Option>
-                <Select.Option value="Nhà Phố">Nhà Phố</Select.Option>
-                <Select.Option value="Biệt Thự">Biệt Thự</Select.Option>
-                <Select.Option value="Văn Phòng">Văn Phòng</Select.Option>
-              </Select>
-              {formikProps.errors.type && formikProps.touched.type && (
-                <div style={{ color: 'red' }}>{formikProps.errors.type}</div>
-              )}
-            </Form.Item> */}
+            
             <Form.Item label="Loại Dự Án" required>
               <Select
                 showSearch
@@ -175,14 +159,7 @@ function BookingForm({setLoadAgain}) {
                 value={selectedType} // Set selected value
               />
             </Form.Item>
-            <Form.Item label="Ghi Chú (Thông tin ngôi nhà, ngân sách, ...)">
-              <TextArea
-                name="additionalRequests"
-                value={formikProps.values.additionalRequests}
-                onChange={formikProps.handleChange}
-                onBlur={formikProps.handleBlur}
-              />
-            </Form.Item>
+            
             <Form.Item label="Phong Cách Thiết Kế" required>
               <Select
                 showSearch

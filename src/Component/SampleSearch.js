@@ -12,7 +12,7 @@ export default function SampleSearch() {
     if (search.search) {
       setSearchTerm(search.search);
     }
-    fetch('https://65a68cd574cf4207b4f05588.mockapi.io/api/swp/SampleProject', {
+    fetch('https://furniture-quote.azurewebsites.net/quote/getAllQuoteByProjectSample?isSample=true', {
       method: 'GET',
       headers: { 'content-type': 'application/json' },
     }).then(res => {
@@ -20,12 +20,29 @@ export default function SampleSearch() {
         return res.json();
       }
     }).then(data => {
-      setSampleList(data);
-      console.log(sampleList);
+      setSampleList(data.data);
+      console.log(data.data);
     }).catch(error => {
       console.log(error);
     });
   }, []);
+  const [styleList,setStyleList] = useState(null)
+  useEffect(() => {
+    fetch('https://furniture-quote.azurewebsites.net/designStyle/getAllDesign', {
+      method: 'GET',
+      headers: { 'content-type': 'application/json' },
+    }).then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+     
+    }).then(data => {
+      setStyleList(data.data)
+      console.log(data)
+    }).catch(error => {
+      console.log(error);
+    })
+  }, [])
 
   const handleSearchChange = (event) => {
     
@@ -39,7 +56,7 @@ export default function SampleSearch() {
   let filteredSamples = [];
   if (sampleList) {
     filteredSamples = sampleList.filter(sample =>
-        sample.name.toLowerCase().includes(searchTerm.toLowerCase()) &&  sample.style.toLowerCase().includes(selectedStyle.toLowerCase())
+        sample.name.toLowerCase().includes(searchTerm.toLowerCase()) &&  sample.designStyleName.toLowerCase().includes(selectedStyle.toLowerCase())
       );
      
   }
@@ -47,7 +64,7 @@ export default function SampleSearch() {
     
   
 
-  if (!sampleList) return null;
+  if (!sampleList || !styleList) return 'loading...';
 
   return (
     <>
@@ -76,8 +93,8 @@ export default function SampleSearch() {
             <MenuItem value="">All</MenuItem>
            
             {
-            sampleList.map((sample) => (
-              <MenuItem value={sample.style}>{sample.style}</MenuItem>
+            styleList.map((style) => (
+              <MenuItem value={style.name}>{style.name}</MenuItem>
             ))}
             
             
@@ -100,7 +117,7 @@ export default function SampleSearch() {
                     {sample.name}
                   </Typography>
                   <Typography gutterBottom variant="h6" component="div">
-                    {`Design style: ${sample.style}`}
+                    {`Design style: ${sample.designStyleName}`}
                   </Typography>
                 </CardContent>
                 <CardActions>
@@ -114,7 +131,7 @@ export default function SampleSearch() {
         </Grid>
       </Container>
       <Container sx={{ paddingTop: 6, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Link to={'/Sampleprojectpage'} style={{ textDecoration: 'none' }}><Typography variant='h6' sx={{ border: 1, textDecoration: 'none', padding: 2 }}>Watch More</Typography></Link>
+        
       </Container>
     </>
   );
