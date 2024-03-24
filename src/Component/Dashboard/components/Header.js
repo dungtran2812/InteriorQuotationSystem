@@ -1,20 +1,21 @@
-import { Typography, Box, useTheme } from "@mui/material";
+import { Typography, Box, useTheme, Divider } from "@mui/material";
 import { tokens } from "./theme";
 
 const Header = ({ title, subtitle }) => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+
+
   return (
-    <Box mb="30px">
+    <Box mb="30px" width={"100%"}>
       <Typography
         variant="h4"
-        color={"#FF7000"}
+        color={"#00e5ff"}
         fontWeight="bold"
-        sx={{ m: "0 0 5px 0" }}
+        sx={{ m: "0 0 5px 0", minWidth:"100%" }}
       >
         {title}
       </Typography>
-      <Typography variant="h6" color={"#FF7000"}>
+      <Divider/>
+      <Typography variant="h6" color={"#ef6c00"}>
         {subtitle}
       </Typography>
     </Box>

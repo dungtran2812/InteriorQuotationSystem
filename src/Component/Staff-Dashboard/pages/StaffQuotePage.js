@@ -22,9 +22,11 @@ import ProductStaffQuote from "./ProductStaffQuote";
 import RawMaterialStaffQuote from "./RawQuote";
 import { CheckOutlined } from "@mui/icons-material";
 import useMoneyFormatter from "../../../hooks/useMoneyFormatter";
+import useAuth from "../../../hooks/useAuth";
 export default function StaffQuotePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [dataFetch, setDataFetch] = useState({});
+  const {auth} = useAuth()
   const { id } = useParams();
   useEffect(() => {
     const fetchData = async () => {
@@ -44,7 +46,6 @@ export default function StaffQuotePage() {
     };
     if (id) fetchData();
   }, [id]);
-  console.log("dataFetch", dataFetch);
   //format money
   const [formatMoney] = useMoneyFormatter();
   const handleConfirm = async (id) => {
@@ -52,7 +53,7 @@ export default function StaffQuotePage() {
     if (confirmed) {
       try {
         await axiosClient.put(
-          `/quote/updateProjectByStatus?projectId=${id}&status=QUOTING`
+          `/project/updateProjectByStatus?projectId=${id}&status=QUOTING&userId=${auth?.id}`
         );
         toast.success("Xác nhận báo giá thành công");
       } catch (err) {
@@ -73,7 +74,7 @@ export default function StaffQuotePage() {
         }}
       >
         <Typography sx={{ m: 2 }} variant="h5">
-          Staff Quote Page
+          Xem Báo Giá
         </Typography>
         <Divider />
         <Box width={"100%"} display={"flex"} justifyContent={"center"} mt={3}>
@@ -167,6 +168,7 @@ export default function StaffQuotePage() {
                               note={qd?.note}
                               quoteId={qd?.id}
                               key={index2}
+                              totalPrice={qd?.totalPrice}
                             />
                           );
                         }

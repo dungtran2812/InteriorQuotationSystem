@@ -18,7 +18,7 @@ export default function UserProjectPage() {
   const [project, setProject] = React.useState([]);
   const [pagination, setPagination] = React.useState({
     page: 0,
-    size: 6,
+    size: 10,
     total: 0
   });
   const userId = localStorage.getItem('userId');
@@ -55,7 +55,7 @@ export default function UserProjectPage() {
   return (
     
     <div className="container">
-      <Typography variant="h4" sx={{ marginBottom: '30px' }}>Dự Án Của Tôi</Typography>
+      <Typography variant="h4" sx={{ marginBottom: '30px', ml: 3 }}>Dự Án Của Tôi</Typography>
       <div
         style={{
           display: "flex",
@@ -70,12 +70,12 @@ export default function UserProjectPage() {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Project Name</TableCell>
-                <TableCell>Design Style Name</TableCell>
-                <TableCell>User</TableCell>
-                <TableCell>Created At</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Quote</TableCell>
+                <TableCell>Tên dự án</TableCell>
+                <TableCell>Phong cách</TableCell>
+                <TableCell>Người dùng</TableCell>
+                <TableCell>Tạo lúc</TableCell>
+                <TableCell>Trạng thái</TableCell>
+                <TableCell align="center">Báo giá</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -90,9 +90,10 @@ export default function UserProjectPage() {
                     style={{
                       display: "flex",
                       gap: "4px",
+                      justifyContent: "center",
                     }}
                   >
-                    <Button variant="contained" color="error" onClick={()=>{navigate(`/quotepage/${row?.id}`)}}>
+                    <Button variant="contained" size="small" color="success" onClick={()=>{navigate(`/quotepage/${row?.id}`)}}>
                       Xem bảng báo giá
                     </Button>
                   </TableCell>

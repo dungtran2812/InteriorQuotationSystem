@@ -1,23 +1,19 @@
-import { AccountCircle } from "@mui/icons-material";
-import { Box, IconButton, Menu, MenuItem } from "@mui/material";
+import { Avatar, Box, IconButton, Menu, MenuItem } from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
 import useAuth from "../../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+
 
 const Topbar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const {setAuth} = useAuth()
-  const currenUser = useSelector((store) => store?.currentUser?.user);
-  console.log(currenUser)
-
+  const {auth, setAuth} = useAuth()
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
+  const navigate = useNavigate()
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userInfor");
@@ -26,14 +22,9 @@ const Topbar = () => {
   }
 
   return (
-    <Box display="flex" justifyContent="space-between" p={2}>
+    <Box display="flex" justifyContent="space-between" pt={2}>
       {/* SEARCH BAR */}
-      <Box
-        display="flex"
-        backgroundColor={"#F5F6F8"}
-        color="#000"
-        borderRadius="3px"
-      >
+      <Box>
       </Box>
 
       {/* ICONS */}
@@ -49,13 +40,13 @@ const Topbar = () => {
                 onClick={handleMenu}
                 color="inherit"
               >
-                <AccountCircle />
+                <Avatar src={auth?.avt} sx={{width:"30px", height:"30px"}}/>
               </IconButton>
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
-                  vertical: 'top',
+                  vertical: 'bottom',
                   horizontal: 'right',
                 }}
                 keepMounted
@@ -65,10 +56,12 @@ const Topbar = () => {
                 }}
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              >              
+                <MenuItem onClick={()=>{
+                  handleClose()
+                  navigate('/admin-manage-profile')
+                  }}>Thông tin tài khoản</MenuItem>
+                <MenuItem onClick={handleLogout}>Đăng xuất</MenuItem>
               </Menu>
             </div>
          

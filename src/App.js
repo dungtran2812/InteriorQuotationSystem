@@ -40,6 +40,7 @@ import {
 import Error403 from "./Error403";
 import StaffProfilePage from "./Component/Staff-Dashboard/pages/StaffProfilePage";
 import UserViewQuote from "./Component/ViewQuotePage/UserViewQuote";
+import CreateSamplePage from "./Component/Staff-Dashboard/pages/CreateSamplePage";
 
 function App() {
   return (
@@ -130,6 +131,14 @@ function App() {
           element={
             <StaffProtected>
               <ViewRegisterListPage />
+            </StaffProtected>
+          }
+        />
+        <Route
+          path={"/staff-dashboard/createsample"}
+          element={
+            <StaffProtected>
+              <CreateSamplePage />
             </StaffProtected>
           }
         />
@@ -225,6 +234,7 @@ function App() {
             </>
           }
         />
+        
         <Route
           path={"sampleprojectpage/:search"}
           element={
@@ -266,7 +276,16 @@ function App() {
             </StaffProtected>
           }
         />
+        <Route
+          path={"createsample"}
+          element={
+            <StaffProtected>
+              <CreateSamplePage />
+            </StaffProtected>
+          }
+        />
       </Routes>
+      
     </>
   );
 }

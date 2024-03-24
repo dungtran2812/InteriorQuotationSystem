@@ -44,12 +44,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-const ProductStaffQuote = ({ data, quantity, qoutePrice, note, quoteId }) => {
+const ProductStaffQuote = ({ data, quantity, qoutePrice, note, quoteId, totalPrice }) => {
   const navigate = useNavigate()
   const [isUpdate, setIsUpdate] = useState(false);
   const [quantityInfo, setQuantityInfo] = useState(1);
   const [noteInfo, setNoteInfo] = useState("");
-  const [qoutePriceInfo, setQoutePriceInfo] = useState(1);
+  const [qoutePriceInfo, setQoutePriceInfo] = useState(0);
   const [errorMsg, setErrorMsg] = useState({
     quantityMsg: "",
     noteMsg: "",
@@ -93,8 +93,7 @@ const ProductStaffQuote = ({ data, quantity, qoutePrice, note, quoteId }) => {
               <StyledTableCell align="center">Ảnh</StyledTableCell>
               <StyledTableCell align="center">Dài </StyledTableCell>
               <StyledTableCell align="center">Rộng</StyledTableCell>
-              <StyledTableCell align="center">Cao</StyledTableCell>
-              {/* <StyledTableCell align="center">Đơn vị</StyledTableCell> */}
+              <StyledTableCell align="center">Cao</StyledTableCell>            
               <StyledTableCell align="center">Số lượng</StyledTableCell>
               <StyledTableCell align="center">Ghi Chú</StyledTableCell>
               <StyledTableCell align="center">Đơn Giá Thay Đổi</StyledTableCell>
@@ -118,8 +117,7 @@ const ProductStaffQuote = ({ data, quantity, qoutePrice, note, quoteId }) => {
               </StyledTableCell>
               <StyledTableCell align="center">{data?.length}</StyledTableCell>
               <StyledTableCell align="center"> {data?.width}</StyledTableCell>
-              <StyledTableCell align="center"> {data?.height}</StyledTableCell>
-              {/* <StyledTableCell align="center">Cái</StyledTableCell> */}
+              <StyledTableCell align="center"> {data?.height}</StyledTableCell>          
               <StyledTableCell align="center">
                 {isUpdate ? (
                   <TextField
@@ -223,7 +221,7 @@ const ProductStaffQuote = ({ data, quantity, qoutePrice, note, quoteId }) => {
                 )}
               </StyledTableCell>
               <StyledTableCell align="center">
-                {formatMoney(quantityInfo * qoutePriceInfo)}
+                {qoutePriceInfo === 0 ? totalPrice : formatMoney(quantityInfo * qoutePriceInfo)}
               </StyledTableCell>
               <StyledTableCell align="center">
                 {isUpdate ? (

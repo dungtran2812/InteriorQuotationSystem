@@ -2,9 +2,12 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import {
   Avatar,
   Divider,
+  FormControl,
   IconButton,
+  InputLabel,
   Menu,
   MenuItem,
+  Select,
   Skeleton,
   Stack,
   TablePagination,
@@ -24,6 +27,7 @@ import { useEffect, useState } from "react";
 import { axiosClient } from "../../api/axiosClients";
 import Loading from "../Loading";
 import MenuActionRegisterList from "./MenuActionRegisterList";
+const { Option } = Select;
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -134,7 +138,35 @@ const MenuFilterDesignStyle = ({filterObject, setFilterObject}) => {
     </>
   );
 };
+const MenuFilterStatus = ({ filterObject, setFilterObject }) => {
+  const [status, setStatus] = useState(filterObject.status || 'NEW');
 
+  const handleChange = (event) => {
+    const selectedStatus = event.target.value;
+    setStatus(selectedStatus);
+    setFilterObject({ ...filterObject, page: 0, size: 10, status: selectedStatus === 'all' ? null : selectedStatus });
+  };
+
+  return (
+    <div style={{ marginLeft: '16px' }}>
+      <label htmlFor="status" style={{ fontWeight: 600, marginRight: '5px' }}>
+        Lọc theo loại:
+      </label>
+      <Select
+        id="status"
+        value={status}
+        onChange={handleChange}
+        size="small"
+        sx={{ width: 200, mb: 2 }}
+      >
+        <MenuItem value="NEW">Dự án mới</MenuItem>
+        <MenuItem value="QUOTING">Đang báo giá</MenuItem>
+        <MenuItem value="REJECTED">Đã bị từ chối</MenuItem>
+        <MenuItem value="COMPLETED">Đã hoàn thành</MenuItem>
+      </Select>
+    </div>
+  );
+};
 export default function ViewRegisterList() {
   // const navigate = useNavigate();
 
@@ -144,7 +176,7 @@ export default function ViewRegisterList() {
     page: 0,
     size: 10,
     sort: ["id"],
-    status: "NEW",
+    status: 'NEW',
     type: null,
     designStyleId: null
   });
@@ -170,9 +202,9 @@ export default function ViewRegisterList() {
         console.log(response.data);
         setProject(response?.data?.data?.content ?? []);
         setPagination({
-          page: response.data?.data?.pageable?.pageNumber,
-          size: response.data?.data?.pageable?.pageSize,
-          total: response.data?.data?.totalElements,
+          page: response.data?.data?.pageable?.pageNumber ?? 0,
+          size: response.data?.data?.pageable?.pageSize ?? 10,
+          total: response.data?.data?.totalElements ?? 0,
         });
       } catch (error) {
         console.error("There was a problem with the request:", error);
@@ -200,6 +232,7 @@ export default function ViewRegisterList() {
         <Typography variant="h6" sx={{ mb: 2 }}>
           Danh sách dự án
         </Typography>
+        <MenuFilterStatus filterObject={filterObject} setFilterObject={setFilterObject}/>
         <Loading isLoading={isLoading} />
         <TableContainer>
           <Table>
