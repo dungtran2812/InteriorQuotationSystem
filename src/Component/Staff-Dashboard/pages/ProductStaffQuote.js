@@ -221,7 +221,7 @@ const ProductStaffQuote = ({ data, quantity, qoutePrice, note, quoteId, totalPri
                 )}
               </StyledTableCell>
               <StyledTableCell align="center">
-                {qoutePriceInfo === 0 ? totalPrice : formatMoney(quantityInfo * qoutePriceInfo)}
+                {qoutePriceInfo === 0 ? formatMoney(totalPrice) : formatMoney(quantityInfo * qoutePriceInfo)}
               </StyledTableCell>
               <StyledTableCell align="center">
                 {isUpdate ? (

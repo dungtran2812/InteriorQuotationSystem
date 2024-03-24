@@ -69,8 +69,8 @@ export default function UserViewQuote() {
     try {
       setIsLoading(true);
       const response = await axiosClient.post(
-        `/project/createSampleProject`,{
-          projectSampleId: id,
+        `/project/createBySampleProject`,{
+          projectSampleId: parseInt(id),
   userId: auth?.id,
   name: projectName,
   location: addressUser
@@ -78,6 +78,8 @@ export default function UserViewQuote() {
       );
       console.log(response.data?.data);
       setDataFetch(response.data?.data);
+      toast.success('Xác Nhận Báo Giá Thành Công')
+      navigate('/')
     } catch (error) {
       console.log("error getting quote", error);
       toast.error("Một số lỗi đã xảy ra, vui lòng thử lại sau!");
