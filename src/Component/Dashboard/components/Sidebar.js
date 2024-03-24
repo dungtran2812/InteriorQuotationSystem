@@ -101,29 +101,11 @@ const SidebarComponent = () => {
               </Box>
             )}
           </MenuItem>
-
-          {/* {!isCollapsed && (
-            <Box mb="25px">
-              <Box textAlign="center">
-                <Typography
-                  variant="h5"
-                  color={"#fff"}
-                  fontWeight="bold"
-                  sx={{ m: "30px 0 0 0" }}
-                >
-
-                </Typography>
-                <Typography variant="p" color={colors.grey[900]}>
-
-                </Typography>
-              </Box>
-            </Box>
-          )} */}
-          <Typography
-            sx={{ ml: "25px", fontSize: 16, fontWeight: "bold", color: "grey" }}
+          {/* <Typography
+            sx={{ ml: "30%", fontSize: 16, fontWeight: "bold", color: "grey" }}
           >
             Bảng chính
-          </Typography>
+          </Typography> */}
           <Box>
             <Item
               title="Bảng điều khiển"
@@ -132,16 +114,16 @@ const SidebarComponent = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Typography
+            {/* <Typography
               sx={{
-                ml: "25px",
+                ml: "30%",
                 fontSize: 16,
                 fontWeight: "bold",
                 color: "grey",
               }}
             >
               Quản lý
-            </Typography>
+            </Typography> */}
             <Item
               title="Sản phẩm"
               to="/admin-manage-product"
@@ -163,16 +145,16 @@ const SidebarComponent = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Typography
+            {/* <Typography
               sx={{
-                ml: "25px",
+                ml: "30%",
                 fontSize: 16,
                 fontWeight: "bold",
                 color: "grey",
               }}
             >
               Cá nhân
-            </Typography>
+            </Typography> */}
             <Item
               title="Hồ sơ cá nhân"
               to="/admin-manage-profile"

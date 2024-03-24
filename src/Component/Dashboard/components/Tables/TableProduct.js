@@ -1,4 +1,6 @@
 import {
+  Card,
+  CardMedia,
   Chip,
   Divider,
   Skeleton,
@@ -65,12 +67,13 @@ export default function TableProducts({
             <TableRow>
               <StyledTableCell align="center">#</StyledTableCell>
               <StyledTableCell align="center">Tên</StyledTableCell>
+              <StyledTableCell align="center">Hình ảnh</StyledTableCell>
               <StyledTableCell align="center">Mô tả</StyledTableCell>
               <StyledTableCell align="center">Cao</StyledTableCell>
               <StyledTableCell align="center">Dài</StyledTableCell>
               <StyledTableCell align="center">Rộng</StyledTableCell>
               <StyledTableCell align="center">Trạng thái</StyledTableCell>
-              <StyledTableCell align="center"></StyledTableCell>
+              <StyledTableCell align="center">Thao tác</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -82,6 +85,20 @@ export default function TableProducts({
                   </StyledTableCell>
                   <StyledTableCell align="center">
                     {product.name}
+                  </StyledTableCell>
+                  <StyledTableCell align="center" sx={{ maxWidth: 40 }}>
+                    {product?.img ? (
+                      <Card>
+                        <CardMedia
+                          component="img"
+                          height="60"
+                          image={product?.img}
+                          alt="Raw Material Image"
+                        />
+                      </Card>
+                    ) : (
+                      "-"
+                    )}
                   </StyledTableCell>
                   <StyledTableCell
                     align="center"

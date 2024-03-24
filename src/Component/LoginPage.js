@@ -1,19 +1,16 @@
-import Button from "@mui/material/Button";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import TextField from "@mui/material/TextField";
-import * as React from "react";
-import Loading from "./Loading"
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { Link, useNavigate } from "react-router-dom";
-import { loginWithUserName } from "../api/auth/loginWithUsername";
-import LoginWithGG from "./LoginWithGG";
-import { useDispatch } from "react-redux";
-import { updateUser } from "../store/currenUserSlice";
-import useAuth from "../hooks/useAuth";
+import * as React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginWithUserName } from "../api/auth/loginWithUsername";
+import useAuth from "../hooks/useAuth";
+import { updateUser } from "../store/currenUserSlice";
+import Loading from "./Loading";
+import LoginWithGG from "./LoginWithGG";
 
 export default function LoginPage() {
   const dispatch = useDispatch();

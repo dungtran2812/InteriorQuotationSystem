@@ -1,13 +1,14 @@
-import { Typography, Button, Form, Input, Select, message } from 'antd';
+import { Typography, Button, Form, Input, Select, message, Upload } from 'antd';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import { QuoteContext } from '../Context/QuoteContext';
+import { QuoteContext } from '../../../Context/QuoteContext';
 
 const { TextArea } = Input;
 
-function BookingForm({setLoadAgain}) {
+function CreateSampleProject({setLoadAgain}) {
+    const [imageSrc, setImageSrc] = useState(null);
   const {projectId, setProjectId} = useContext(QuoteContext);
   const [projectType, setProjectType] = useState([]);
   const [selectedType, setSelectedType] = useState('');
@@ -27,6 +28,13 @@ function BookingForm({setLoadAgain}) {
     type: Yup.string().required('Required'),
     additionalRequests: Yup.string()
   });
+
+    const handleBeforeUpload = (file) => {
+        // Check if the file is an image
+        console.log(file)
+        setImageSrc(file)
+
+    };
 
   useEffect(() => {
 
@@ -74,21 +82,19 @@ function BookingForm({setLoadAgain}) {
   }, []);
 
   const handleSubmit = async (values) => {
-    console.log(values.location)
+    console.log(values)
     const fetchData = async () => {
       try {
-        const response = await axios.post(`https://furniture-quote.azurewebsites.net/project/createProject?userId=${userId}&status=NEW`,
+        const response = await axios.post(
+          `https://furniture-quote.azurewebsites.net/project/createSampleProject?name=${values.projectName}&location=${values.location}&isSample=true&designStyleId=${selectedStyle}&typeId=${selectedType}&status=ACTIVE`,
           {
-            name: values.projectName,
-            location: values.location,
-            typeId: selectedType,
-            designStyleId: selectedStyle, // You need to set this value to the selectedStyle state
-            sample: false
+            fileImg: imageSrc,
+            
           },
           {
             headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem("token")}`,
+              'Content-Type': 'multipart/form-data',
+              
             }
           });
         if (response.status === 200) {
@@ -111,9 +117,11 @@ function BookingForm({setLoadAgain}) {
   };
 
   return (
+  
     <div className='container' style={{ width: '79%' , marginBottom:'40px'}}>
+    
       <Typography.Title level={4} style={{ marginBottom: '16px' }}>
-        Đăng kí dự án mới
+        Tạo dự án mẫu mới
       </Typography.Title>
       <Formik
         initialValues={initialValues}
@@ -171,7 +179,16 @@ function BookingForm({setLoadAgain}) {
                 value={selectedStyle} // Set selected value
               />
             </Form.Item>
+            <Upload.Dragger
+                accept='.png,.jpeg,.doc'
+                beforeUpload={(file) => handleBeforeUpload(file)}
+                maxCount={1}
+            >
+                Kéo thả files hoặc <br/>
+                <Button>Click to upload</Button>
+            </Upload.Dragger>
             <Button type="primary" htmlType="submit" onClick={formikProps.handleSubmit}>Tạo Dự Án</Button>
+            
           </Form>
         )}
       </Formik>
@@ -179,4 +196,4 @@ function BookingForm({setLoadAgain}) {
   );
 }
 
-export default BookingForm;
+export default CreateSampleProject;

@@ -106,7 +106,7 @@ export default function Header() {
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{
-        vertical: "top",
+        vertical: "bottom",
         horizontal: "right",
       }}
       id={menuId}
@@ -119,7 +119,7 @@ export default function Header() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-        <Link to="/profile">Profile</Link>
+        <Link to="/profile">Thông tin cá nhân</Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}><Link to='/user-project'>Dự Án Của Tôi</Link></MenuItem>
       {localStorageUser ? (
@@ -133,10 +133,10 @@ export default function Header() {
             navigate("/login")
           }}
         >
-          Logout
+          Đăng xuất
         </MenuItem>
       ) : (
-        <MenuItem>Sign in</MenuItem>
+        <MenuItem>Đăng nhập</MenuItem>
       )}
     </Menu>
   );
@@ -146,13 +146,13 @@ export default function Header() {
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
-        vertical: "top",
+        vertical: "bottom",
         horizontal: "right",
       }}
       id={mobileMenuId}
       keepMounted
       transformOrigin={{
-        vertical: "top",
+        vertical: "bottom",
         horizontal: "right",
       }}
       open={isMobileMenuOpen}
@@ -169,7 +169,7 @@ export default function Header() {
           color="inherit"
         >
           <AccountCircle />
-          <p>Profile</p>
+          <p>Thông tin cá nhân</p>
           <img
             src={auth?.avt}
             alt="user"

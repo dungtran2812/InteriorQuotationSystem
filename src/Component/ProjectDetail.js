@@ -109,11 +109,16 @@ export default function ProjectDetail() {
         backgroundSize: 'cover', height: '250px', marginBottom: '40px'
       }}>
         <div className='image-wrapper'>
-          <Typography color={'white'}>Chọn Dự Án Mẫu ở trên </Typography>
-
-          <Typography color={'#f9a33d'}>Hoặc đăng ký dự án mới tại đây</Typography>
+          <Typography color={'#f9a33d'}>Chọn Dự Án Mẫu ở trên </Typography>
+          <Button variant='contained' sx={{
+            backgroundColor: '#f9a33d', width: '20%', color: 'black', marginTop: '10px', borderRadius: '20px', '&:hover': {
+              backgroundColor: '#239a64',
+              color: '#ffffff',
+            },
+          }} onClick={()=>navigation(`/quotepage/${id}`, {state:{isCreateNewProjectBasedOnSample: true}})}>Chọn</Button>
+          <Typography color={'#f9a33d'} mt={1}>Hoặc đăng ký dự án mới tại đây</Typography>
           <Button onClick={() => navigation('./../../Quotepage')} sx={{
-            backgroundColor: '#f9a33d', width: '20%', color: 'black', marginTop: '20px', borderRadius: '20px', '&:hover': {
+            backgroundColor: '#f9a33d', width: '20%', color: 'black', marginTop: '10px', borderRadius: '20px', '&:hover': {
               backgroundColor: '#239a64',
               color: '#ffffff',
             },

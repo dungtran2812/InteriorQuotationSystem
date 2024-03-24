@@ -1,17 +1,10 @@
-import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
-import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import {
   Box,
   Card,
   CardMedia,
   Divider,
-  IconButton,
-  InputAdornment,
-  Stack,
   Table,
-  TextField,
-  Typography,
+  Typography
 } from "@mui/material";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -19,11 +12,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { styled } from "@mui/material/styles";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import React from "react";
 import useMoneyFormatter from "../../hooks/useMoneyFormatter";
-import { axiosClient } from "../../api/axiosClients";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -45,8 +35,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-const ProductView = ({ data, quantity, qoutePrice, note }) => {
+const ProductView = ({ data, quantity, note, totalPrice }) => {
   const [formatMoney] = useMoneyFormatter();
+  
   return (
     <Box>
       <Typography>Sản phẩm: {data?.name}</Typography>
@@ -58,18 +49,17 @@ const ProductView = ({ data, quantity, qoutePrice, note }) => {
               <StyledTableCell align="center">Ảnh</StyledTableCell>
               <StyledTableCell align="center">Dài </StyledTableCell>
               <StyledTableCell align="center">Rộng</StyledTableCell>
-              <StyledTableCell align="center">Cao</StyledTableCell>
-              {/* <StyledTableCell align="center">Đơn vị</StyledTableCell> */}
+              <StyledTableCell align="center">Cao</StyledTableCell>       
               <StyledTableCell align="center">Số lượng</StyledTableCell>
-              <StyledTableCell align="center">Ghi Chú</StyledTableCell>
-              <StyledTableCell align="center">Đơn Giá Thay Đổi</StyledTableCell>
-              <StyledTableCell align="center">Tổng Tiền</StyledTableCell>
-             
+             {note && <StyledTableCell align="center">Ghi Chú</StyledTableCell>  }         
+              <StyledTableCell align="center">Tổng Tiền</StyledTableCell>   
             </StyledTableRow>
           </TableHead>
           <TableBody>
             <StyledTableRow>
-              <StyledTableCell align="center">{data?.name}</StyledTableCell>
+              <StyledTableCell align="center">
+             {data?.name}            
+                </StyledTableCell>
               <StyledTableCell align="center">
                 <Box sx={{ display: "flex", justifyContent: "center" }}>
                   <Card sx={{ width: 100 }}>
@@ -84,18 +74,15 @@ const ProductView = ({ data, quantity, qoutePrice, note }) => {
               <StyledTableCell align="center">{data?.length}</StyledTableCell>
               <StyledTableCell align="center"> {data?.width}</StyledTableCell>
               <StyledTableCell align="center"> {data?.height}</StyledTableCell>
-              {/* <StyledTableCell align="center">Cái</StyledTableCell> */}
               <StyledTableCell align="center">
                     {quantity}              
               </StyledTableCell>
-              <StyledTableCell align="center">
+              {note && <StyledTableCell align="center">
                {note}
-              </StyledTableCell>
+              </StyledTableCell>}
+         
               <StyledTableCell align="center">
-               {formatMoney(qoutePrice)}
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                {formatMoney(quantity * qoutePrice)}
+                {formatMoney(totalPrice)}
               </StyledTableCell>
              
             </StyledTableRow>

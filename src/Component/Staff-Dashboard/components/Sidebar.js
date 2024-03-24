@@ -1,6 +1,7 @@
 import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Box, IconButton, Typography } from "@mui/material";
 import { useState } from "react";
 import { Menu, MenuItem, Sidebar } from "react-pro-sidebar";
@@ -133,6 +134,13 @@ const SidebarComponent = () => {
               title="Danh sách dự án"
               to="/staff-dashboard/viewRegisterList"
               icon={<ContactsOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Tạo dự án mẫu"
+              to="/staff-dashboard/createsample"
+              icon={<AddCircleOutlineIcon />}
               selected={selected}
               setSelected={setSelected}
             />

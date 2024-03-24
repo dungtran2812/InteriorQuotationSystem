@@ -126,7 +126,7 @@ export default function ProductListPage() {
               onChange={handleTypeChange}
               style={{ width: 200 }}
             >
-              <Option value="">All</Option>
+              <Option value="">Tất cả</Option>
               {productTypes.map((type) => (
                 <Option key={type} value={type}>
                   {type}

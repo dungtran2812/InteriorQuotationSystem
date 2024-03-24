@@ -114,7 +114,7 @@ export default function UserProfile() {
                     variant="outlined"
                     htmlFor="fileImg"
                   >
-                    Choose Image
+                   Chọn ảnh
                     <input
                       hidden
                       multiple
@@ -139,7 +139,7 @@ export default function UserProfile() {
               </Stack>
               <Box mb={3}>
                 <Typography variant="subtitle2" sx={{ color: "black", mb: 1 }}>
-                  Full Name:
+                  Họ và tên:
                 </Typography>
                 <TextField
                   type="text"
@@ -155,7 +155,7 @@ export default function UserProfile() {
               </Box>
               <Box mb={3}>
                 <Typography variant="subtitle2" sx={{ color: "black", mb: 1 }}>
-                  Phone Number:
+                  Số điện thoại:
                 </Typography>
                 <TextField
                   type="text"
@@ -171,7 +171,7 @@ export default function UserProfile() {
               </Box>
               <Box>
                 <Typography variant="subtitle2" sx={{ color: "black", mb: 1 }}>
-                  Address:
+                  Địa chỉ:
                 </Typography>
                 <TextField
                   type="text"
@@ -193,7 +193,7 @@ export default function UserProfile() {
                 sx={{ mt: 5 }}
                 onClick={handleUpdateProfile}
               >
-                Update
+                Cập nhật
               </Button>
             </CardContent>
           </Card>

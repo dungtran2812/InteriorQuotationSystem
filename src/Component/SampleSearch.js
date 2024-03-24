@@ -1,62 +1,116 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Card, CardActions, CardContent, CardMedia, Container, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
-import { Link, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Container,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { Link, useParams } from "react-router-dom";
+import Loading from "./Loading";
 
 export default function SampleSearch() {
   const search = useParams();
   const [sampleList, setSampleList] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedStyle, setSelectedStyle] = useState('');
-  
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedStyle, setSelectedStyle] = useState("");
+
   useEffect(() => {
     if (search.search) {
       setSearchTerm(search.search);
     }
-    fetch('https://65a68cd574cf4207b4f05588.mockapi.io/api/swp/SampleProject', {
-      method: 'GET',
-      headers: { 'content-type': 'application/json' },
-    }).then(res => {
-      if (res.ok) {
-        return res.json();
+    fetch(
+      "https://furniture-quote.azurewebsites.net/quote/getAllQuoteByProjectSample?isSample=true",
+      {
+        method: "GET",
+        headers: { "content-type": "application/json" },
       }
-    }).then(data => {
-      setSampleList(data);
-      console.log(sampleList);
-    }).catch(error => {
-      console.log(error);
-    });
+    )
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        setSampleList(data.data);
+        console.log(data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+  const [styleList, setStyleList] = useState(null);
+  useEffect(() => {
+    fetch(
+      "https://furniture-quote.azurewebsites.net/designStyle/getAllDesign",
+      {
+        method: "GET",
+        headers: { "content-type": "application/json" },
+      }
+    )
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        setStyleList(data.data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   const handleSearchChange = (event) => {
-    
     setSearchTerm(event.target.value);
   };
   const handleStyleChange = (event) => {
     console.log(event.target);
     setSelectedStyle(event.target.value);
   };
-  
+
   let filteredSamples = [];
   if (sampleList) {
-    filteredSamples = sampleList.filter(sample =>
-        sample.name.toLowerCase().includes(searchTerm.toLowerCase()) &&  sample.style.toLowerCase().includes(selectedStyle.toLowerCase())
-      );
-     
+    filteredSamples = sampleList.filter(
+      (sample) =>
+        sample.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        sample.designStyleName
+          .toLowerCase()
+          .includes(selectedStyle.toLowerCase())
+    );
   }
-  
-    
-  
 
-  if (!sampleList) return null;
+  if (!sampleList || !styleList) return <Loading isLoading={true} />;
 
   return (
     <>
-      <Container sx={{ paddingTop: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Typography variant='h4' sx={{ paddingLeft: '2%', paddingRight: '2%', fontWeight: "bold" }}>Sample design</Typography>
+      <Container
+        sx={{
+          paddingTop: 2,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Typography
+          variant="h4"
+          sx={{ paddingLeft: "2%", paddingRight: "2%", fontWeight: "bold" }}
+        >
+          Các thiết kế mẫu
+        </Typography>
       </Container>
       <Container sx={{ paddingTop: 2 }}>
         <TextField
-          label="Search by name"
+          label="Tìm kiếm theo tên"
           variant="outlined"
           fullWidth
           value={searchTerm}
@@ -65,22 +119,18 @@ export default function SampleSearch() {
       </Container>
       <Container sx={{ paddingTop: 2 }}>
         <FormControl fullWidth variant="outlined">
-          <InputLabel id="style-select-label">Design Style</InputLabel>
+          <InputLabel id="style-select-label">Phong cách thiết kế</InputLabel>
           <Select
             labelId="style-select-label"
             id="style-select"
             value={selectedStyle}
             onChange={handleStyleChange}
-            label="Design Style"
+            label="Phong cách thiết kế"
           >
-            <MenuItem value="">All</MenuItem>
-           
-            {
-            sampleList.map((sample) => (
-              <MenuItem value={sample.style}>{sample.style}</MenuItem>
+            <MenuItem value="">Tất cả</MenuItem>
+            {styleList.map((style) => (
+              <MenuItem value={style.name}>{style.name}</MenuItem>
             ))}
-            
-            
             {/* Add other design styles as needed */}
           </Select>
         </FormControl>
@@ -88,7 +138,7 @@ export default function SampleSearch() {
       <Container sx={{ paddingTop: 6 }}>
         <Grid container spacing={4}>
           {filteredSamples.map((sample) => (
-            <Grid item key={sample.id} xs={12} md={4} >
+            <Grid item key={sample.id} xs={12} md={4}>
               <Card sx={{ maxWidth: 400 }}>
                 <CardMedia
                   sx={{ height: 300 }}
@@ -96,16 +146,21 @@ export default function SampleSearch() {
                   title={sample.name}
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div" color="#f9a11b">
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    color="#f9a11b"
+                  >
                     {sample.name}
                   </Typography>
                   <Typography gutterBottom variant="h6" component="div">
-                    {`Design style: ${sample.style}`}
+                    {`Phong cách thiết kế: ${sample.designStyleName}`}
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Link to={`detail/${sample.id}`}>
-                    <Button size="small">Detail</Button>
+                  <Link to={`/detail/${sample.id}`}>
+                    <Button size="small">Chi tiết</Button>
                   </Link>
                 </CardActions>
               </Card>
@@ -113,9 +168,14 @@ export default function SampleSearch() {
           ))}
         </Grid>
       </Container>
-      <Container sx={{ paddingTop: 6, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Link to={'/Sampleprojectpage'} style={{ textDecoration: 'none' }}><Typography variant='h6' sx={{ border: 1, textDecoration: 'none', padding: 2 }}>Watch More</Typography></Link>
-      </Container>
+      <Container
+        sx={{
+          paddingTop: 6,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      ></Container>
     </>
   );
 }

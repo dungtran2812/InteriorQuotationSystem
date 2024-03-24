@@ -1,5 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../config";
+import { message } from "antd";
 
 export const loginWithGG = async (accessToken) => {
   console.log('cái này là token gg gửi về', accessToken)
@@ -15,6 +16,7 @@ export const loginWithGG = async (accessToken) => {
     console.log(response.data.data);
     return response.data?.data
   } catch (error) {
+    message.error(error.message);
     console.error("Error signing in with Google:", error.message);
     return {}
   }

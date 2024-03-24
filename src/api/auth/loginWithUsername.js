@@ -1,5 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../config";
+import { message } from "antd";
 
 export const loginWithUserName = async (userName, password) => {
   try {
@@ -13,6 +14,10 @@ export const loginWithUserName = async (userName, password) => {
     }
   } catch (error) {
     console.log("Error signing in with Google:", error);
+    if (error.message === 'Request failed with status code 401') {
+      message.error('Tài khoản hoặc mật khẩu không đúng')
+    }
+    
     return {
       data: null,
       error: error,

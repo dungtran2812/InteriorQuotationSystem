@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Button, Steps, message, Dropdown, Menu } from 'antd';
-import ProductQuotePage from './ProductQuotePage';
-import RawMaterialQuotePage from './RawMaterialQuotePage';
-import BookingForm from './BookingForm';
-import RoomAreaForm from './RoomAreaForm';
-import axios from 'axios';
-import { QuoteContext } from '../Context/QuoteContext';
-import { useNavigate } from 'react-router-dom';
 
-const QuoteStep = () => {
+import RoomAreaForm from '../../RoomAreaForm';
+import axios from 'axios';
+import { QuoteContext } from '../../../Context/QuoteContext';
+import { useNavigate } from 'react-router-dom';
+import CreateSampleProject from './CreateSampleProject';
+import ProductQuotePage from '../../ProductQuotePage';
+import RawMaterialQuotePage from '../../RawMaterialQuotePage';
+import CreateSampleRoom from './CreateSampleRoom';
+
+const CreateSampleStep = () => {
   const navigate = useNavigate();
   const { quoteId, projectId, setQuoteId, setProjectId} = useContext(QuoteContext);
   const [loadAgain, setLoadAgain] = useState(false);
@@ -18,7 +20,7 @@ const QuoteStep = () => {
   const [steps, setSteps] = useState([
     {
       title: 'Nhập Thông Tin Dự Án',
-      content: <BookingForm setLoadAgain={setLoadAgain}/>,
+      content: <CreateSampleProject setLoadAgain={setLoadAgain}/>,
     },
   ]);
   const [dropdownMenu, setDropdownMenu] = useState(null);
@@ -91,7 +93,7 @@ const QuoteStep = () => {
       title: roomName,
       content: (
         <>
-          <RoomAreaForm projectId={projectId} roomId={roomId} />
+          <CreateSampleRoom projectId={projectId} roomId={roomId} />
           <ProductQuotePage roomId={roomId} quoteId={quoteId} />
           <RawMaterialQuotePage roomId={roomId} quoteId={quoteId} />
         </>
@@ -104,7 +106,7 @@ const QuoteStep = () => {
     setSteps([
       {
         title: 'Nhập Thông Tin Dự Án',
-        content: <BookingForm setLoadAgain={setLoadAgain}/>,
+        content: <CreateSampleProject setLoadAgain={setLoadAgain}/>,
       },
     ]);
     setCurrent(0); // Reset current step index
@@ -159,4 +161,4 @@ const QuoteStep = () => {
   );
 };
 
-export default QuoteStep;
+export default CreateSampleStep;
