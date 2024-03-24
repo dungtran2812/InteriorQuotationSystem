@@ -14,6 +14,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosClient } from "../../api/axiosClients";
 import { toast } from "react-toastify";
+import { message } from "antd";
 
 export default function UserProjectPage() {
   // const navigate = useNavigate();
@@ -40,7 +41,8 @@ export default function UserProjectPage() {
       console.error('There was a problem with the request:', error);
     }
   };
-const handleConfirmQuote = (id) => {
+const handleConfirmQuote = (id, status) => {
+  if (status !== 'NEW') {
     setAnchorEl(null);
     const confirmed = window.confirm(`Bạn có muốn xác nhận báo giá ?`);
     const callAPIConfirm = async () => {
@@ -56,6 +58,10 @@ const handleConfirmQuote = (id) => {
     if (confirmed) {
       callAPIConfirm();
     }
+  } else {
+    message.error('Đơn Báo Giá Chưa Được Xác Nhận')
+  }
+    
   };
   React.useEffect(() => {
     fetchProjects(0, pagination.size);
@@ -115,7 +121,7 @@ const handleConfirmQuote = (id) => {
                     <Button variant="contained" size="small" color="success" onClick={()=>{navigate(`/quotepage/${row?.id}`)}}>
                       Xem bảng báo giá
                     </Button>
-                    <Button variant="contained" size="small" color="warning" onClick={()=>{handleConfirmQuote(row?.id)}}>
+                    <Button variant="contained" size="small" color="warning" onClick={()=>{handleConfirmQuote(row?.id, row?.status)}}>
                       Đồng Ý báo giá
                     </Button>
                   </TableCell>
