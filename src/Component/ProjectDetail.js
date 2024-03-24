@@ -4,10 +4,12 @@ import React, { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Slider from 'react-slick';
+import useMoneyFormatter from '../hooks/useMoneyFormatter';
 
 
 export default function ProjectDetail() {
   const navigation = useNavigate();
+  const [formatMoney] = useMoneyFormatter();
   const { id } = useParams();
   const [sampleDetail, setSampleDetail] = useState(null);
   const [roomDataList, setRoomDataList] = useState(null);
@@ -37,7 +39,7 @@ export default function ProjectDetail() {
   }, [id]);
 
   if (!sampleDetail) return null;
-
+  
   return (
     <div className="container">
       <Typography variant='h4' sx={{ backgroundColor: 'rgba(255,200,20,0.5)', textAlign: 'center' }}>{sampleDetail.projectDTO.name}</Typography>
@@ -46,9 +48,9 @@ export default function ProjectDetail() {
       <ul>
         <li>Tên Dự Án: {sampleDetail.projectDTO.name}</li>
         <li>Phong Cách Thiết Kế: {sampleDetail.projectDTO.designStyleName}</li>
-        <li>Chi Phí Thi Công Theo Loại Dự Án: {sampleDetail.constructionPriceType}</li>
-        <li>Chi Phí Thiết Kế: {sampleDetail.constructionPriceDesign}</li>
-        <li>Tổng Chi Phí: {sampleDetail.totalPrice}</li>
+        <li>Giá thi công loại dự án: {formatMoney(sampleDetail.constructionPriceType)}</li>
+        <li>Giá thi công loại thiết kế: {formatMoney(sampleDetail.constructionPriceDesign)}</li>
+        <li>Tổng Chi Phí: {formatMoney(sampleDetail.totalPrice)}</li>
       </ul>
       {console.log(sampleDetail)}
       <Slider {...settings}>

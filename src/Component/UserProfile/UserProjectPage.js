@@ -12,9 +12,12 @@ import axios from "axios";
 import { format } from "date-fns";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
+import { axiosClient } from "../../api/axiosClients";
+import { toast } from "react-toastify";
 
 export default function UserProjectPage() {
   // const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const [project, setProject] = React.useState([]);
   const [pagination, setPagination] = React.useState({
     page: 0,
@@ -37,7 +40,23 @@ export default function UserProjectPage() {
       console.error('There was a problem with the request:', error);
     }
   };
-
+const handleConfirmQuote = (id) => {
+    setAnchorEl(null);
+    const confirmed = window.confirm(`Bạn có muốn xác nhận báo giá ?`);
+    const callAPIConfirm = async () => {
+      try {
+        await axiosClient.put(`/project/updateProjectByStatus?projectId=${id}&status=COMPLETED`)
+        toast.success(" Đồng Ý Báo Giá Thành Công")
+        navigate(0)
+      } catch (err) {
+        console.log(err);
+        toast.error("Đồng Ý Báo Giá thất bại !")
+      }
+    };
+    if (confirmed) {
+      callAPIConfirm();
+    }
+  };
   React.useEffect(() => {
     fetchProjects(0, pagination.size);
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -95,6 +114,9 @@ export default function UserProjectPage() {
                   >
                     <Button variant="contained" size="small" color="success" onClick={()=>{navigate(`/quotepage/${row?.id}`)}}>
                       Xem bảng báo giá
+                    </Button>
+                    <Button variant="contained" size="small" color="warning" onClick={()=>{handleConfirmQuote(row?.id)}}>
+                      Đồng Ý báo giá
                     </Button>
                   </TableCell>
                 </TableRow>
